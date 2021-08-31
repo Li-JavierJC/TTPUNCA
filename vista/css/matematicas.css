@@ -1,0 +1,22 @@
+section#matematicas{
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    padding: 5px 5px 10px 5px;
+    box-sizing: border-box;
+    background-color: #ff3859;
+    color: #e7e3e9;
+}
+
+section#matematicas h1{
+    font-size: 30px;
+}
+
+
+section#titulo{
+    text-align: center;
+}
+
+section#titulo h1{
+    font-size: 28px;
+}

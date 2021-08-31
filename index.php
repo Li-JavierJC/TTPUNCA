@@ -6,6 +6,7 @@
 	if (empty($_REQUEST['page'])) { $_REQUEST['page'] = "inicio"; }
 	if (!isset($_SESSION['loggedin'])) { $_SESSION['loggedin'] = false; }
 
+
 	$paginaSeleccionada = $_REQUEST['page'];
 
 	include "controlador/$paginaSeleccionada.php";
@@ -15,7 +16,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title><?php echo $pageTitle; ?></title>
-		<link rel="stylesheet" href="vista/css/educacion.css?v=1">
+		<link rel="stylesheet" href="vista/css/educacion.css?v=2">
 		<link rel="stylesheet" href="vista/css/<?php echo $paginaSeleccionada.".css?v=1"; ?>">
 		
 		<!--<link href="https://fonts.googleapis.com/css?family=Concert+One&display=swap" rel="stylesheet">  

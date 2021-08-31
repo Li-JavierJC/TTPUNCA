@@ -1,0 +1,98 @@
+section#primero{
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    padding: 5px 5px 10px 5px;
+    box-sizing: border-box;
+    background-color: #ff3859;
+    color: #e7e3e9;
+}
+
+section#primero h1{
+    font-size: 30px;
+}
+
+section#titulo-materias{
+    text-align: center;
+}
+
+section#titulo-materias h1{
+    font-size: 28px;
+}
+
+
+section#contenedor-materias{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 20px 50px 50px 50px;
+    box-sizing: border-box;
+}
+
+article#columna1{
+    max-width: 300px;
+    text-align: center;
+    
+}
+
+article#columna1 figure{
+    background-color: #ffdd38;
+    border-radius: 10px;
+}
+
+article#columna1 figcaption{
+    font-size: 20px;
+}
+
+article#columna2{
+    max-width: 300px;
+    text-align: center;
+}
+
+article#columna2 figure{
+    background-color:#3888ff;
+    border-radius: 10px;
+}
+article#columna2 figcaption{
+    font-size: 20px;
+}
+
+article#columna3{
+    max-width: 300px;
+    text-align: center;
+}
+
+article#columna3 figcaption{
+    font-size: 20px;
+}
+
+article#columna3 figure{
+    background-color: #ff5438;
+    border-radius: 10px;
+}
+article#columna4{
+    max-width: 300px;
+    text-align: center;
+}
+
+article#columna4 figure{
+    background-color: #ff3859;
+    border-radius: 10px;
+}
+article#columna4 figcaption{
+    font-size: 20px;
+}
+
+article#columna5{
+    max-width: 300px;
+    text-align: center;
+}
+
+article#columna5 figure{
+    background-color: #5eaec5;
+    border-radius: 10px;
+}
+
+article#columna5 figcaption{
+    font-size: 20px;
+}
