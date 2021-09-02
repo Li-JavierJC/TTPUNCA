@@ -5,9 +5,32 @@ body {
 }
 
 /*Estilos de la seccion del header*/
+header{
+    background-color: #ffbe08;
+    justify-content: space-between;
+    justify-content: space-between;
+    padding: 20px;
+    padding-left: 60px;
 
+    
+}
 
+header a{
+    color: #ffffff;
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 10px;
+    box-sizing: border-box;
+}
 
+header a:hover{
+    border: 3px solid;
+    border-color: #ffffff;
+    border-radius: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
 /*Estilos de la seccion del footer*/
 footer{
     width: 100%;
@@ -20,7 +43,7 @@ section#contenedorfooter-informacion{
 
     display: flex;
     justify-content: space-between;
-    background-color: #131217;
+    background-color: #1db7b4;
     width: 100%;
     padding: 20px 50px 50px 50px;
     box-sizing: border-box;
@@ -31,12 +54,14 @@ article#columna1{
 }
 
 article#columna1 h1{
-    font-size: 22px;
+    font-size: 28px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
 article#columna1 p{
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
     font-size: 16px;
-    color: #c7c7c7;
+    color: #ffffff;
     margin-top: 20px;
     text-align: justify;
 }
@@ -46,30 +71,36 @@ article#columna2{
 }
 
 article#columna2 h1{
-    font-size: 22px;
+    font-size: 28px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
 article#columna2 article#fila{
     margin-top: 20px;
     display: flex;
 }
-
+article#columna2 article#fila a{
+    text-decoration: none;
+}
 article#columna2 article#fila img{
     width: 32px;
     height: 32px;
 }
 
 article#columna2 article#fila label{
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
     margin-top: 7px;
     margin-left: 20px;
-    color: #c7c7c7;
+    color: #ffffff;
+    cursor: pointer;
 }
 
 article#columna3{
     max-width: 400px;
 }
 article#columna3 h1{
-    font-size: 22px;
+    font-size: 28px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
 article#columna3 article#fila2{
@@ -85,17 +116,19 @@ article#columna3 article#fila2 img{
 article#columna3 article#fila2 label{
     margin-top: 7px;
     margin-left: 20px;
-    max-width: 120px;
-    color: #c7c7c7;
+    max-width: 140px;
+    color: #ffffff;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
 section#contedor-footer{
     width: 100%;
-    background: #101010;
+    background: #1995ad;
     display: flex;
     justify-content: space-between;
     padding: 30px 50px;
     box-sizing: border-box;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 section#contedor-footer p{
     margin: auto;
@@ -104,4 +137,5 @@ section#contedor-footer p{
 article#informacion a{
     text-decoration: none;
     color: #ffffff;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
 }

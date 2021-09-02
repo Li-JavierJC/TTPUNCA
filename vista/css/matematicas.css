@@ -1,7 +1,7 @@
 section#matematicas{
     text-align: center;
     width: 100%;
-    height: 100%;
+    height: 15%;
     padding: 5px 5px 10px 5px;
     box-sizing: border-box;
     background-color: #ff3859;
@@ -9,9 +9,12 @@ section#matematicas{
 }
 
 section#matematicas h1{
-    font-size: 30px;
+    padding-top: 0px;
+    color: white;
+    font-family: 'Righteous', serif;
+    font-size: 2.5em; 
+    text-shadow: .03em .03em 0 hsla(230,40%,50%,1);
 }
-
 
 section#titulo{
     text-align: center;
@@ -19,4 +22,9 @@ section#titulo{
 
 section#titulo h1{
     font-size: 28px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+section#titulo p{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
