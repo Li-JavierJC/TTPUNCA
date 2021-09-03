@@ -3,16 +3,15 @@
         <img src="vista/images/iconos/pensando.png">
     </figure>
     <h1>Bievenido ¿Cómo te llamaremos?</h1>
-        <form action="primero" method="post">
+        <form action="registro" method="post">
             
-            <input type="text" name="nombre" placeholder="Elige tu apodo">
+            <input type="text" name="usuario" placeholder="Elige tu apodo">
+            <label for="contraseña">Elige un código secreto</label>
+            <input type="password"  name="contrasena">
             <label for="apellidos">¡Tus datos estan seguros!</label>
             <p>¿Aceptas los <a href="#">Terminos y Condiciones?</a></p>
-            <p><input type="checkbox" id="cbox1" value="first_checkbox">Acepto</p>
+            <p><input type="checkbox" value="acepto">Acepto</p>
            
-
-           
-            
-            <button type="hidden"    name="registrarse" value="registrarse">Continuar</button> 
+            <button type="hidden"    name="registrarse" value="registrarse">¡Comencemos!</button> 
         </form>
 </section>

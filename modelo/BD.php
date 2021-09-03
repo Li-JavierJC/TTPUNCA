@@ -10,27 +10,46 @@
             }
             else
             {   
-            	//echo "conexion exitosa";
+            	echo "conexion exitosa";
             }       
         }	
+
         public function registrarUsuario($usuario)
         {   
             if ($usuario->getId() == -1) {    
-            $datos="'".$usuario->getNombre()."',";
-            $datos.= "'".$usuario->getApellidos()."',";
-            $datos.= "'".$usuario->getEdad()."',";
-            $datos.= "'".$usuario->getCorreo()."',";
-            $datos.= "'".$usuario->getTelefono()."',";
-            $datos.= "'".$usuario->getUsuario()."',";
+            $datos= "'".$usuario->getUsuario()."',";
             $datos.= "'".$usuario->getContrasena()."'";
 
-            $insertar = "INSERT INTO usuario (nombre, apellidos, edad, correo, telefono, usuario, contrasena) VALUES($datos)";
+            $insertar = "INSERT INTO usuario (usuario, contrasena) VALUES($datos)";
             echo $insertar;
+
             $this->conexion->query($insertar);
 
             }
        
         } 
+        
+		//obtiene el usuario para el login
+		public function obtenerUsuario($usuario, $contrasena){
+			
+            $consulta = "SELECT * FROM usuario WHERE usuario = '$usuario' and contrasena='$contrasena'";
+            $sql = $this->conexion->query($consulta);
+            /*
+			$registro=$sql->fetch();
+            $usuario=new Usuario();
+
+
+			//verifica si la clave es conrrecta
+			if ($registro!=NULL) {				
+				//si es correcta, asigna los valores que trae desde la base de datos
+				$usuario->setId($registro['id']);
+				$usuario->setUsuario($registro['usuario']);
+				$usuario->setContrasena($registro['contrasena']);
+			}
+            
+            */
+			return $usuario;
+		}
     } 
 
 ?>

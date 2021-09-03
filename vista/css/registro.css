@@ -9,6 +9,10 @@ section#registro {
     background: #e2c1f1; 
      margin-bottom: 2%;
 }
+section#registro img{
+    text-align: center;
+    padding: 0px 120px;
+ }
 
 section#registro h1{
     color: #021d3e;
@@ -42,6 +46,10 @@ section#registro input{
     border-radius: 10px;
     color: #000;
 
+}
+
+section#registro p{
+    padding-bottom: 0px;
 }
 
 section#registro button {

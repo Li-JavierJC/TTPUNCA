@@ -1,6 +1,7 @@
 <?php
 	include "modelo/session.php";
 	include "modelo/BD.php";
+	include "modelo/usuario.php";
 
 	if (!isset($_REQUEST['page'])) { $_REQUEST['page'] = "inicio"; }
 	if (empty($_REQUEST['page'])) { $_REQUEST['page'] = "inicio"; }
