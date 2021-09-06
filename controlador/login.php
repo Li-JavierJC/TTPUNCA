@@ -9,7 +9,7 @@
         $usuario=$bd->obtenerusuario($_POST['usuario'],$_POST['contrasena']);
         
         //si el id del objeto retornado no  es null, se encuentra un registro en la base de datos
-        if($usuario->getI()!=NULL){
+        if($usuario->getId()!=NULL){
             
             //se crea la sesion del usuario
             $_SESSION['usuario']=$usuario;

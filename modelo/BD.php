@@ -32,10 +32,19 @@
 		//obtiene el usuario para el login
 		public function obtenerUsuario($usuario, $contrasena){
 			
+            // consulta de usuario y contraseña a la base de datos
             $consulta = "SELECT * FROM usuario WHERE usuario = '$usuario' and contrasena='$contrasena'";
+            
+
+            //se ejecuta la consulta a la base de datos con el query
             $sql = $this->conexion->query($consulta);
-            /*
-			$registro=$sql->fetch();
+
+            
+            // retorna la fila consultada en la base de datos
+			$registro=$sql->num_rows;
+
+            echo $registro;
+
             $usuario=new Usuario();
 
 
@@ -47,7 +56,7 @@
 				$usuario->setContrasena($registro['contrasena']);
 			}
             
-            */
+            
 			return $usuario;
 		}
     } 

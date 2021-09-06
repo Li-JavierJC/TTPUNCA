@@ -7,7 +7,7 @@ var contador_tiempo=59;
 var aleatorio;
 var ciclo_tiempo;
 
-window.onload= function{
+window.onload= function(){
     for(i=1; i<=4; i++){
         for(j=0; j>=0; j++){
             aleatorio=Math.floor(Math.random()*8+1);
