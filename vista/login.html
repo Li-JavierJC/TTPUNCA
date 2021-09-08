@@ -5,9 +5,9 @@
     <h1>Bievenido de vuelta</h1>
     <form action="login" method="post">
         
-        <input type="text "  name="usuario" placeholder="Escribe tu apodo">
+        <input type="text "  name="usuario" placeholder="Escribe tu apodo" required minlength="6" maxlength="12">
         <label for="contraseña">Ingresa tu código secreto</label>
-        <input type="password" name="contrasena"> 
+        <input type="password" name="contrasena" required minlength="6" maxlength="12"> 
 
         <button type="hidden" he   name="iniciar" value="iniciar">¡Comencemos!</button>
         <p>Si aún no tienes cuenta ve al siguiente link <a href="registro">Registrarse</a></p>

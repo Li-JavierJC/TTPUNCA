@@ -3,17 +3,23 @@
 
     $bd = new BD();
     $usuario= new Usuario();
+    $sesion = new Sesion();
    
     if(isset($_POST['iniciar'])){
         
         $usuario=$bd->obtenerusuario($_POST['usuario'],$_POST['contrasena']);
-        
+
+     
+      
         //si el id del objeto retornado no  es null, se encuentra un registro en la base de datos
         if($usuario->getId()!=NULL){
-            
+                       
             //se crea la sesion del usuario
             $_SESSION['usuario']=$usuario;
 
+            $sesion->init();        
+
+          
             //se envia a la pagina de inicio con su cuenta
             header('Location: primero');
         } else{

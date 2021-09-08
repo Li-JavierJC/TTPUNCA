@@ -16,7 +16,9 @@
         header('Location: primero');
         echo "hola";
         
-    } 
+    } else{
+        echo "no entro";
+    }
    
     
 ?>

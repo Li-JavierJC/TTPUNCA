@@ -108,8 +108,10 @@ function funcion_aciertos() {
 function mostrar_modal(_opcion){
     if(_opcion==1){
         document.getElementById("encabezado").innerHTML="<h1>Tiempo Agotado</h1><h4><h4><h4>Hazlo más rapido para la proxima</h4>";
-        document.getElementById("cuerpo").innerHTML="<img class='img' src='vista/images/img_memorama/estrella1.png'><img class='img' src='vista/images/img_memorama/estrella2.png'><img class='img' src='vista/images/img_memorama/estrella3.png'>"
+        document.getElementById("cuerpo").innerHTML="<img class='img' src='vista/images/img_memorama/estrella1.png'><img class='img' src='vista/images/img_memorama/estrella1.png'><img class='img' src='vista/images/img_memorama/estrella1.png'>"
     }else if(_opcion==2){
+        document.getElementById("encabezado").innerHTML="<h1></h1><h4><h4><h4>Hazlo más rapido para la proxima</h4>";
+        document.getElementById("cuerpo").innerHTML="<img class='img' src='vista/images/img_memorama/estrella1.png'><img class='img' src='vista/images/img_memorama/estrella1.png'><img class='img' src='vista/images/img_memorama/estrella1.png'>"
 
     }else if (_opcion==3){
 

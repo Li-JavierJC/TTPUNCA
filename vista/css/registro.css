@@ -48,6 +48,12 @@ section#registro input{
 
 }
 
+
+
+section#registro input:valid{
+    border: 2px solid #008cff;
+}
+
 section#registro p{
     padding-bottom: 0px;
 }

@@ -5,13 +5,12 @@
     <h1>Bievenido ¿Cómo te llamaremos?</h1>
         <form action="registro" method="post">
             
-            <input type="text" name="usuario" placeholder="Elige tu apodo">
+            <input type="text" name="usuario" placeholder="Elige tu apodo" required minlength="6" maxlength="12">
             <label for="contraseña">Elige un código secreto</label>
-            <input type="password"  name="contrasena">
+            <input type="password"  name="contrasena"  required  minlength="6" maxlength="12">
             <label for="apellidos">¡Tus datos estan seguros!</label>
             <p>¿Aceptas los <a href="#">Terminos y Condiciones?</a></p>
-            <p><input type="checkbox" value="acepto">Acepto</p>
-           
+            <p><input type="checkbox" name="condicion" value="acepto" required>Acepto</p>         
             <button type="hidden"    name="registrarse" value="registrarse">¡Comencemos!</button> 
         </form>
 </section>

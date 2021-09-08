@@ -49,6 +49,10 @@ section#login img{
      color: #000;
  
  }
+
+ section#login input:valid{
+    border: 2px solid #008cff;
+}
  
  section#login button {
     width: 100%;
