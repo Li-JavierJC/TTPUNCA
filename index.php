@@ -18,6 +18,7 @@
 		<meta charset="utf-8">
 		<title><?php echo $pageTitle; ?></title>
 		<link rel="stylesheet" href="vista/css/educacion.css?v=2">
+		<link rel="stylesheet" href="vista/css/sweetalert2.min.css">
 		<link rel="stylesheet" href="vista/css/<?php echo $paginaSeleccionada.".css?v=1"; ?>">
 		
 		<!--<link href="https://fonts.googleapis.com/css?family=Concert+One&display=swap" rel="stylesheet">  
@@ -32,7 +33,8 @@
 		<link href="https://fonts.googleapis.com/css?family=Coming+Soon|M+PLUS+Rounded+1c|Turret+Road&display=swap" rel="stylesheet">
 -->
 		<script src="vista/js/sweetalert2.all.min.js"></script>
-		<script src="vista/js/jQuery3.4.1.js"></script>
+		<script src="vista/js/jquery-3.6.0.min.js"></script>
+		
 		<script src="vista/js/educacion.js"></script>
 		<script src="vista/js/<?php echo $paginaSeleccionada; ?>.js"></script>
 	</head>

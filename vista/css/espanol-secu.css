@@ -26,6 +26,7 @@ section#espanol progress{
 }
 
 section#contenedor-bloque1{
+    margin-top: 100px;
     width: 80%;
     height: 180%;
     margin-left: 10%;
@@ -168,5 +169,19 @@ article#progreso{
     animation-name:animation_img ;
     animation-duration: 3s;
     animation-fill-mode: forwards;
+
+}
+
+.nombreUsuario{
+    text-align: center;
+    background-color: #ff3859;
+    position: absolute;
+    color: #e7e3e9;
+    width: 100%;
+    margin-top: 64px;
+    font-size: 19px;
+    font-family: Arial, Helvetica, sans-serif;
+    
+    
 
 }
