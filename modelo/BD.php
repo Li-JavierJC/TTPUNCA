@@ -4,7 +4,7 @@
 
         function __construct(){
             
-            $this->conexion= new mysqli( "slimtech.ddns.net","educacion","educacion","educacion");
+            $this->conexion= new mysqli( "localhost","educacion","educacion","educacion");
             if ($this->conexion->connect_errno){
             	echo "error";
             }
