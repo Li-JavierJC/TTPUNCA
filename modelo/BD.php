@@ -3,8 +3,8 @@
         private $conexion;
 
         function __construct(){
-            $this->conexion=new mysqli("localhost","root","","educacion");
-            // $this->conexion= new mysqli( "localhost","educacion","educacion","educacion");
+            //$this->conexion=new mysqli("localhost","root","","educacion");
+            $this->conexion= new mysqli( "localhost","educacion","educacion","educacion");
             if ($this->conexion->connect_errno){
             	echo "error";
             }
