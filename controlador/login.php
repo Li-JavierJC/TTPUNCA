@@ -16,17 +16,25 @@
             $sesion->init();           
             //se crea la sesion del usuario
             $_SESSION['usuario']=$_POST['usuario'];
-           
-           
-                   
- 
+        
             //se envia a la pagina de inicio con su cuenta
             header('Location: primero');
         } else{
             ?>
-            <h2 class="errorUsuario">¡Tu apodo o tu código secreto  es incorrecto!</h2>
+                <section>
+                    <script src="vista/js/sweetalert2.all.min.js"></script>
+                    <script src="vista/js/jquery-3.6.0.min.js"></script>
+                    <script>
+                        Swal.fire({
+                        icon: 'error',
+                        title: '¡Tu apodo o tu código es incorrecto!',
+                        text: '¡Intentalo nuevamente!',
+                
+                        })
+                    </script>
+                </section>
             <?php
-            //echo "Tu apodo o tu código secreto son incorrectos";
+            
         }      
     } 
 ?>

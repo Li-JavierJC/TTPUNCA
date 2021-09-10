@@ -19,11 +19,19 @@
             header('Location: primero');
         }
         else{
-            //echo '<script language="javascript">alert("El Apodo ya existe, elige otro apodo");</script>';
-            
+                     
             ?>
-            <h2  class="usuarioExiste">¡El apodo ya existe, elige otro!</h2>
-                    
+                <section>
+                    <script src="vista/js/sweetalert2.all.min.js"></script>
+                    <script src="vista/js/jquery-3.6.0.min.js"></script>
+                    <script>
+                        Swal.fire({
+                        icon: 'error',
+                        title: '¡El apodo ya existe!',
+                        text: '¡Elige otro!',
+                        })
+                    </script>
+                </section>    
             <?php
 
             
