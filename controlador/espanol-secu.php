@@ -5,7 +5,7 @@
 
     ?>
     <section class="nombreUsuario">
-        <h2 >Bienvenido a la Materia de Español:&nbsp;&nbsp;<?php echo $_SESSION['usuario']; ?></h2>
+        <h2 >Bienvenido a la Materia de Español:&nbsp;&nbsp;<?php echo $_SESSION['nombre']; ?></h2>
     </section>
     <?php
 ?>

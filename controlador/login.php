@@ -8,8 +8,6 @@
     if(isset($_POST['iniciar'])){
         
         $usuario=$bd->obtenerusuario($_POST['usuario'],$_POST['contrasena']);
-
-     
       
         //si el id del objeto retornado no  es null, se encuentra un registro en la base de datos
         if($usuario->getId()!=NULL){
@@ -27,14 +25,14 @@
                     <script>
                         Swal.fire({
                         icon: 'error',
-                        title: '¡Tu apodo o tu código es incorrecto!',
-                        text: '¡Intentalo nuevamente!',
+                        title: '¡Tu usuario o contraseña es incorrecto!',
+                        showConfirmButton: false,
+                        timer: 2200
                 
                         })
                     </script>
                 </section>
-            <?php
-            
+            <?php            
         }      
     } 
 ?>

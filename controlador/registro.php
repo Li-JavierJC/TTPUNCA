@@ -7,15 +7,21 @@
     
 
     if(isset($_POST['registrarse'])){
-        //echo "entra";
-
+       
+        $usuario->setNombre($_POST['nombre']);
+        $usuario->setApellidos($_POST['apellidos']);
+        $usuario->setEdad($_POST['edad']);
+        $usuario->setSexo($_POST['sexo']);
+        $usuario->setNivel($_POST['nivel']);
+        $usuario->setGrado($_POST['grado']);
         $usuario->setUsuario($_POST['usuario']);
         $usuario->setContrasena($_POST['contrasena']);
-
+        
         if($bd->buscarUsuario($_POST['usuario'])){
             $bd->registrarUsuario($usuario);
             $sesion->init(); 
-            $_SESSION['usuario']=$_POST['usuario'];
+            $_SESSION['nombre']=$_POST['nombre'];
+            $_SESSION['apellidos']=$_POST['apellidos'];
             header('Location: primero');
         }
         else{
@@ -27,19 +33,18 @@
                     <script>
                         Swal.fire({
                         icon: 'error',
-                        title: '¡El apodo ya existe!',
-                        text: '¡Elige otro!',
+                        title: '¡El usuario ya existe!',
+                        text: '"Elige otro"',
+                        showConfirmButton: false,
+                        timer: 2200
                         })
                     </script>
                 </section>    
-            <?php
-
-            
+            <?php            
         }
-        
+           
     } else{
        // echo "no entro";
     }
-   
     
 ?>

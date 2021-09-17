@@ -30,13 +30,15 @@ section#contenedor-inicio h1{
 section#contenedor-inicio a{
     text-decoration: none;
     font-size: 30px;
-    background-color: #e9ff00;
+    /* background-color: #e9ff00;*/
+    background: #e9ff00;
+    /*background:#ff0040;*/
     padding: 6px 20px;
     box-sizing: border-box;
     border-radius: 30px;
     margin: 30px;
     cursor: pointer;
-    color: #000000;
+    color: #000;
     font-weight: bold;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     

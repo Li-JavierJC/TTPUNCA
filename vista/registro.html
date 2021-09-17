@@ -1,108 +1,124 @@
-
-<section id="registro" class="principal">
-    <figure>
-        <img src="vista/images/iconos/pensando.png">
-    </figure>
-    <h1>Bievenido ¿Cómo te llamaremos?</h1>
-        <form action="registro" method="post">
-            
-            <input type="text" name="usuario" placeholder="Elige tu apodo" required minlength="6" maxlength="12">
-            <label for="contraseña">Elige un código secreto</label>
-            <input type="password"  name="contrasena"  required  minlength="6" maxlength="12">
-            <label for="apellidos">¡Tus datos estan seguros!</label>
-            <p>¿Aceptas los <a href="#">Terminos y Condiciones?</a></p>
-            <p><input type="checkbox" name="condicion" value="acepto" required>Acepto</p>         
-            <button type="hidden"    name="registrarse" value="registrarse">¡Comencemos!</button> 
-        </form>
-</section>
-
-
-<!--
 <section id="contenido" class="principal">
     <figure>
         <img src="vista/images/iconos/pensando.png">
     </figure>
-    <section class="ecabezado">
+    <section>
         <h2>Bienvenido, ¡Vamos a conocerte!</2>
     </section>
+    <section class="barra-progreso">
+        <section class="paso">
+            <p>Nombre</p>
+            <section class="paquete">
+                <span>1</span>
+            </section>
+            <section class="check fas fa-check"></section>
+        </section>
+        <section class="paso">
+            <p>Identidad</p>
+            <section class="paquete">
+                <span>2</span>
+            </section>
+            <section class="check fas fa-check"></section>
+        </section>
+        <section class="paso">
+            <p>Escolaridad</p>
+            <section class="paquete">
+                <span>3</span>
+            </section>
+            <section class="check fas fa-check"></section>
+        </section>
+        <section class="paso">
+            <p>Enviar</p>
+            <section class="paquete">
+                <span>4</span>
+            </section>
+            <section class="check fas fa-check"></section>
+        </section>
+        
+    </section>
     <section class="forma-exterior">
-        <form action="">
-            <section class="page">
+        <form action="registro" method="post">
+            <section id="slidepage" class="page">
                 <section class="titulo">Información Básica</section>
                 <section class="campo">
                     <section class="label">Nombre</section>
-                    <input type="text" name="nombre" placeholder="Antonio" required>
+                    <input type="text" id="nombre" name="nombre" placeholder="Antonio" required>
                 </section>
                 <section class="campo">
                     <section class="label">Apellidos</section>
-                    <input type="text" name="apellidos" placeholder="García González" required>
+                    <input type="text" id="apellidos" name="apellidos" placeholder="García González" required >
                 </section>
-                <section class="campo">
-                    <button>Siguiente</button>
+                <section   class="campo">
+                    <button id="btnsiguiente" onclick="btnsiguente()" >Siguiente</button>
                 </section>
             </section>
 
-
-            <section class="page">
+            <section id="page_personal" class="page">
                 <section class="titulo">Información personal</section>
                 <section class="campo">
                     <section class="label">Edad</section>
-                    <input type="number" name="edad" placeholder="12" required>
+                    <input type="number" id="edad" name="edad" placeholder="12" required >
                 </section>
                 <section class="campo">
                     <section class="label">Sexo</section>
-                    <select name="sexo" id="">
-                        <option value="Hombre">Hombre</option>
-                        <option value="Mujer">Mujer</option>
-                    </select>
+                    <section class="caja">
+                        <select id="sexo" name="sexo" required>
+                            <option value="" selected="selected">Seleccione...</option>
+                            <option value="Hombre">Hombre</option>
+                            <option value="Mujer">Mujer</option>
+                        </select>
+                    </section>
                 </section>
-                <section class="campo-botones">
-                    <button class="anterior-1">Anterior</button>
-                    <button class="siguiente-1">Siguiente</button>
+                <section class="campo botones">
+                    <button id="anterior-1" class="anterior" onclick="btnAteriorpri()" >Anterior</button>
+                    <button id="siguiente-1" class="siguiente" onclick="btnsiguienteSec()" >Siguiente</button>
                 </section>
             </section>
-
-
             
-            <section class="page">
+            <section id="page_grado" class="page">
                 <section class="titulo">Grado Escolar</section>
                 <section class="campo">
                     <section class="label">Nivel Académico</section>
-                    <select name="nivel" id="">
-                        <option value="Secundaria">Secundaria</option>
-                    </select>
+                    <section class="caja">
+                        <select name="nivel" id="nivel" required>
+                            <option value="" selected="selected">Seleccione...</option>
+                            <option value="Secundaria">Secundaria</option>
+                        </select>
+                    </section>
                 </section>
                 <section class="campo">
                     <section class="label">Grado en curso</section>
-                    <select name="grado-secundaria" id="">
-                        <option value="Primero">Primero</option>
-                        <option value="Segundo">Segundo</option>
-                        <option value="Tercero">Tercero</option>
-                    </select>
+                    <section class="caja">
+                        <select name="grado" id="grado" required>
+                            <option value="" selected="selected">Seleccione...</option>
+                            <option value="Primero">Primero</option>
+                            <option value="Segundo">Segundo</option>
+                            <option value="Tercero">Tercero</option>
+                        </select>
+                    </section>
                 </section>
-                <section class="campo-botones">
-                    <button class="anterior-2">Anterior</button>
-                    <button class="siguiente-2">Siguiente</button>
+                <section class="campo botones">
+                    <button id="anterior-2" class="anterior" onclick="btnAteriorSec()">Anterior</button>
+                    <button id="siguiente-2" class="siguiente" onclick="btnsiguienteTre()">Siguiente</button>
                 </section>
             </section>
 
-            <section class="page">
+            <section id="page_detalles" class="page">
                 <section class="titulo">Detalles de Inicio de Sesión</section>
                 <section class="campo">
                     <section class="label">Usuario</section>
-                    <input type="text" name="usuario" placeholder="Ej. Antonio13" required minlength="6" maxlength="12">
+                    <input type="text" id="usuario" name="usuario" placeholder="Ej. Antonio13" minlength="6" maxlength="12" required>
                 </section>
                 <section class="campo">
                     <section class="label">contraseña</section>
-                    <input type="password"  name="contrasena"  required  minlength="6" maxlength="12">
+                    <input type="password"  id="contrasena" name="contrasena"  minlength="6" maxlength="12" required>
                 </section>
-                <section class="campo-botones">
-                    <button class="anterior-3">Anterior</button>
-                    <button class="eviar">Enviar</button>
+                <section class="campo botones">
+                    <button id="anterior-3" class="anterior" onclick="bbtnAteriorTre()">Anterior</button>
+                    <button type="hidden"    name="registrarse" value="registrarse" class="eviar" onclick="btnenviar()">Enviar</button>
                 </section>
             </section>
         </form>
     </section>
 </section>
 
--->

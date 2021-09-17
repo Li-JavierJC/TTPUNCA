@@ -17,6 +17,8 @@
 	<head>
 		<meta charset="utf-8">
 		<title><?php echo $pageTitle; ?></title>
+		
+		<link rel="icon" type="image/png" href="vista/images/iconos/Slimcat1.png">
 		<link rel="stylesheet" href="vista/css/educacion.css?v=2">
 		<link rel="stylesheet" href="vista/css/sweetalert2.min.css">
 		<link rel="stylesheet" href="vista/css/<?php echo $paginaSeleccionada.".css?v=1"; ?>">
@@ -34,6 +36,8 @@
 -->
 		<script src="vista/js/sweetalert2.all.min.js"></script>
 		<script src="vista/js/jquery-3.6.0.min.js"></script>
+		<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
 		
 		<script src="vista/js/educacion.js"></script>
 		<script src="vista/js/<?php echo $paginaSeleccionada; ?>.js"></script>
