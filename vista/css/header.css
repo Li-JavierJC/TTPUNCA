@@ -1,0 +1,50 @@
+p#letra-btn{
+	font-family: 'Montserrat', sans-serif;
+	font-weight: bolder;
+	color: #FFC300;
+	font-size: 17px;
+	transition: color .5s;
+}
+
+p#letra-btn:hover {
+	color: #F06500;;
+}
+
+span{
+    color: #ffffff;
+}
+
+.dropdow-menu {
+    margin: 0px;
+    background: #262a34;
+    color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.568);
+    display: inline-block;
+    float: right;
+    position: relative;
+   
+}
+
+.menuperfill {
+    color: white;
+     border-radius: 10px;
+}
+
+.menuperfill:focus {
+    background: #0f0f0f;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.568);
+    border-radius: 10px;
+}
+
+.cerrarr:hover {
+    background-color: rgba(16, 20, 17, 0.877);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.568);
+    color: #ffffff;
+    border-radius: 10px;
+}
+
+.userr {
+    font-size: 40px;
+     color: #00dbff;
+   
+}

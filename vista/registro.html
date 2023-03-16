@@ -1,124 +1,77 @@
-<section id="contenido" class="principal">
-    <figure>
-        <img src="vista/images/iconos/pensando.png">
-    </figure>
-    <section>
-        <h2>Bienvenido, ¡Vamos a conocerte!</2>
+<!--================ Formulario del Registro =================-->
+<section class="login_box_area p_120">
+  <section class="container">
+    <section class="row">
+      <article class="col-lg-6">
+        <span class="login_box_img">
+          <br>
+          <img class="img-fluid" src="vista/images/registro/registro.jpg" alt="">
+        </span>
+      </article>
+      <article class="col-lg-6" >
+        <article class="login_form_inner">
+          <span style="color: rgb(73, 214, 233);"><h3>Registrate Aquí</h3></span>
+          <form class="row g-3 needs-validation" action="registro" method="post" >
+            <article class="col-md-6">
+              <label for="nombre" class="form-label"><i class="bi bi-person-fill"></i> &nbsp;Nombre</label>
+              <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Marcos" required>     
+            </article>
+            <article class="col-md-6">
+              <label for="apellidos" class="form-label"><i class="bi bi-people-fill"></i> &nbsp;Apellidos</label>
+              <input type="text" class="form-control" id="apellidos" name="apellidos" placeholder="Jimnéz Flores" required>    
+            </article>
+            <article class="col-md-6">
+              <label for="sexo" class="form-label"><i class="bi bi-person-check-fill"></i> &nbsp;Sexo</label>
+              <select  class="form-select" id="sexo" name="sexo" required>
+                <option value="" selected="selected">Seleccione...</option>
+                <option value="Hombre">Hombre</option>
+                <option value="Mujer">Mujer</option>
+              </select>
+            </article>
+            <article class="col-md-6">
+              <label for="escolaridad" class="form-label"><i class="fas fa-graduation-cap"></i>&nbsp;Escolaridad</label>
+              <select class="form-select" name="escolaridad" id="escolaridad"  required>
+                <option value="" selected="selected" >Seleccione...</option>
+                <option value="Ninguna">Ninguna</option>
+                <option value="Preescolar">Preescolar</option>
+                <option value="Primaria">Primaria</option>
+                <option value="Secundaria">Secundaria</option>
+                <option value="Bachillerato">Bachillerato</option>
+                <option value="Licenciatura">Licenciatura</option>
+                <option value="Posgrado">Posgrado</option>
+              </select>
+            </article>
+            <article class="col-md-6">
+              <label for="ocupacion" class="form-label"><i class="fa-solid fa-briefcase"></i>&nbsp;Ocupacion</label>
+              <input type="text" class="form-control" name="ocupacion" id="Ocupacion" required>
+            </article>
+            <article class="col-md-6">
+              <label for="edad" class="form-label"><i class="fa-solid fa-calendar-check"></i>&nbsp;Edad</label>
+              <input type="text" class="form-control" name="edad" id="edad" required>
+            </article>
+            <article class="col-md-6">
+              <label for="domicilio" class="form-label"><i class="bi bi-house-fill"></i>&nbsp;Domicilio</label>
+              <input type="text" class="form-control" name="domicilio" id="domicilio" required>
+            </article>
+            <article class="col-md-6">
+              <label for="usuario" class="form-label"><i class="bi bi-person-circle"></i>&nbsp;Usuario</label> 
+              <input name="usuario" type="text" id="usuario" class="form-control" onBlur="comprobarUsuario()" required>
+              <span id="resultado"></span>
+            </article>
+            <article class="col-md-6">
+              <label for="contrasena" class="form-label"><i class="fa-solid fa-key"></i>&nbsp;Cotraseña</label> 
+              <input type="password" class="form-control" name="contrasena" id="contrasena"  required>
+            </article> 
+            <input type="hidden" name="nivelUsuario" value="3">
+            <article class="col-12">
+              <center>
+                <button  type="submit"    name="registrarse" value="registrarse" class="btn btn-primary">Registrar</button>
+              </center>
+            </article>
+          </form>
+        </article>
+      </article>
     </section>
-    <section class="barra-progreso">
-        <section class="paso">
-            <p>Nombre</p>
-            <section class="paquete">
-                <span>1</span>
-            </section>
-            <section class="check fas fa-check"></section>
-        </section>
-        <section class="paso">
-            <p>Identidad</p>
-            <section class="paquete">
-                <span>2</span>
-            </section>
-            <section class="check fas fa-check"></section>
-        </section>
-        <section class="paso">
-            <p>Escolaridad</p>
-            <section class="paquete">
-                <span>3</span>
-            </section>
-            <section class="check fas fa-check"></section>
-        </section>
-        <section class="paso">
-            <p>Enviar</p>
-            <section class="paquete">
-                <span>4</span>
-            </section>
-            <section class="check fas fa-check"></section>
-        </section>
-        
-    </section>
-    <section class="forma-exterior">
-        <form action="registro" method="post">
-            <section id="slidepage" class="page">
-                <section class="titulo">Información Básica</section>
-                <section class="campo">
-                    <section class="label">Nombre</section>
-                    <input type="text" id="nombre" name="nombre" placeholder="Antonio" required>
-                </section>
-                <section class="campo">
-                    <section class="label">Apellidos</section>
-                    <input type="text" id="apellidos" name="apellidos" placeholder="García González" required >
-                </section>
-                <section   class="campo">
-                    <button id="btnsiguiente" onclick="btnsiguente()" >Siguiente</button>
-                </section>
-            </section>
-
-            <section id="page_personal" class="page">
-                <section class="titulo">Información personal</section>
-                <section class="campo">
-                    <section class="label">Edad</section>
-                    <input type="number" id="edad" name="edad" placeholder="12" required >
-                </section>
-                <section class="campo">
-                    <section class="label">Sexo</section>
-                    <section class="caja">
-                        <select id="sexo" name="sexo" required>
-                            <option value="" selected="selected">Seleccione...</option>
-                            <option value="Hombre">Hombre</option>
-                            <option value="Mujer">Mujer</option>
-                        </select>
-                    </section>
-                </section>
-                <section class="campo botones">
-                    <button id="anterior-1" class="anterior" onclick="btnAteriorpri()" >Anterior</button>
-                    <button id="siguiente-1" class="siguiente" onclick="btnsiguienteSec()" >Siguiente</button>
-                </section>
-            </section>
-            
-            <section id="page_grado" class="page">
-                <section class="titulo">Grado Escolar</section>
-                <section class="campo">
-                    <section class="label">Nivel Académico</section>
-                    <section class="caja">
-                        <select name="nivel" id="nivel" required>
-                            <option value="" selected="selected">Seleccione...</option>
-                            <option value="Secundaria">Secundaria</option>
-                        </select>
-                    </section>
-                </section>
-                <section class="campo">
-                    <section class="label">Grado en curso</section>
-                    <section class="caja">
-                        <select name="grado" id="grado" required>
-                            <option value="" selected="selected">Seleccione...</option>
-                            <option value="Primero">Primero</option>
-                            <option value="Segundo">Segundo</option>
-                            <option value="Tercero">Tercero</option>
-                        </select>
-                    </section>
-                </section>
-                <section class="campo botones">
-                    <button id="anterior-2" class="anterior" onclick="btnAteriorSec()">Anterior</button>
-                    <button id="siguiente-2" class="siguiente" onclick="btnsiguienteTre()">Siguiente</button>
-                </section>
-            </section>
-
-            <section id="page_detalles" class="page">
-                <section class="titulo">Detalles de Inicio de Sesión</section>
-                <section class="campo">
-                    <section class="label">Usuario</section>
-                    <input type="text" id="usuario" name="usuario" placeholder="Ej. Antonio13" minlength="6" maxlength="12" required>
-                </section>
-                <section class="campo">
-                    <section class="label">contraseña</section>
-                    <input type="password"  id="contrasena" name="contrasena"  minlength="6" maxlength="12" required>
-                </section>
-                <section class="campo botones">
-                    <button id="anterior-3" class="anterior" onclick="bbtnAteriorTre()">Anterior</button>
-                    <button type="hidden"    name="registrarse" value="registrarse" class="eviar" onclick="btnenviar()">Enviar</button>
-                </section>
-            </section>
-        </form>
-    </section>
+  </section>
+  <br>
 </section>
-

@@ -1,0 +1,405 @@
+<header id="encabezado-info">
+    <section class="row container-fluid" style="color: white;">
+        <section class="col-md-1" >
+
+        </section>
+        <section class="col-md-5 p-5">
+            <?php 
+                printf('<img  class="img-fluid" style="border-radius: 20px;" src ="data:image/png;base64,'.base64_encode($_SESSION['imagen']).'" width="400px" height="400px" /> ');
+            ?>
+        </section>
+        <section class="col-md-6 p-5">
+            <center>  
+                <h2 class="card-title" style=" font-weight: bold;"> <?php echo $_SESSION['nombrePlatillo']?></h2>
+                <p>Este, es uno de los platillos que preparas en un abrir y cerrar los ojos si tienes invitados o alguna reunión. Haz de sobra porque vuelan sin que te des cuenta! :)</p>
+
+                <p style="font-weight: bold;">Autor:&nbsp;<?php echo $_SESSION['autor']?></p>
+                <?php
+
+                    error_reporting(0);
+
+                    if(($_SESSION['nombre']== null & $_SESSION['apellidos']==null) || ($_SESSION['nombre']=='' & $_SESSION['apellidos']==''))
+                    {
+
+                        printf('<button class="btn  end" data-bs-toggle="modal" data-bs-target="#modal-favoritos" style="background: #18C5D9; color: white;" type="button"><i class="bi bi-bookmark-fill">&nbsp;Añadir a mis favoritos</i></button>');
+
+                    }
+                    else
+                    {
+                        $favoritosAgregado=0;
+                        $idusuario=$_SESSION['idUsuario'];
+                        $idPlato=$_SESSION['id'];
+                        $listaFavoritosU=array();
+
+                        foreach($listaFavoritos as $favoritos){
+                            if($idusuario===$favoritos->getIdUsuario())
+                            {
+                                array_push($listaFavoritosU, $favoritos->getIdPlatillo());  
+                            }
+                        }
+
+                        foreach($listaFavoritosU as $favorito){
+                            $platilloId=$favorito;
+                            if($idPlato==$platilloId){
+                                $favoritosAgregado=1;
+                            }
+                        }
+                            
+                        if($favoritosAgregado==1)
+                        {
+                            printf('<button class="btn  end" style="background: #18D935;  color: white;" type="button"><i class="bi bi-bookmark-fill" data-bs-toggle="modal" data-bs-target="#modal-ya-favoritos">&nbsp;Añadido a mis favoritos</i></button>');
+                        }
+                        else
+                        {   
+                            ?>
+                                <form id="formFavoritos" method="post" class="mb-3">
+                                    <input name="fecha" type="hidden" id="fecha" value="<?php date_default_timezone_set('America/Mexico_City'); echo date('d-m-Y g:i a');  ?>" />
+                                    <input type="hidden" name="idUsuario" value="<?php echo $_SESSION['idUsuario'];?>"/>
+                                    <input type="hidden" name="idPlatillo" value="<?php echo $_SESSION['id'];?>"/>
+                                    <center><button class="btn  end" style="background: #18C5D9; color: white;" type="button" id="btnguardar"><i class="bi bi-bookmark-fill">&nbsp;Añadir a mis favoritos</i></button></center>
+                                </form>
+                            <?php 
+                        }
+                    }
+                ?>
+            </center>
+        </section>
+    </section>
+    <ul class="nav justify-content-center h6 text-white" style="font-weight:bold; background-color: #170317;">
+        <li class="nav-item">
+            <a class="nav-link text-white" href="#valores-nutrimentales">Información Nutrimental</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white" href="#preparacion">Preparación</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white" href="#comentar">Comentar</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white" href="#comentarios-publicados">Comentarios publicados</a>
+        </li>
+    </ul>
+</header>
+
+<!-- Modal para que registre e inicie sesión para añadir a fovoritos -->
+<section class="modal fade" id="modal-ya-favoritos"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <section class="modal-dialog">
+    <section class="modal-content">
+        <section class="modal-header text-white" style="background-color:#FF5A71;">
+            <h5 class="modal-title" id="exampleModalLabel"></h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </section>
+        <section class="p-4 m-2">
+            <section class="row container-fluid">
+                <section class="">
+                    <center><h4><b>¡El platillo ya está en tú lista de favoritos!</b></h4></center></center>
+                </section>
+            </section>
+        </section>
+        <section class="modal-footer">
+            <button type="button" class="btn btn-info" data-bs-dismiss="modal">Cerrar</button>
+        </section>
+    </section>
+  </section>
+</section>
+
+<!-- Modal para mostrar que el platillo  ya está añadido en favoritos-->
+<section class="modal fade" id="modal-favoritos"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <section class="modal-dialog">
+    <section class="modal-content">
+        <section class="modal-header text-white" style="background-color:#900C3F;">
+            <h5 class="modal-title" id="exampleModalLabel">Para añadir a fovoritos debes:</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </section>
+        <section class="p-5 m-2">
+            <section class="row container-fluid">
+                <section class="col-sm-6">
+                    <center><button  onclick="location.href='ingresar'" class="btn btn-success">Iniciar Sesión</button></center>
+                </section>
+                <section class="col-sm-6">
+                    <center><button onclick="location.href='registro'" class="btn btn-warning text-white">Crear cuenta</button></center>
+                </section>
+            </section>
+        </section>
+    </section>
+  </section>
+</section>
+<!---Seccion de valores nutimentales -->
+<section id="valores-nutrimentales" class="container-fluid">
+    <section class="p-5">
+        <center><h4 class="p-2 text-white" style="background-color:#ffa700; "><b>Información Nutrimental</b></h4></center>
+    </section>
+    <section class="row">
+        <article class="col-md-3" >
+            <center>
+                <i class="bi bi-stopwatch-fill fa-4x " style="color: #FEB00A;"></i><br>
+                <h6 class="" style="color: #03526C; font-weight: bold;">Tiempo de preparación</h6>
+                <p><?php echo $_SESSION['tiempopreparacion'];?></p>
+            </center>
+        </article>
+        <article class="col-md-3">
+            <center>
+                <i class="bi bi-person-fill fa-4x " style="color: #FEB00A;"></i><br>
+                <h6 class="" style="color: #03526C; font-weight: bold;">Porciones</h6><br>
+                <p><?php echo $_SESSION['porciones'];?></p>
+            </center>
+        </article>
+        <article class="col-md-3">
+            <center>
+                <i class="bi bi-calendar-event-fill fa-4x " style="color: #FEB00A;"></i><br>
+                <h6 class="" style="color: #03526C; font-weight: bold;">Caducidad</h6><br>
+                <p><?php echo $_SESSION['caducidad'];?></p>
+            </center>
+        </article>
+        <article class="col-md-3">
+            <center>
+                <i class="fas fa-cheese fa-4x " style="color: #FEB00A;"></i><br><br>
+                <h6  class="" style="color: #03526C; font-weight: bold;">Rendimiento</h6><br>
+                <p><?php echo $_SESSION['rendimiento'];?></p>
+            </center>
+        </article>
+    </section>
+    <br>
+    <section class="row">
+        <article class="col-md-3">
+            <center>
+                <i class="bi bi-cash-coin fa-4x " style="color: #FEB00A;"></i><br>
+                <h6 class="" style="color: #03526C; font-weight: bold;">Costo Aproximando</h6>
+                <p><?php echo $_SESSION['costo'];?></p>
+            </center>
+        </article>
+        <article class="col-md-3">
+            <center>
+                <img src="vista/images/iconos/energia.png"><br>
+                <h6 class="" style="color: #03526C; font-weight: bold;">Energía</h6>
+                <p><?php echo $_SESSION['energia'];?></p>
+            </center>
+        </article>
+        <article class="col-md-3">
+            <center>
+                <img src="vista/images/iconos/proteina.png"><br>
+                <h6 class="" style="color: #03526C; font-weight: bold;">Proteina</h6><br>
+                <p><?php echo $_SESSION['porciones'];?></p>
+            </center>
+        </article>
+        <article class="col-md-3">
+            <center>
+                <img src="vista/images/iconos/grasa.png"><br>
+                <h6 class="" style="color: #03526C; font-weight: bold;">Grasas</h6><br>
+                <p><?php echo $_SESSION['grasas'];?></p>
+            </center>
+        </article>
+    </section>
+    <br>
+    <section class="row">
+        <article class="col-md-3">
+            <center>
+                <img src="vista/images/iconos/carbono.png"><br>
+                <h6  class="" style="color: #03526C; font-weight: bold;">Hidratos de Carbono</h6><br>
+                <p><?php echo $_SESSION['carbono'];?></p>
+            </center>
+        </article>
+    </section>
+</section>
+<!-- Seccción de preparación del platillo-->
+<section id="preparacion" class="container-fluid">
+    <section class="p-5">
+        <center><h4 class="p-2 text-white" style="background-color:#ffa700; "><b>Preparación del platillo</b></h4></center>
+    </section>
+    <section class="row container-fluid">
+        <article class="col-md-4">
+            <center>
+                <img src="vista/images/iconos/utensilios.png"><br>
+                <h6  class="" style="color: #03526C; font-weight: bold;">Utensilios</h6><br>
+                <p><?php echo $_SESSION['utencilios'];?></p>
+            </center>
+        </article>
+        <article class="col-md-4">
+            <center>
+                <img src="vista/images/iconos/ingredientes.png"><br>
+                <h6  class="" style="color: #03526C; font-weight: bold;">Ingredientes</h6><br>
+                <p class="text-start"><?php echo $_SESSION['ingredientes'];?></p>
+            </center>
+        </article>
+        <article class="col-md-4">
+            <center>
+                <img src="vista/images/iconos/preparacion.png"><br>
+                <h6  class="" style="color: #03526C; font-weight: bold;">Preparación</h6><br>
+                <p class="text-start"><?php echo $_SESSION['preparacion'];?></p>
+            </center>
+        </article>
+    </section>
+</section>
+<!-- Seccción de comentar platillo-->
+<section id="comentar">
+    <section class="p-5">
+        <center><h4 class="p-2 text-white" style="background-color:#ffa700; "><b>Publicar Comentario</b></h4></center>
+    </section>
+    <section class="container">
+        <ul class="nav nav-pills nav-justified mb-3  p-3" id="pills-tab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="pills-registrado-tab" data-bs-toggle="pill" data-bs-target="#registrado" type="button" role="tab" aria-controls="pills-registrado" aria-selected="true">Registrandose o Iniciar Sesión</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-invitado-tab" data-bs-toggle="pill" data-bs-target="#invitado" type="button" role="tab" aria-controls="pills-invitado" aria-selected="false">Comentar como invitado</button>
+            </li>
+        </ul>
+    </section>
+    <section class="p-3 container tab-content" id="myTabContent" style="border-radius: 10px; border: solid 2px #88d8ff;box-shadow: 0 0 10px rgba(96, 132, 134, 0.57); ">
+        <section class="tab-pane fade show active" id="registrado" role="tabpanel" aria-labelledby="home-tab">
+            <section class="row p-2">
+                <button type="button" onclick="location.href='registro'" class="btn btn-success col-md-2">Registrase</button>&nbsp;
+                <button type="button" onclick="location.href='ingresar'" class="btn btn-warning text-white col-md-2">Iniciar Sesión</button>
+            </section>
+            <form class="row  needs-validation p-2" action="informacion-platillo"  method="post" enctype="multipart/form-data">
+               <label for="nombre" class="form-label text-dark">Nombre Completo:</label>
+               <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo $_SESSION['nombre']; printf('&nbsp;'); echo $_SESSION['apellidos']; ?>">
+               <label for="comentario" class="form-label text-dark">Comentario:</label>
+               <textarea class="form-control" id="comentario" name="comentario" placeholder="Tu comentario..." required></textarea>
+               <label for="calificacion" class="form-label text-dark">Puntúe este platillo</label>
+               <p class="clasificacion" style="cursor: pointer;">
+                    <input id="radio1" type="radio" name="calificacion" value="5"><label for="radio1" style="cursor:pointer;">★</label>
+                    <input id="radio2" type="radio" name="calificacion" value="4"><label for="radio2" style="cursor:pointer;">★</label>
+                    <input id="radio3" type="radio" name="calificacion" value="3"><label for="radio3" style="cursor:pointer;">★</label>
+                    <input id="radio4" type="radio" name="calificacion" value="2"><label for="radio4" style="cursor:pointer;">★</label>
+                    <input id="radio5" type="radio" name="calificacion" value="1"><label for="radio5" style="cursor:pointer;">★</label>
+                </p>
+            <article class="form-check mb-3">
+                <input type="checkbox" class="form-check-input"  value="Yo cociné este platillo" id="cocinado" name="cocinado">
+                <label class="form-check-label text-dark" for="cocinado">Ya lo cociné</label>
+            </article>                                    
+            <label for="imagen" class="form-label text-dark">Compartir foto de lo que cociné</label>
+            <input type="file" name="imagen" id="imagen" class="form-control" >
+
+            <input name="fecha" type="hidden" id="fecha" value="<?php date_default_timezone_set('America/Mexico_City'); echo date('d-m-Y g:i a');  ?>" />
+            <input type="hidden" name="idPlatillo" id="idPlatillo" value="<?php echo $_SESSION['id'];?>"/>
+            <input type="hidden" name="usuario" value="<?php echo $_SESSION['nusuario'];?>"/>
+            <input type="hidden" name="idUsuario" value="<?php echo $_SESSION['idUsuario'];?>"/>
+
+            <article>
+                <br>
+                <center>
+                    <button type="submit"    name="registrarComentario" value="registrarComentario" class="btn btn-primary col-md-4">Publicar Comentario</button>
+                </center>
+            </article>
+        </form>
+    </section>
+
+    <section class="tab-pane fade" id="invitado" role="tabpanel" aria-labelledby="profile-tab">
+        <form class="row needs-validation container" action="informacion-platillo"  method="post" enctype="multipart/form-data">
+            <label for="nombre" class="form-label text-dark">Nombre Completo:</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Marcos Hernandez Franco" required>
+            <label for="comentario" class="form-label text-dark">Comentario:</label>
+            <textarea class="form-control" id="comentario" name="comentario" placeholder="Tu comentario..." required></textarea>
+            <label for="calificacion" class="form-label text-dark">Puntúe este platillo</label>
+            <p class="clasificacion" style="cursor: pointer;">
+                <input id="radio6" type="radio" name="calificacion" value="5"><label for="radio6" style="cursor:pointer;">★</label>
+                <input id="radio7" type="radio" name="calificacion" value="4"><label for="radio7" style="cursor:pointer;">★</label>
+                <input id="radio8" type="radio" name="calificacion" value="3"><label for="radio8" style="cursor:pointer;">★</label>
+                <input id="radio9" type="radio" name="calificacion" value="2"><label for="radio9" style="cursor:pointer;">★</label>
+                <input id="radio10" type="radio" name="calificacion" value="1"><label for="radio10" style="cursor:pointer;">★</label>
+            </p>
+            <article class="form-check mb-3">
+                <input type="checkbox" class="form-check-input"  value="Yo cociné este platillo" id="cocinado" name="cocinado">
+                <label class="form-check-label text-dark" for="cocinado">Ya lo cociné</label>
+            </article>
+            <label for="imagen" class="form-label text-dark">Compartir foto de lo que cociné</label>
+            <input type="file" name="imagen" id="imagen" class="form-control" >
+            <input name="fecha" type="hidden" id="fecha" value="<?php date_default_timezone_set('America/Mexico_City'); echo date('d-m-Y g:i a');  ?>" />
+            <input type="hidden" name="idPlatillo" id="idPlatillo" value="<?php echo $_SESSION['id'];?>"/>
+
+            <article>
+                <br>
+                <center>
+                    <button type="submit"    name="comentarioInvitado" value="comentarioInvitado" class="btn btn-primary col-md-4">Publicar Comentario</button>
+                </center>
+            </article>
+        </form>
+    </section>
+</section>
+</section>
+<section id="comentarios-publicados">
+    <section class="p-4">
+        <center>
+            <h4 class="p-2 text-white" style="background-color:#ffa700; "><b>Comentarios publicados sobre el platillo</b></h4>
+        </center>
+    </section>
+    <section class="container">
+        <?php
+            $hayComentario=0; 
+            foreach($listaComentarios as $comentario){ 
+                $id=$_SESSION['id'];
+                $idPlatillo= $comentario->getIdPlatillo();
+                if($id==$idPlatillo){
+                    printf('<section class="col-md-12 p-1" style="background-color: #99EEE2;" ></section>');
+                    printf('<section class="row">');
+                        printf('<article class="col-md-1">');
+                            printf('<i class="bi bi-person-fill fa-3x" style="color: #FEB00A;"></i>');
+                        printf('</article>');
+                        printf('<article class="row col-md-9 p-3">');                                        
+                            printf('<article class="col-md-4">');
+                                printf('<h6 class="card-title" style="color: #22636D;">%s</h6>', $comentario->getNombre());
+                            printf('</article>');
+                            printf('<article class="col-md-3">');
+                                printf('<h6 class="card-title" style="color: #22636D;">%s</h6>', $comentario->getFecha());
+                            printf('</article>');
+                            printf('<article class="col-md-4">');
+                                if(empty($comentario->getCocinado())){}else{
+                                    printf('<p class="card-title" style="color: #22636D;">%s</p>', $comentario->getCocinado());
+                                }
+                            printf('</article>');
+                        printf('</article>');
+                        printf('<article class="col-md-2 p-3">');
+                            printf('<center><h6 class="card-title" style="color: #22636D;">Puntuación</h6></center>');
+                            switch ($comentario->getCalificacion()) {
+                                case 0:
+                                    printf('<center><label style="color: #D6DBDF; font-size:28px;">★★★★★</label></center>');
+                                    break;
+                                case 1:
+                                    printf('<center><label style="color: orange; font-size: 28px;">★</label><label style="color: #D6DBDF; font-size:28px;">★★★★</label></center>');
+                                    break;
+                                case 2:
+                                    printf('<center><label style="color: orange; font-size: 28px;">★★</label><label style="color: #D6DBDF; font-size:28px;">★★★</label></center>');
+                                    break;
+                                case 3:
+                                    printf('<center><label style="color: orange; font-size: 28px;">★★★</label><label style="color: #D6DBDF; font-size:28px;">★★</label></center>');
+                                    break;
+                                case 4:
+                                    printf('<center><label style="color: orange; font-size: 28px;">★★★★</label><label style="color: #D6DBDF; font-size:28px;">★</label></center>');
+                                    break;
+                                case 5:
+                                    printf('<center><label style="color: orange; font-size: 28px;">★★★★★</label></center>');
+                                    break;
+                            }
+                        printf('</article>');
+                    printf('</section>');
+                    printf('<section class="row">');
+                        printf('<article class="col-md-10">');
+                            printf('<h6>Comentario:</h6><p class="card-title" style="color: #22636D;">%s</p>', $comentario->getComentario());
+                        printf('</article>');
+                        printf('<article class="col-md-2">');
+                            $verImagen=$comentario->getFoto();
+                           
+                            if(empty($comentario->getFoto())){}else{
+                                printf('<center><p>Foto de lo que coniné</p>'.'<img class="card-img-top" src ="data:image/png;base64,'.base64_encode($comentario->getFoto()).'" width="60px" height="100px"/>'.'</center> '); 
+                            }
+                        printf('</article>'); 
+                    printf('</section>');
+                    $hayComentario=1;
+                }        
+            }
+            if($hayComentario !=1 ){
+              printf('<article class="container">');
+                print('<div class="alert alert-info" role="alert">Aún no hay comentarios para el platillo ): </div>');
+              printf('</article>');
+            } 
+        ?>                        
+    </section>    
+</section>
+
+
+<section  id="ir-arriba" class="container p-2 ir-arriba">
+    <a href="#encabezado" class="btn btn-primary cmn-btncircle">
+        <i class="fa fa-arrow-up"></i>
+    </a>
+</section>

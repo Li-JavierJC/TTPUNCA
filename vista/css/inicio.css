@@ -1,53 +1,105 @@
-section#inicio{
-    width: 100%;
-    height: 100px; 
+section#fondo{
+	background: #FFEFBA;
+	background: -webkit-linear-gradient(to right, #FFFFFF, #FFEFBA); 
+	background: linear-gradient(to right, #FFFFFF, #FFEFBA); 
+}
+ button#btn-carusel{
+	background-color: #0BFFD1; 
+	height: 20px; 
+	width: 20px; 
+	border-radius: 100%;
+}
+article#difusion{
+	background-color: #0A6A5D7D; 
+	border-top-left-radius: 30px; 
+	border-bottom-right-radius: 20px;  
+	font-size: 35px; 
+	max-width:420px ;
+	font-family: 'Quando', serif;
 }
 
-section#inicio svg{
-    height: 100%; 
-    width: 100%;
+article#difusion-sub{
+	background-color: #0909097D; 
+	max-width:800px; 
+	border-radius: 10px; 
+	font-size: 25px;
+	font-family: 'Quando', serif;
 }
 
-section#inicio path{
-    stroke: none; 
-    fill: #ffbe08;
+article#elaboracion{
+	background-color: #0A6A5D7D;
+	max-width: 850px;
+	border-top-left-radius: 30px; 
+	border-bottom-right-radius: 20px;  
+	font-size: 35px;
+	font-family: 'Quando', serif;
 }
 
-section#contenedor-inicio{
-    width: 100%;
-    height: 300px;
-    text-align: center;
-    box-sizing: border-box;
-      
-}
-section#contenedor-inicio h1{
-    font-size: 60px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
-   
-    
-}
-section#contenedor-inicio a{
-    text-decoration: none;
-    font-size: 30px;
-    /* background-color: #e9ff00;*/
-    background: #e9ff00;
-    /*background:#ff0040;*/
-    padding: 6px 20px;
-    box-sizing: border-box;
-    border-radius: 30px;
-    margin: 30px;
-    cursor: pointer;
-    color: #000;
-    font-weight: bold;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    
+article#elaboracion-sub{
+	background-color: #0909097D; 
+	max-width: 800px; 
+	border-radius: 10px;  
+	font-size: 25px;
+	font-family: 'Quando', serif;
 }
 
-section#contenedor-inicio a:hover{
+article#plataforma{
+	background-color: #0A6A5D7D; 
+	max-width: 600px; 
+	border-top-left-radius: 30px; 
+	border-bottom-right-radius: 20px;  
+	font-size: 35px;
+	font-family: 'Quando', serif;
+}
+
+article#plataforma-sub{
+	background-color: #0909097D; 
+	max-width: 800px; 
+	border-radius: 10px;  
+	font-size: 25px;
+	font-family: 'Quando', serif;
+}
+
+img{
+	max-height: 520px;
+}
+
+
+#form {
+  width: 250px;
+  margin: 0 auto;
+  height: 50px;
+}
+
+#form p {
+  text-align: center;
+
+}
+
+#form label {
+  font-size: 50px;
    cursor: pointer;
-    border: 5px solid;
-    border-color: rgb(255, 217, 0);
-    outline-offset: 15px;
-   
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+label {
+  color: grey;
+}
+
+.clasificacion {
+  direction: rtl;
+  unicode-bidi: bidi-override;
+  font-size: 30px;
+}
+
+label:hover,
+label:hover ~ label {
+  color: orange;
+}
+
+input[type="radio"]:checked ~ label {
+  color: orange;
 }

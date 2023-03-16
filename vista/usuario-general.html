@@ -1,0 +1,55 @@
+<section class="container-fluid">
+  <article class="row justify-content-center align-content-center">
+    <article class="col-4 barra">
+      <img src="vista/images/iconos/logo-admi.png"  height="60px">
+    </article>
+    <article class="col-8 text-right barra">
+      <ul class="navbar-nav mr-auto">
+        <li>
+          <span>
+            <?php echo $_SESSION['nombre']?>&nbsp;<?php echo $_SESSION['apellidos']?>
+          </span>
+          <a href="#" class="px-3 text-light perfil dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-circle user"></i></a>
+          <article class="dropdown-menu" aria-labelledby="navbar-dropdown">
+            <a class="dropdown-item menuperfil cerrar" href="ingresar"><i class="fas fa-sign-out-alt m-1"></i>Salir
+            </a>
+          </article>
+        </li>
+      </ul>
+    </article>
+  </article>
+</section>
+<section class="container-fluid">
+  <section class="row">
+    <article id="barra" class="barra-lateral col-12 col-sm-auto">
+      <nav class="nav nav-pills menu d-flex d-sm-block justify-content-center flex-wrap"  aria-orientation="vertical">
+        <a class="nav-link active" data-bs-toggle="pill" data-bs-target="#perfil" aria-selected="true"><i class="fas fa-plate-wheat"></i><span>Perfil</span></a>
+        
+      </nav>
+    </article>
+    <main class="main col">
+      <section class="tab-content row justify-content-center align-content-center text-center" id="v-pills-tabContent">
+        <section  class="tab-pane fade show active" id="perfil">
+          <article style="background-color: #24122b; color:aliceblue; padding: 0.5%;">
+            <h3>Mi perfil</h3>
+          </article>
+          <br>
+          <article></article> 
+          <section class=" p-4" style="background-color:#FFEFF9 ; color: white; text-align: justify;">
+            <article class="p-1" style="background-color:#95043b; color:white; text-align:center;"><h5>Datos personales</h5></article>
+            <article style="margin-top: 2em;">
+              <h6 style="color: #22636D;">Nombre:&nbsp;<?php echo $_SESSION['nombre']?></h6>
+              <h6 style="color: #22636D;">Apellidos:&nbsp;<?php echo $_SESSION['apellidos']?></h6>
+              <h6 style="color: #22636D;">Sexo:&nbsp;<?php echo $_SESSION['sexo']?></h6>
+              <h6 style="color: #22636D;">Escolaridad:&nbsp;<?php echo $_SESSION['escolaridad']?></h6>
+              <h6 style="color: #22636D;">Ocupación:&nbsp;<?php echo $_SESSION['ocupacion']?></h6>
+              <h6 style="color: #22636D;">Domicilio:&nbsp;<?php echo $_SESSION['domicilio']?></h6>
+              <h6 style="color: #22636D;">Edad:&nbsp;<?php echo $_SESSION['edad']?></h6>
+               <h6 style="color: #22636D;">Usuario:&nbsp;<?php echo $_SESSION['nusuario']?></h6>
+            </article>
+          </section>          
+        </section>          
+        </section>        
+    </main>
+  </section>
+</section>

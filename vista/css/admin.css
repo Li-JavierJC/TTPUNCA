@@ -1,0 +1,255 @@
+#encabezado {
+	display: none;
+}
+
+.barra {
+    background: #FFC300;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin: 0;
+    
+}
+
+
+
+span{
+    color: #ffffff;
+}
+
+.dropdown-menu {
+    margin: 17px;
+    background: #262a34;
+    color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.568);
+}
+
+.menuperfil {
+    color: white;
+}
+
+.menuperfil:focus {
+    background: #0f0f0f;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.568);
+}
+
+.cerrar:hover {
+    background-color: rgba(16, 20, 17, 0.877);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.568);
+    color: #ffffff;
+}
+
+.user {
+    font-size: 35px;
+}
+
+
+/*BARRA LATERAL*/
+
+.barra-lateral {
+    background: #012738;
+    color: #fff;
+    min-width: 250px;
+    min-height: 100vh;
+    padding: 0;
+}
+
+.barra-lateral a {
+    color: #fff;
+}
+
+
+/*ESTILOS MENU*/
+
+.barra-lateral .menu a {
+    background: #012738;
+    display: block;
+    padding: 20px;
+    font-family: Roboto, sans-serif;
+    font-weight: 500;
+    border-bottom: 1px solid rgba(255, 255, 255, .1);
+}
+
+.barra-lateral .menu a:hover {
+    background-color: #04a5fca2;
+    text-decoration: none;
+}
+
+.active {
+    background: #ffffff;
+}
+
+.barra-lateral .menu {
+    border-top: 5px #fff solid;
+}
+
+.barra-lateral .menu a i {
+    margin-right: 20px;
+}
+
+
+/*MAIN*/
+
+.main {
+    padding-top: 5px;
+}
+
+.main .columna {
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+
+/*mediaquerys*/
+
+@media screen and (max-width:1300px) {
+    .barra-lateral {
+        min-width: auto;
+    }
+    .barra-lateral .menu a span {
+        display: none;
+    }
+    .barra-lateral .menu a i {
+        margin: 0;
+    }
+    .barra {
+        min-width: auto;
+    }
+    .dropdown-menu {
+        margin: 20px -79px 0px;
+    }
+}
+
+@media screen and (max-width:575px) {
+    .barra-lateral {
+        min-height: auto;
+    }
+    .barra-lateral .menu a {
+        display: inline-block;
+        border-bottom: none;
+    }
+    .dropdown-menu {
+        margin: 20px -78px 0px;
+    }
+    .logocppe {
+        width: 100%;
+    }
+    body {
+        background: #D3D3D3;
+        font-size: 16px;
+        overflow: visible;
+    }
+}
+
+.formulariorecursos {
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.568);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.menu {
+    border-top: 5px #fff solid;
+}
+
+@media screen and (max-width:575px) {
+    .barra-lateral {
+        height: auto;
+    }
+    .barra-lateral.menu a {
+        display: inline-block;
+        border-bottom: none;
+    }
+    .dropdown-menu {
+        margin: 20px -78 0px;
+    }
+    body {
+        font-size: 16px;
+        overflow: visible;
+    }
+}
+
+/*Estilos para el formulario de registro de platillo*/
+section#parte2{
+    display: none;
+}
+
+section#parte3{
+    display: none;
+}
+
+section#parte4{
+    display: none;
+}
+/*Datos que no se muestran del Usuario*/
+td#contrasena-g{
+    display: none;
+}
+
+/*Datos que no se muestran del Alumno*/
+td#contrasena-a{
+    display: none;
+}
+
+
+/*Datos que no se muestran del platillo*/
+
+td#ingredientes-m{
+    display: none;
+}
+
+td#utencilios-m{
+    display: none;
+}
+
+td#tiempopreparacion-m{
+    display: none;
+}
+
+td#caducidad-m{
+    display: none;
+}
+
+td#porciones-m{
+    display: none;
+}
+
+td#energia-m{
+    display: none;
+}
+
+td#costopromedio-m{
+    display: none;
+}
+td#rendimiento-m{
+    display: none;
+}
+
+td#proteinas-m{
+    display: none;
+}
+
+td#grasas-m{
+    display: none;
+}
+td#hidratoscarbono-m{
+    display: none;
+}
+
+td#alumno-id{
+    display: none;
+}
+td#preparacion-m{
+    display: none;
+}
+
+span#resultadoAl{
+    width: auto;
+    height: auto;
+    
+}
+
+span#resultadoUs{
+    width: auto;
+    height: auto;
+}
+
+

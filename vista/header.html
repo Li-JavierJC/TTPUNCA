@@ -1,7 +1,102 @@
-<header>
-    <nav id="menu">
-         <a href="inicio">Inicio</a>
-       </ul>
-     </nav>
-</header>
+<nav id="encabezado"  class="navbar navbar-expand-lg navbar-light bg-light">
+  <section class="container-fluid" >
+        <a class="navbar-brand" href="inicio"><img src="vista/images/iconos/logo-4.png" height="60px"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <section class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="inicio"><p id="letra-btn">Inicio</p></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="platillos"><p id="letra-btn">Platillos</p></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="galeria" style="cursor: pointer;"><p id="letra-btn">Galeria</p></a>
+        </li>
+        <?php
+        error_reporting(0);
+        if(($_SESSION['nombre']== null & $_SESSION['apellidos']==null) || ($_SESSION['nombre']=='' & $_SESSION['apellidos']=='')){
+            printf('<li class="nav-item">');
+              printf('<a class="nav-link"  data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="cursor: pointer;"><p id="letra-btn">Registrarse</p> </a>');
+            printf('</li>');
+            printf('<li class="nav-item">');
+              printf('<a class="nav-link" href="ingresar" style="cursor: pointer;"><p id="letra-btn">Iniciar Sesión</p></a>');
+            printf('</li>');
+          }else{
+            printf('<li class="nav-item">');
+              printf('<a class="nav-link" href="favoritos" style="cursor: pointer;"><p id="letra-btn">Favoritos</p></a>');
+            printf(' </li>');
+          }
+        ?>
+        <li class="nav-item">
+          <a class="nav-link" href="acerca-de" style="cursor: pointer;"><p id="letra-btn">Acerca de...</p></a>
+        </li>
+      </ul>
 
+      <?php
+        error_reporting(0);
+        if(($_SESSION['nombre']== null & $_SESSION['apellidos']==null) || ($_SESSION['nombre']=='' & $_SESSION['apellidos']=='')){
+        }else{
+          $nombre= $_SESSION['nombre'];
+          $apellidos=$_SESSION['apellidos'];
+          printf('<section class="d-flex row">');
+            printf('<article id="idMostrarusuario" class="col dropdown-item" style="padding-top: 18px;">');
+              printf('<h6>Bienvenido(a):&nbsp; %s %s</h6> &nbsp;', $nombre, $apellidos);
+            printf('</article>');
+            printf(' <section class="col btn-group">');
+              printf('<a type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="background: #f8f9fa; border-color: #f8f9fa; color:black;" ><i class="fas fa-user-circle userr"></i></a>');
+              printf('<ul class="dropdown-menu dropdown-menu-end">');
+                printf('<li><a class="px-3 dropdown-item" href="Javascript:salir()" ><i class="fas fa-sign-out-alt m-1"></i>&nbsp;Cerrar Sesión</a></li>');
+                printf('<li><a href="favoritos" class="px-3 dropdown-item" type="button"><i class="bi bi-2x bi-bookmark-heart-fill"></i>&nbsp;&nbsp;&nbsp;Favoritos</a></li>');
+              printf('</ul>');
+            printf('</section>');  
+          printf('</section>');  
+        }
+      ?>
+    </section>
+  </section>
+</nav>
+<!-- Modal de registro -->
+<section class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <section class="modal-dialog">
+    <article class="modal-content">
+      <article class="modal-header">
+        <h5 class="modal-title justify-content-center" id="staticBackdropLabel">Resgistro como:</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </article>
+      <article class="modal-body">
+        <article class="card-deck">
+          <article class="card">
+            <a href="registro-alumno"><img src="vista/images/registro/alumno.jpg" class="card-img-top" alt="..."></a>
+            <a href="registro-alumno" type="button" class="btn btn-info">Alumno</a>
+          </article>
+          <article class="card">
+            <a href="registro"><img src="vista/images/registro/usuario1.jpg" class="card-img-top" alt="..."></a>
+            <a href="registro" type="button" class="btn btn-warning" style="color:white;">Usuario</a>
+          </article>
+        </article>
+      </article>
+      <article class="modal-footer">
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Cerrar</button>
+      </article>
+    </article>
+  </section>
+</section>
+                 
+
+<form name="salirForm" method="post" action="ingresar">
+    <input type="hidden" name="salirAction" id="salirAction" value="-1">
+</form>
+
+<script>
+  function salir(){
+    document.forms['salirForm'].elements['salirAction'].value = 1;
+    document.forms['salirForm'].submit();
+  }
+</script>
+
+
+
+          

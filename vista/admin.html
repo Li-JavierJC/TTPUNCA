@@ -1,0 +1,1104 @@
+<!-- Contenedor de platillos de comida -->
+<section class="container-fluid">
+    <article class="row justify-content-center align-content-center">
+        <article class="col-4 barra">
+            <img src="vista/images/iconos/logo-admi.png" height="60px">
+        </article>
+        <article class="col-8 text-right barra">
+            <ul class="navbar-nav mr-auto">
+                <li>
+                    <span>
+                        <?php echo $_SESSION['usuario']?>&nbsp;
+                    </span>
+                    <a href="#" class="px-3 text-light perfil dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-circle user"></i></a>
+                    <article class="dropdown-menu" aria-labelledby="navbar-dropdown">
+                        <a class="dropdown-item menuperfil cerrar" href="Javascript:salir()" ><i class="fas fa-sign-out-alt m-1"></i>Salir
+                        </a>
+                    </article>
+                </li>
+            </ul>
+        </article>
+    </article>
+</section>
+<section class="container-fluid">
+    <section class="row">
+        <article class="barra-lateral col-12 col-sm-auto" style="cursor:pointer;">
+            <nav class="nav nav-pills menu d-flex d-sm-block justify-content-center flex-wrap"  aria-orientation="vertical">
+                <a class="nav-link active" data-bs-toggle="pill" data-bs-target="#inicio" aria-selected="true"><i class="bi bi-house-fill"></i><span>Inicio</span></a>
+                <a class="nav-link" data-bs-toggle="pill" data-bs-target="#usuario" aria-selected="false"><i class="fas fa-users"></i><span>Usuarios Registrados</span></a>
+                <a class="nav-link" data-bs-toggle="pill" data-bs-target="#alumno" aria-selected="false"><i class="fas fa-user-graduate"></i><span>Alumnos Registrados</span></a>
+                <a class="nav-link" data-bs-toggle="pill" data-bs-target="#consulta"  aria-selected="false"><i class="fas fa-database"></i><span>Consultar Platillos</span></a>
+                <a class="nav-link" data-bs-toggle="pill" data-bs-target="#registrar" aria-selected="false"><i class="fas fa-plate-wheat"></i><span>Registrar Patillo</span></a>
+                <a class="nav-link" data-bs-toggle="pill" data-bs-target="#registrar-alumnos" aria-selected="false"><i class="fas fa-id-card"></i><span>Registrar Alumno</span></a>
+                <a class="nav-link" data-bs-toggle="pill" data-bs-target="#registrar-usuarios"  aria-selected="false"><i class="fas fa-user-plus"></i><span>Registar Usuario</span></a>
+                <a class="nav-link" data-bs-toggle="pill" data-bs-target="#encuesta"  aria-selected="false"><i class="bi bi-ui-checks"></i><span>Encuesta</span></a>
+            </nav>
+        </article>
+        <main class="main col">
+            <section class="tab-content row justify-content-center align-content-center text-center" id="v-pills-tabContent">
+                <section class="container-fluid tab-pane fade show active" id="inicio">
+                    <article style="background-color: #061533; color:aliceblue; padding: 0.5%;">
+                        <h3>Inicio</h3>
+                    </article>
+                    <section class="row p-2">
+                        <section class="col-xl-3 col-md-6 mb-4 ">
+                            <section class="card border-left-primary shadow h-100 py-2">
+                                <section class="card-body">
+                                    <article class="row no-gutters align-items-center">
+                                        <article class="col mr-2">
+                                            <article class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                <p style="font-size: 15px;">Usuarios Registrados</p>
+                                            </article>
+                                            <article class="h5 mb-0 font-weight-bold text-gray-800">
+                                                <?php  echo $totalUsuario;?>
+                                            </article>
+                                        </article>
+                                        <article class="col-auto">
+                                            <i class="fas fa-users fa-2x text-gray-300"></i>
+                                        </article>
+                                    </article>
+                                </section>
+                            </section>
+                        </section>                    
+                        <section class="col-xl-3 col-md-6 mb-4 ">
+                            <section class="card border-left-primary shadow h-100 py-2">
+                                <section class="card-body">
+                                    <article class="row no-gutters align-items-center">
+                                       <article class="col mr-2">
+                                            <article class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                <p style="font-size: 15px;">Alumnos Registrados</p>
+                                            </article>
+                                            <article class="h5 mb-0 font-weight-bold text-gray-800">
+                                                <?php  echo $totalAlumno?>
+                                            </article>
+                                        </article>
+                                        <article class="col-auto">
+                                            <i class="fas fa-user-graduate fa-2x text-gray-300"></i>
+                                        </article>
+                                    </article>
+                                </section>
+                            </section>
+                        </section>
+                        <section class="col-xl-3 col-md-6 mb-4 ">
+                            <section class="card border-left-primary shadow h-100 py-2">
+                                <section class="card-body">
+                                    <article class="row no-gutters align-items-center">
+                                        <article class="col mr-2">
+                                            <article class="text-xs font-weight-bold text-info  text-uppercase mb-1">
+                                                <p style="font-size: 15px;">Platillos Publicados</p>
+                                            </article>
+                                            <article class="h5 mb-0 font-weight-bold text-gray-800">
+                                                <?php  echo $totalPlatillo;?>
+                                            </article>
+                                        </article>
+                                        <article class="col-auto">
+                                            <i class="fas fa-plate-wheat fa-2x text-gray-300"></i>
+                                        </article>
+                                    </article>
+                                </section>
+                            </section>
+                        </section>
+                            <section class="col-xl-3 col-md-6 mb-4 ">
+                                <section class="card border-left-primary shadow h-100 py-2">
+                                    <section class="card-body">
+                                        <article class="row no-gutters align-items-center">
+                                           <article class="col mr-2">
+                                            <article class="text-xs font-weight-bold text-info  text-uppercase mb-1">
+                                                <p style="font-size: 15px; color: #00f700;">Visitantes</p>
+                                            </article>
+                                            <article class="h5 mb-0 font-weight-bold text-gray-800">
+                                                <?php  echo  $totalVisitante;?>
+                                            </article>
+                                        </article>
+                                        <article class="col-auto">
+                                            <i class="fas fa-people-roof fa-2x text-gray-300"></i>
+                                        </article>
+                                    </article>
+                                </section>
+                            </section>
+                        </section>
+                    </section>
+                    <section class="row p-2">
+                        <section class="container col-xl-8 col-md-6 mb-4">
+                            <canvas id="grafica-visitas"></canvas>
+                        </section>
+                        <section class="col-xl-3 col-md-6 mb-4 " style="height:120px ;">
+                            <section class="card border-left-primary shadow h-100 py-2">
+                                <section class="card-body">
+                                    <article class="row no-gutters align-items-center">
+                                        <article class="col mr-2">
+                                            <article class="text-xs font-weight-bold text-info  text-uppercase mb-1">
+                                                <p style="font-size: 15px; color: #790844;">Visitas Totales</p>
+                                            </article>
+                                            <article class="h5 mb-0 font-weight-bold text-gray-800">
+                                                <?php  echo  $totalVisita;?>
+                                            </article>
+                                        </article>
+                                        <article class="col-auto">
+                                            <i class="fas fa-arrows-to-eye fa-2x text-gray-300"></i>
+                                        </article>
+                                    </article>
+                                </section>
+                            </section>
+                        </section>
+                    </section>
+                </section>
+                <section class="container-fluid tab-pane fade" id="usuario">
+                    <article style="background-color: #061533; color:aliceblue; padding: 0.5%;">
+                        <h3>Usuarios Registrados</h3>
+                    </article>
+                    <!-- Caja de busqueda del usuario-->
+                    <article class="col-md-12 p-2 text-left mb-2">
+                        <h5><b>Buscar</b></h5>
+                        <input class="form-control me-2" type="text" id="busquedaUsuario" placeholder="Buscar..." autocomplete="off">
+                    </article>
+                    <section class="table-responsive" id="resultadoBuscarUsuario"></section>
+                    <section class="table-responsive" id="consultaUsuarios">
+                        <table id="myTabl" class="table table-sm">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th scope="col">Número</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Apellidos</th>
+                                    <th scope="col">Sexo</th>
+                                    <th scope="col">Escolaridad</th>
+                                    <th scope="col">Ocupación</th>
+                                    <th scope="col">Domicilio</th>
+                                    <th scope="col">Edad</th>
+                                    <th scope="col">Usuario</th>
+                                    <th scope="col" colspan="2">Opciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php 
+                                    $numero=1;
+                                    foreach($listaUsuarios as $usuario) { 
+                                        printf('<tr>');
+                                            printf('<td>%s</td>', $usuario->getId());    
+                                            printf('<td>%s</td>', $usuario->getNombre());
+                                            printf('<td>%s</td>', $usuario->getApellidos());
+                                            printf('<td>%s</td>', $usuario->getSexo());
+                                            printf('<td>%s</td>', $usuario->getEscolaridad());
+                                            printf('<td>%s</td>', $usuario->getOcupacion());
+                                            printf('<td>%s</td>', $usuario->getDomicilio());
+                                            printf('<td>%s</td>', $usuario->getEdad());
+                                            printf('<td>%s</td>', $usuario->getUsuario());
+                                            printf('<td id="contrasena-g">%s</td>', $usuario->getContrasena());
+                                            printf('<td ><a class="text-success editbtn " style="cursor:pointer;" data-bs-toggle="modal" data-bs-target="#editarUsuario"><i class="bi bi-pencil-square"></i></a></td>');
+                                            printf('<td><a  class="text-danger" href="Javascript:eliminarUsuario(%d)"><i class="bi bi-trash-fill"></i></a></td>', $usuario->getId());
+                                        printf('</tr>');
+                                        $numero++;
+                                    } 
+                                ?>
+                            </tbody>
+                        </table>
+                    </section>
+                    <!--- ------------------Modal de mofificar datos del usuario ------------------------------------------------>
+                    <section class="modal fade" id="editarUsuario" tabindex="-1" aria-hidden="true">
+                        <section class="modal-dialog">
+                            <section class="modal-content">
+                                <article class="modal-header"  style="background: #FF5F6D;
+                                    background: -webkit-linear-gradient(to right, #FFC371, #FF5F6D); 
+                                    background: linear-gradient(to right, #FFC371, #FF5F6D);
+                                    color:white;">
+                                    <h5 class="modal-title w-100 text-center" style="font-weight:bold;" >Editar Usuario</h5>
+                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </article>
+                                <section class="modal-body" style="font-weight: bold; color: #20B2AA;">
+                                    <form class="row g-3 needs-validation" action="admin" method="post" >
+                                        <input type="hidden" name="id" id="idUpdate" >
+                                        <article class="col-md-6">
+                                            <label for="nombre" class="form-label"><i class="bi bi-person-fill"></i> &nbsp;Nombre</label>
+                                            <input type="text" class="form-control" id="nombre" name="nombre" required> 
+                                        </article>
+                                        <article class="col-md-6">
+                                            <label for="apellidos" class="form-label"><i class="bi bi-people-fill"></i> &nbsp;Apellidos</label>
+                                            <input type="text" class="form-control" id="apellidos" name="apellidos" required> 
+                                        </article>
+                                        <article class="col-md-6">
+                                            <label for="sexo" class="form-label"><i class="bi bi-person-check-fill"></i> &nbsp;Sexo</label>
+                                            <select  class="form-select" id="sexo" name="sexo" required>
+                                                <option value="" selected="selected">Seleccione...</option>
+                                                <option value="Hombre">Hombre</option>
+                                                <option value="Mujer">Mujer</option>
+                                            </select>
+                                        </article>
+                                        <article class="col-md-6">
+                                            <label for="escolaridad" class="form-label"><i class="fas fa-graduation-cap"></i>&nbsp;Escolaridad</label>
+                                            <select class="form-select" name="escolaridad" id="escolaridad"  required>
+                                                <option value="" selected="selected" >Seleccione...</option>
+                                                <option value="Ninguna">Ninguna</option>
+                                                <option value="Preescolar">Preescolar</option>
+                                                <option value="Primaria">Primaria</option>
+                                                <option value="Secundaria">Secundaria</option>
+                                                <option value="Bachillerato">Bachillerato</option>
+                                                <option value="Licenciatura">Licenciatura</option>
+                                                <option value="Posgrado">Posgrado</option>
+                                            </select>
+                                        </article>
+                                        <article class="col-md-6">
+                                            <label for="ocupacion" class="form-label"><i class="fa-solid fa-briefcase"></i>&nbsp;Ocupacion</label>
+                                            <input type="text" class="form-control" name="ocupacion" id="ocupacion" required>
+                                        </article>
+                                        <article class="col-md-6">
+                                            <label for="domicilio" class="form-label"><i class="bi bi-house-fill"></i>&nbsp;Domicilio</label>
+                                            <input type="text" class="form-control" name="domicilio" id="domicilio" required>
+                                        </article>
+                                        <article class="col-md-6">
+                                            <label for="edad" class="form-label"><i class="fa-solid fa-calendar-check"></i>&nbsp;Edad</label>
+                                            <input type="text" class="form-control" name="edad" id="edad" required>
+                                        </article>
+                                        <article class="col-md-6">
+                                            <label for="usuario" class="form-label"><i class="bi bi-person-circle"></i>&nbsp;Usuario</label> 
+                                            <input type="text" class="form-control" name="usuario" id="usuario1"  required>
+                                        </article>
+                                        <article class="col-md-6">
+                                            <label for="contrasena" class="form-label"><i class="fa-solid fa-key"></i>&nbsp;Cotraseña</label> 
+                                            <input type="password" class="form-control" name="contrasena" id="contrasena"  required>
+                                        </article>
+                                        <article class="modal-footer" style="background-color: #74AECA1A;">
+                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                                            <button type="submit" class="btn btn-success" name="editarUsuario" value="editarUsuario">Guardar Cambios</button>
+                                        </article>
+                                    </form>
+                                </section>
+                            </section>
+                        </section>
+                    </section>
+                    <!----------------------------Eliminar usuario----------------------------------------- -->
+                    <form name="eliminarForm" method="post" action="">
+                        <input type="hidden" name="idUsuario" value="-1">
+                    </form>
+                </section>
+                <section class="container-fluid tab-pane fade " id="alumno">
+                    <article style="background-color: #061533; color:aliceblue; padding: 0.5%;">
+                        <h3>Alumnos Registrados</h3>
+                    </article>
+                    <!-- Caja de busqueda del alumno-->
+                    <article class="col-md-12 p-2 text-left mb-2">
+                        <h5><b>Buscar</b></h5>
+                        <input class="form-control me-2" type="text" id="busquedaAlumno" placeholder="Buscar..." autocomplete="off">
+                    </article>
+                    <section class="table-responsive" id="resultadoBuscarAlumno"></section>
+                    <section class="table-responsive" id="consultaAlumnos">
+                        <table class="table table-hover table-sm">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th scope="col">Número</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Apellidos</th>
+                                    <th scope="col">Sexo</th>
+                                    <th scope="col">Semestre</th>
+                                    <th scope="col">Carrera</th>
+                                    <th scope="col">Edad</th>
+                                    <th scope="col">Usuario</th>
+                                    <th scope="col" colspan="2">Opciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="resultadoAlumno">
+                                <?php
+                                    $numero=1;
+                                    foreach($listaAlumnos as $alumno) { 
+                                        printf('<tr>');
+                                              
+                                            printf('<td>%s</td>', $alumno->getId());
+                                            printf('<td>%s</td>', $alumno->getNombre());
+                                            printf('<td>%s</td>', $alumno->getApellidos());
+                                            printf('<td>%s</td>', $alumno->getSexo());
+                                            printf('<td>%s</td>', $alumno->getSemestre());
+                                            printf('<td>%s</td>', $alumno->getCarrera());
+                                            printf('<td>%s</td>', $alumno->getEdad());
+                                            printf('<td>%s</td>', $alumno->getUsuario());
+                                            printf('<td id="contrasena-a">%s</td>', $alumno->getContrasena());
+                                            printf('<td><a class="text-success editAlumno"  style="cursor:pointer;" data-bs-toggle="modal" data-bs-target="#editarAlumno"><i class="bi bi-pencil-square"></i></a></td>');
+                                            printf('<td><a class="text-danger"  href="Javascript:eliminarAlumno(%d)"><i class="bi bi-trash-fill"></i></a></td>', $alumno->getId());
+                                        printf('</tr>');
+                                        $numero++;
+                                    } 
+                                ?>
+                            </tbody>
+                        </table>
+                    </section>
+                    <!--- ------------------Modal de mofificar datos del Alumno ------------------------------------------------>
+                    <section class="modal fade" id="editarAlumno" tabindex="-1" aria-hidden="true">
+                        <section class="modal-dialog">
+                            <section class="modal-content">
+                                <article class="modal-header" style="background: #FF5F6D;
+                                    background: -webkit-linear-gradient(to right, #FFC371, #FF5F6D); 
+                                    background: linear-gradient(to right, #FFC371, #FF5F6D);
+                                    color:white;">
+                                    <h5 class="modal-title w-100 text-center" style="font-weight:bold;">Editar Alumno</h5>
+                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </article>
+                                <section class="modal-body" style="font-weight:bold; color: #20B2AA;">
+                                    <form class="row g-3 needs-validation" action="admin" method="post" >
+                                        <input type="hidden" name="idalum" id="idAlum" >
+                                        <article class="col-md-6">
+                                            <label for="nombre" class="form-label"><i class="bi bi-person-fill"></i> &nbsp;Nombre</label>
+                                            <input type="text" class="form-control" id="nombre-alumno" name="nombre"  required> 
+                                        </article>
+                                        <article class="col-md-6">
+                                            <label for="apellidos" class="form-label"><i class="bi bi-people-fill"></i> &nbsp;Apellidos</label>
+                                            <input type="text" class="form-control" id="apellidos-alumno" name="apellidos"  required>     
+                                        </article>
+                                        <article class="col-md-6">
+                                            <label for="sexo" class="form-label"><i class="bi bi-person-check-fill"></i> &nbsp;Sexo</label>
+                                            <select  class="form-select" id="sexo-alumno" name="sexo" required>
+                                                <option value="" selected="selected">Seleccione...</option>
+                                                <option value="Hombre">Hombre</option>
+                                                <option value="Mujer">Mujer</option>
+                                            </select>
+                                        </article>
+                                        <article class="col-md-6">
+                                            <label for="semestre" class="form-label"><i class="fas fa-graduation-cap"></i>&nbsp;Semestre</label>
+                                            <select class="form-select" name="semestre" id="semestre-alumno"  required>
+                                                <option value="" selected="selected" >Seleccione...</option>
+                                                <option value="Primero">Primero</option>
+                                                <option value="Segundo">Segundo</option>
+                                                <option value="Tercero">Tercero</option>
+                                                <option value="Cuarto">Cuarto</option>
+                                                <option value="Quinto">Quinto</option>
+                                                <option value="Sexto">Sexto</option>
+                                                <option value="Séptimo">Séptimo</option>
+                                                <option value="Octavo">Octavo</option>
+                                                <option value="Noveno">Noveno</option>
+                                                <option value="Décimo">Décimo</option>
+                                            </select>
+                                        </article>
+                                        <article class="col-md-6">
+                                            <label for="carrera" class="form-label"><i class="fas fa-graduation-cap"></i>&nbsp;Carrera</label>
+                                            <select class="form-select" name="carrera" id="carrera-alumno"  required>
+                                                <option value="" selected="selected" >Seleccione...</option>
+                                                <option value="Licenciatura en Nutrición">Licenciatura en Nutrición</option>
+                                                <option value="Ingeniería en Alimentos">Ingeniería en Alimentos</option>
+                                                <option value="Ingeniería en Agroindustrias">Ingeniería en Agroindustrias</option>
+                                            </select>
+                                        </article>
+                                        <article class="col-md-6">
+                                            <label for="edad" class="form-label"><i class="fa-solid fa-calendar-check"></i>&nbsp;Edad</label>
+                                            <input type="text" class="form-control" name="edad" id="edad-alumno" required>
+                                        </article>
+                                        <article class="col-md-6">
+                                            <label for="usuario" class="form-label"><i class="bi bi-person-circle"></i>&nbsp;Usuario</label> 
+                                            <input type="text" class="form-control" name="usuario" id="usuario-alumno"  required>
+                                        </article>
+                                        <article class="col-md-6">
+                                            <label for="contrasena" class="form-label"><i class="fa-solid fa-key"></i>&nbsp;Cotraseña</label>
+                                            <input type="password" class="form-control" name="contrasena" id="contrasena-alumno"  required>
+                                        </article>
+
+                                        <article class="modal-footer" style="background-color: #74AECA1A;">
+                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                                            <button type="submit" class="btn btn-success" name="editarAlumn" value="editarAlumn">Guardar Cambios</button>
+                                        </article>
+                                    </form>
+                                </section>
+                            </section>
+                        </section>
+                    </section>
+                    <!----------------------------Eliminar Alumno----------------------------------------- -->
+                    <form name="eliminarAlum" method="post" action="">
+                        <input type="hidden" name="idAlumno" value="-1">
+                    </form>
+                </section>
+                <section class="tab-pane fade " id="consulta">
+                    <article style="background-color: #061533; color:aliceblue; padding: 0.5%;">
+                        <h3>Platillos Registrados</h3>
+                    </article>
+                    <!-- Caja de busqueda del alumno-->
+                    <article class="col-md-12 p-2 text-left mb-2">
+                        <h5><b>Buscar</b></h5>
+                        <input class="form-control me-2" type="text" id="busquedaPlatillo" placeholder="Buscar..." autocomplete="off">
+                    </article>
+                    <section class="table-responsive" id="resultadoBuscarPlatillo"></section>
+                    <section class="table-responsive" id="consultaPlatillos">
+                        <table class="table table-hover table-sm">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th scope="col">Número</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Tipo Comida</th>
+                                    <th scope="col">Autor</th>
+                                    <th scope="col">Imagen</th>
+                                    <th scope="col">Comentarios</th>
+                                    <th scope="col" colspan="2">Opciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="resultadoPlatillo">
+                                <?php 
+                                    $numero=1;
+                                    foreach($listaPlatillos as $platillo) { 
+                                    printf('<tr>');
+                                        printf('<td>%s</td>', $platillo->getId());    
+                                        printf('<td>%s</td>', $platillo->getNombre());
+                                        printf('<td>%s</td>', $platillo->getTipocomida());
+                                        printf('<td id="ingredientes-m">%s</td>', $platillo->getIngredientes());
+                                        printf('<td id="utencilios-m">%s</td>', $platillo->getUtencilios());
+                                        printf('<td id="tiempopreparacion-m">%s</td>', $platillo->getTiempopreparacion());
+                                        printf('<td id="caducidad-m">%s</td>', $platillo->getCaducidad());
+                                        printf('<td id="porciones-m">%s</td>', $platillo->getPorciones());
+                                        printf('<td id="energia-m">%s</td>', $platillo->getEnergia());
+                                        printf('<td id="costopromedio-m">%s</td>', $platillo->getCostopromedio());
+                                        printf('<td id="rendimiento-m">%s</td>', $platillo->getRendimiento());
+                                        printf('<td id="proteinas-m">%s</td>', $platillo->getProteinas());
+                                        printf('<td id="grasas-m">%s</td>', $platillo->getGrasas());
+                                        printf('<td id="hidratoscarbono-m">%s</td>', $platillo->getHidratoscarbono());
+                                        printf('<td id="preparacion-m">%s</td>', $platillo->getPreparacion());         
+
+                                        printf('<td>%s</td>', $platillo->getAutor());
+                                        printf('<td>'.'<img src ="data:image/png;base64,'.base64_encode($platillo->getImagen()).'" width="50px" height="50px"/>'.'</td>');
+                                        printf('<td><a class="text-primary" href="Javascript:comentarioPlatillo(%d)"><i class="bi bi-chat-left-dots-fill"></i></a></td>', $platillo->getId()); 
+                                        printf('<td><a class="text-success editPlatillo"  style="cursor:pointer;" data-bs-toggle="modal" data-bs-target="#editarPlatillo"><i class="bi bi-pencil-square"></i></a></td>');                          
+                                        printf('<td><a class="text-danger"  href="Javascript:eliminarPlatillo(%d)"><i class="bi bi-trash-fill"></i></a></td>', $platillo->getId());                                  
+                                        printf('</tr>');
+                                        $numero++;
+                                    } 
+                                ?>
+                            </tbody>
+                        </table>
+                    </section>
+                    <!--- ------------------Modal de mofificar datos del Platillo ------------------------------------------------>
+                    <section class="modal fade" id="editarPlatillo" tabindex="-1" aria-hidden="true">
+                        <section class="modal-dialog modal-dialog-scrollable modal-lg ">
+                            <section class="modal-content">
+                                <article class="modal-header " style="background: #FF5F6D;
+                                    background: -webkit-linear-gradient(to right, #FFC371, #FF5F6D); 
+                                    background: linear-gradient(to right, #FFC371, #FF5F6D);
+                                    color:white;">
+                                    <h5 class="modal-title w-100 text-center" style="font-weight:bold;">Editar Platillo</h5>
+                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close" ></button>
+                                </article>
+                                <section class="modal-body" style="font-weight: bold; color: #20B2AA;">
+                                    <form class="row g-3 needs-validation" action="admin" method="post" enctype="multipart/form-data">
+                                        <input type="hidden" name="idPlato" id="idPlato" >
+                                        <article class="col-md-6">
+                                            <label for="nombre" class="form-label">Nombre del Platillo</label>
+                                            <input type="text" name="nombre" id="nombre-platillo" class="form-control" required>
+                                        </article>
+                                        <article class="col-md-6">
+                                            <label for="tipocomida">Tipo de comida</label>
+                                            <select  class="form-select" id="tipocomida-platillo" name="tipocomida"  required>
+                                                <option value="" selected="selected"></option>
+                                                <option value="Desayuno">Desayuno</option>
+                                                <option value="Comida">Comida</option>
+                                                <option value="Cena">Cena</option>
+                                            </select>
+                                        </article>
+                                        <article class="col-md-6">
+                                            <label for="ingredientes" class="form-label">Ingredientes</label>
+                                            <textarea name="ingredientes" id="ingredientes-platillo" class="form-control"  required></textarea>
+                                        </article>
+                                        <article class="col-md-6">
+                                            <label for="utencilios" class="form-label">Utencilios</label>
+                                            <textarea name="utencilios" id="utencilios-platillo" class="form-control" required></textarea>
+                                        </article>
+                                        <article class="col-md-6">
+                                            <label for="tiempo" class="form-label">Tiempo de preparación</label>
+                                            <input type="text" name="tiempopreparacion" id="tiempopreparacion-platillo" class="form-control" required >
+                                        </article>
+                                        <article class="col-md-6">
+                                            <label for="caducidad" class="form-label">Caducidad</label>
+                                            <input type="text" name="caducidad" id="caducidad-platillo" class="form-control" required>
+                                        </article>
+                                        <article class="col-md-6">
+                                            <label for="porciones" class="form-label">Porciones</label>
+                                            <input type="text" name="porciones" id="porciones-platillo" class="form-control" required>
+                                        </article>
+                                        <article class="col-md-6">
+                                            <label for="energia" class="form-label">Energia</label>
+                                            <input type="text" name="energia" id="energia-plarillo" class="form-control" required>
+                                        </article>
+                                        <article class="col-md-6">  
+                                            <label for="costo" class="form-label">Costo promedio</label>
+                                            <input type="text" name="costopromedio" id="costopromedio-platillo" class="form-control" required> 
+                                        </article>
+                                        <article class="col-md-6">
+                                            <label for="rendimiento" class="form-label">Rendimiento</label>
+                                            <input type="text" name="rendimiento" id="rendimiento-platillo" class="form-control" required>
+                                        </article>
+                                        <article class="col-md-6">
+                                            <label for="proteinas" class="form-label">Proteinas</label>
+                                            <input type="text" name="proteinas" id="proteinas-platillo" class="form-control" required>
+                                        </article>
+                                        <article class="col-md-6">
+                                            <label for="grasas" class="form-label">Grasas</label>
+                                            <input type="text" name="grasas" id="grasas-platillo" class="form-control" required>
+                                        </article>
+                                        <article class="col-md-6">
+                                            <label  for="hidratoscarbono" class="form-label"> Hidratos de carbono</label>
+                                            <input type="text" name="hidratoscarbono" id="hidratoscarbon-platillo" class="form-control" required>
+                                        </article>
+                                        <article class="col-md-6">
+                                            <label for="preparacion" class="form-label">Preparación</label>
+                                            <textarea class="form-control" name="preparacion" id="preparacion-platillo" required></textarea>
+                                        </article>
+                                        <article class="col-md-6">
+                                            <label for="autor" class="form-label">Autor</label>
+                                            <input type="text" name="autor" id="autor-platillo" class="form-control" required>
+                                        </article>
+                                        <article class="col-md-6"> 
+                                            <label for="imagen" class="form-label">Subir imagen solo si deseas actualizarlo</label>
+                                            <input type="file" name="imagen" id="imagen-platillo" class="form-control">
+                                        </article>
+                                        <article class="modal-footer" style="background-color: #74AECA1A; ">
+                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                                            <button type="submit" class="btn btn-success" name="editarPlato" value="editarPlato">Guardar Cambios</button>
+                                        </article>
+                                    </form>
+                                </section>
+                            </section>
+                        </section>
+                    </section>
+                    <form name="eliminarPlato" method="post" action="">
+                        <input type="hidden" name="idPlatillo" value="-1">
+                    </form>
+                    <!----------------------------Comentario de Platillo----------------------------------------- -->
+                    <form name="comentarioForm" method="post" action="">
+                        <input type="hidden" name="idComentario">
+                    </form>
+                </section>
+                <section class="tab-pane fade" id="registrar">
+                    <article style="background-color: #061533; color:aliceblue; padding: 0.5%;">
+                        <h3>Registro de Platillos</h3>
+                    </article><br>
+                    <section class="container-fluid font-weight-bold p-3"  style="color: #072b39; background-color:#f9f9f9; border-right:#00dbff 8px  solid; border-radius: 5px;">
+                        <form class="was-validated" action="admin" method="post" enctype="multipart/form-data">                        
+                            <section id="parte1">
+                                <article>
+                                    <label for="nombre" class="form-label">Nombre del Platillo</label>
+                                    <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Chips Saludable" required>
+                                    <label for="ingredientes" class="form-label">Ingredientes</label>
+                                    <textarea name="ingredientes" id="ingredientes" class="form-control" placeholder="3 papas lavaadas &#10;1 Cucharadita de paprika&#10;1 cucharadita de curri&#10;Sal de mesa&#10; 2 cucharadas de acite oliva" required></textarea>
+                                    <label for="ingredientes" class="form-label">Utencilios</label>
+                                    <textarea name="utencilios" id="utencilios" class="form-control" placeholder="Mandolina de cocina o cuchillo&#10;Tazón&#10;Cuchara&#10;Charola" required></textarea>
+                                    <label for="tiempo" class="form-label">Tiempo de preparación</label>
+                                    <input type="text" name="tiempopreparacion" id="tiempopreparacion" class="form-control" placeholder="40 minutos" required >
+                                </article>
+                                <article>
+                                    <button id="btnsiguiente" class=" btn btn-info m-3" onclick="btnSiguiente()">Siguiente</button>
+                                </article>
+                            </section>
+                            <section id="parte2">
+                                <article>
+                                    <label for="caducidad" class="form-label">Caducidad</label>
+                                    <input type="text" name="caducidad" id="caducidad" class="form-control" placeholder="5 dias" required>
+                                    <label for="porciones" class="form-label">Porciones</label>
+                                    <input type="text" name="porciones" id="porciones" class="form-control" placeholder="6" required>
+                                    <label for="energia" class="form-label">Energia</label>
+                                    <input type="text" name="energia" id="energia" class="form-control" placeholder="323" required>
+                                    <label for="costo" class="form-label">Costo promedio</label>
+                                    <input type="text" name="costopromedio" id="costopromedio" class="form-control" placeholder="$ 15 pesos" required >
+                                </article>
+                                <article>
+                                    <button class="btn btn-warning m-3" onclick="btnAnterior2()">Anterior</button>
+                                    <button class="btn btn-info m-3" onclick="btnSiguiente2()">Siguiente</button>
+                                </article>
+                            </section>
+                            <section id="parte3">
+                               <article>
+                                    <label for="rendimiento" class="form-label">Rendimiento</label>
+                                    <input type="text" name="rendimiento" id="rendimiento" class="form-control" placeholder="" required>
+                                    <label for="proteinas" class="form-label">Proteinas</label>
+                                    <input type="text" name="proteinas" id="proteinas" class="form-control" placeholder="" required>
+                                    <label for="grasas" class="form-label">Grasas</label>
+                                    <input type="text" name="grasas" id="grasas" class="form-control" placeholder="" required>
+                                    <label  for="hidratoscarbono" class="form-label"> Hidratos de carbono</label>
+                                    <input type="text" name="hidratoscarbono" id="hidratoscarbon" class="form-control" placeholder="" required>
+                                </article>
+                                <article>
+                                    <button class="btn btn-warning m-3" onclick="btnAnterior3()">Anterior</button>
+                                    <button class="btn btn-info m-3" onclick="btnSiguiente3()">Siguiente</button>
+                                </article>
+                            </section>
+                            <section id="parte4">
+                                <article>
+                                    <label for="preparacion" class="form-label">Preparación</label>
+                                    <textarea class="form-control" name="preparacion" id="preparacion" placeholder="1.- Rebana las papas con la mandolina o con un cuchillo muy filoso para que queden muy delgadas. &#10;2.- Mezcla el resto de los ingredientes y marina ahí las rodajas de papa, por 10 minutos, moviendo constantemente&#10;3.- Prepara una charola con papel encerado y acomoda las rodajas de papa en ella, un poco separadas entre sí.&#10;4.- Hornea a 180OC durante 20 minutos o hasta que doren." required></textarea>
+                                    <label for="tipocomida">Tipo de comidada</label>
+                                    <select  class="form-select" id="tipocomida" name="tipocomida" required>
+                                        <option value="" selected="selected">Seleccione...</option>
+                                        <option value="Desayuno">Desayuno</option>
+                                        <option value="Comida">Comida</option>
+                                        <option value="Cena">Cena</option>
+                                    </select>
+                                    <label for="autor" class="form-label">Autor</label>
+                                    <input type="text" name="autor" id="autor" class="form-control" placeholder="Profeco" required>
+                                    <label for="imagen" class="form-label"> Subir imagen</label>
+                                    <input type="file" name="imagen" id="imagen" class="form-control" required="">
+                                </article>
+                                <article>
+                                    <button class="btn btn-warning m-3" onclick="btnAnterior4()">Anterior</button>
+                                    <button type="submit"    name="registrarplatillo" value="registrarplatillo" class="btn btn-primary">Registrar Platillo</button>
+                                </article>
+                            </section>                
+                        </form>
+                    </section><br>
+                </section>
+                <section class="tab-pane fade" id="registrar-alumnos">
+                    <article style="background-color: #061533; color:aliceblue; padding: 0.5%;">
+                        <h3>Registrar de Alumno</h3>
+                    </article><br>
+                    <section class="container-fluid font-weight-bold"  style="color: #072b39; background-color:#f9f9f9; border-right:#00dbff 8px  solid; border-radius: 5px;">
+                        <section class="container p-3" >
+                            <form class="row g-3 needs-validation" action="admin" method="post" >
+                                <article class="col-md-6">
+                                    <label for="nombre" class="form-label"><i class="bi bi-person-fill"></i> &nbsp;Nombre</label>
+                                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Marcos" required>     
+                                </article>
+                                <article class="col-md-6">
+                                    <label for="apellidos" class="form-label"><i class="bi bi-people-fill"></i> &nbsp;Apellidos</label>
+                                    <input type="text" class="form-control" id="apellidos" name="apellidos" placeholder="Jimnéz Flores" required>
+                                </article>
+                                <article class="col-md-6">
+                                    <label for="sexo" class="form-label"><i class="bi bi-person-check-fill"></i> &nbsp;Sexo</label>
+                                    <select  class="form-select" id="sexo" name="sexo" required>
+                                        <option value="" selected="selected">Seleccione...</option>
+                                        <option value="Hombre">Hombre</option>
+                                        <option value="Mujer">Mujer</option>
+                                    </select>
+                                </article>
+                                <article class="col-md-6">
+                                    <label for="semestre" class="form-label"><i class="fas fa-graduation-cap"></i>&nbsp;Semestre</label>
+                                    <select class="form-select" name="semestre" id="semestre"  required>
+                                        <option value="" selected="selected" >Seleccione...</option>
+                                        <option value="Primero">Primero</option>
+                                        <option value="Segundo">Segundo</option>
+                                        <option value="Tercero">Tercero</option>
+                                        <option value="Cuarto">Cuarto</option>
+                                        <option value="Quinto">Quinto</option>
+                                        <option value="Sexto">Sexto</option>
+                                        <option value="Séptimo">Séptimo</option>
+                                        <option value="Octavo">Octavo</option>
+                                        <option value="Noveno">Noveno</option>
+                                        <option value="Décimo">Décimo</option>
+                                    </select>
+                                </article>
+                                <article class="col-md-6">
+                                    <label for="carrera" class="form-label"><i class="fas fa-graduation-cap"></i>&nbsp;Carrera</label>
+                                    <select class="form-select" name="carrera" id="carrera"  required>
+                                        <option value="" selected="selected" >Seleccione...</option>
+                                        <option value="Licenciatura en Nutrición">Licenciatura en Nutrición</option>
+                                        <option value="Ingeniería en Alimentos">Ingeniería en Alimentos</option>
+                                        <option value="Ingeniería en Agroindustrias">Ingeniería en Agroindustrias</option>
+                                    </select>
+                                </article>
+                                <article class="col-md-6">
+                                    <label for="edad" class="form-label"><i class="fa-solid fa-calendar-check"></i>&nbsp;Edad</label>
+                                    <input type="text" class="form-control" name="edad" id="edad" required>
+                                </article>
+                                <article class="col-md-6">
+                                    <label for="usuario" class="form-label"><i class="bi bi-person-circle"></i>&nbsp;Usuario</label> 
+                                    <input type="text" class="form-control" name="usuario" id="usuario-alumn" onBlur="comprobarAlumno()" required>
+                                    <span id="resultadoAl"></span>
+                                </article>
+                                <article class="col-md-6">
+                                    <label for="contrasena" class="form-label"><i class="fa-solid fa-key"></i>&nbsp;Cotraseña</label> 
+                                    <input type="password" class="form-control" name="contrasena" id="contrasena"  required>
+                                </article>
+                                 <input type="hidden" name="nivelUsuario" value="2">
+                                <article class="col-12 p-5">
+                                    <center>
+                                        <button  type="submit"    name="registrarse" value="registrarse" class="btn btn-primary">Registrar</button>
+                                    </center>
+                                </article>
+                            </form>
+                        </section>
+                    </section>
+                </section>
+                <section class="tab-pane fade" id="registrar-usuarios">
+                    <article style="background-color: #061533; color:aliceblue; padding: 0.5%;">
+                        <h3>Registrar Usuario</h3>
+                    </article><br>
+                    <section class="container-fluid font-weight-bold p-3"  style="color: #072b39; background-color:#f9f9f9; border-right:#00dbff 8px  solid; border-radius: 5px;">
+                        <section class="container">
+                            <form class="row g-3 needs-validation" action="admin" method="post" >
+                                <article class="col-md-6">
+                                    <label for="nombre" class="form-label"><i class="bi bi-person-fill"></i> &nbsp;Nombre</label>
+                                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Marcos" required> 
+                                </article>
+                                <article class="col-md-6">
+                                    <label for="apellidos" class="form-label"><i class="bi bi-people-fill"></i> &nbsp;Apellidos</label>
+                                    <input type="text" class="form-control" id="apellidos" name="apellidos" placeholder="Jimnéz Flores" required>
+                                </article>
+                                <article class="col-md-6">
+                                    <label for="sexo" class="form-label"><i class="bi bi-person-check-fill"></i> &nbsp;Sexo</label>
+                                    <select  class="form-select" id="sexo" name="sexo" required>
+                                        <option value="" selected="selected">Seleccione...</option>
+                                        <option value="Hombre">Hombre</option>
+                                        <option value="Mujer">Mujer</option>
+                                    </select>
+                                </article>
+                                <article class="col-md-6">
+                                    <label for="escolaridad" class="form-label"><i class="fas fa-graduation-cap"></i>&nbsp;Escolaridad</label>
+                                    <select class="form-select" name="escolaridad" id="escolaridad"  required>
+                                        <option value="" selected="selected" >Seleccione...</option>
+                                        <option value="Ninguna">Ninguna</option>
+                                        <option value="Preescolar">Preescolar</option>
+                                        <option value="Primaria">Primaria</option>
+                                        <option value="Secundaria">Secundaria</option>
+                                        <option value="Bachillerato">Bachillerato</option>
+                                        <option value="Licenciatura">Licenciatura</option>
+                                        <option value="Posgrado">Posgrado</option>
+                                    </select>
+                                </article>
+                                <article class="col-md-6">
+                                    <label for="ocupacion" class="form-label"><i class="fa-solid fa-briefcase"></i>&nbsp;Ocupacion</label>
+                                    <input type="text" class="form-control" name="ocupacion" id="Ocupacion" required>
+                                </article>
+                                <article class="col-md-6">
+                                    <label for="edad" class="form-label"><i class="fa-solid fa-calendar-check"></i>&nbsp;Edad</label>
+                                    <input type="text" class="form-control" name="edad" id="edad" required>
+                                </article>
+                                <article class="col-md-6">
+                                    <label for="domicilio" class="form-label"><i class="bi bi-house-fill"></i>&nbsp;Domicilio</label>
+                                    <input type="text" class="form-control" name="domicilio" id="domicilio" required>
+                                </article>
+                                <article class="col-md-6">
+                                    <label for="usuario" class="form-label"><i class="bi bi-person-circle"></i>&nbsp;Usuario</label> 
+                                    <input name="usuario" type="text" id="usuario-general" class="form-control" onBlur="comprobarUsuario()" required>
+                                    <span id="resultadoUs"></span>
+                                </article>
+                                <article class="col-md-6">
+                                    <label for="contrasena" class="form-label"><i class="fa-solid fa-key"></i>&nbsp;Cotraseña</label> 
+                                    <input type="password" class="form-control" name="contrasena" id="contrasena"  required>
+                                </article>
+                                <input type="hidden" name="nivelUsuario" value="3">
+                                <article class="col-12 p-3">
+                                    <center>
+                                      <button  type="submit"    name="registrarusuario" value="registrarusuario" class="btn btn-primary">Registrar</button>
+                                    </center>
+                                </article>
+                            </form>
+                        </section>
+                    </section>
+                </section>
+                <section class="tab-pane fade" id="encuesta">
+                    <article style="background-color: #061533; color:aliceblue; padding: 0.5%;">
+                        <h3>Resultados de la encuesta de la platforma</h3>
+                    </article><br>
+                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                      <li class="nav-item">
+                        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Graficos</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Tabla de registros</a>
+                      </li>
+                      
+                    </ul>
+                    <div class="tab-content" id="pills-tabContent">
+                      <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                          <section class="container col-xl-8 col-md-6 mb-4">
+                            <canvas id="grafica-visitas"></canvas>
+                        </section>
+                      </div>
+                      <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                          <section class="table-responsive" id="consultaUsuarios">
+                        <table id="myTabl" class="table table-sm">
+                            <thead class="table bg-info text-white">
+                                <tr>
+                                    <th scope="col">Número</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Sexo</th>
+                                    <th scope="col">Edad</th>
+                                    <th scope="col">Medio de comunicación</th>
+                                    <th scope="col">Estado</th>
+                                    <th scope="col">Municipio</th>
+                                    <th scope="col">Comentario</th>
+                                    <th scope="col">Calificación</th>
+                                    <th scope="col">Fecha</th>
+                                    <th scope="col" colspan="2">Opciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php 
+                                    $numero=1;
+                                    foreach($consultarEncuesta as $encuesta) { 
+                                        printf('<tr>');
+                                            printf('<td>%s</td>', $encuesta->getId());    
+                                            printf('<td>%s</td>', $encuesta->getNombre());
+                                            printf('<td>%s</td>', $encuesta->getSexo());
+                                            printf('<td>%s</td>', $encuesta->getEdad());
+                                            printf('<td>%s</td>', $encuesta->getMedio());
+                                            printf('<td>%s</td>', $encuesta->getEstado());
+                                            printf('<td>%s</td>', $encuesta->getMunicipio());
+                                            printf('<td>%s</td>', $encuesta->getComentario());
+                                            printf('<td>%s</td>', $encuesta->getCalificacion());
+                                            printf('<td>%s</td>', $encuesta->getFecha());
+                                            printf('<td ><a class="text-success editbtn " style="cursor:pointer;" data-bs-toggle="modal" data-bs-target="#editarUsuario"><i class="bi bi-pencil-square"></i></a></td>');
+                                            printf('<td><a  class="text-danger" href="Javascript:eliminarUsuario(%d)"><i class="bi bi-trash-fill"></i></a></td>', $usuario->getId());
+                                        printf('</tr>');
+                                        $numero++;
+                                    } 
+                                ?>
+                            </tbody>
+                        </table>
+                    </section>
+                      </div>
+                     
+                    </div>
+                      
+                </section>
+            </section>
+        </main>
+    </section>
+</section>
+<!--Cerrar session -->                   
+<form name="salirForm" method="post" action="">
+    <input type="hidden" name="salirAction" id="salirAction" value="-1">
+</form>
+
+<script>
+    //----------------------------Modificar usuario-----------------------------------------
+    $('.editbtn').on('click', function(){
+        $tr=$(this).closest('tr');
+        var datos=$tr.children("td").map(function(){
+            return $(this).text();
+        });
+        $('#idUpdate').val(datos[0]);
+        $("#nombre").val(datos[1]);
+        $("#apellidos").val(datos[2]);
+        $("#sexo").val(datos[3]);
+        $("#escolaridad").val(datos[4]);
+        $("#ocupacion").val(datos[5]);
+        $("#domicilio").val(datos[6]);
+        $("#edad").val(datos[7]);
+        $("#usuario1").val(datos[8]);
+        $("#contrasena").val(datos[9]);
+    });
+
+    //----------------------------Buscar usuario-----------------------------------------
+    function buscar(valor) {
+
+       var request = new XMLHttpRequest();
+
+       request.onreadystatechange = function() {
+        if (request.readyState == 4) {
+            if (request.status == 200) {
+                document.getElementById("resultado").innerHTML = request.responseText;
+            }
+        }
+    }
+
+    request.open('GET', 'controlador/buscar-usuario.php?busqueda='+valor, true);
+    request.send();
+}
+
+    //--------------------------Eliminar usuario ------------------------------------------
+    function eliminarUsuario(id) {
+        Swal.fire({
+            title: '¿Esta seguro de eliminar el Usuario?',
+            text: "¡No podrás revertir esto!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText:'Cancelar',
+            confirmButtonText: 'Si, Eliminar!'
+        }).then((result) => {
+            if (result.value) {
+               document.forms['eliminarForm'].elements['idUsuario'].value = id;
+               document.forms['eliminarForm'].submit();
+           }
+       });
+    }
+
+    //----------------------------Modificar Alumno----------------------------------------- -->                  
+    $('.editAlumno').on('click', function(){
+        $tr=$(this).closest('tr');
+        var datos=$tr.children("td").map(function(){
+            return $(this).text();
+        });
+        $('#idAlum').val(datos[0]);
+        $("#nombre-alumno").val(datos[1]);
+        $("#apellidos-alumno").val(datos[2]);
+        $("#sexo-alumno").val(datos[3]);
+        $("#semestre-alumno").val(datos[4]);
+        $("#carrera-alumno").val(datos[5]);
+        $("#edad-alumno").val(datos[6]);
+        $("#usuario-alumno").val(datos[7]);
+        $("#contrasena-alumno").val(datos[8]);
+    });
+
+
+    //----------------------------Buscar Alumno-----------------------------------------
+    function buscaralumno(valor) {
+
+       var request = new XMLHttpRequest();
+
+       request.onreadystatechange = function() {
+        if (request.readyState == 4) {
+            if (request.status == 200) {
+                document.getElementById("resultadoAlumno").innerHTML = request.responseText;
+            }
+        }
+    }
+
+    request.open('GET', 'controlador/buscar-usuario.php?busquedaAlumno='+valor, true);
+    request.send();
+}
+
+    //----------------------------Eliminar Alumno----------------------------------------- -->
+    function eliminarAlumno(id) {
+     Swal.fire({
+        title: '¿Esta seguro de eliminar el Alumno?',
+        text: "¡No podrás revertir esto!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText:'Cancelar',
+        confirmButtonText: 'Si, Eliminar!'
+    }).then((result) => {
+        if (result.value) {
+           document.forms['eliminarAlum'].elements['idAlumno'].value = id;
+           document.forms['eliminarAlum'].submit();
+       }
+   });
+}
+
+    //----------------------------Modificar Platillo----------------------------------------- -->
+
+    $('.editPlatillo').on('click', function(){
+        $tr=$(this).closest('tr');
+        var datos=$tr.children("td").map(function(){
+            return $(this).text();
+        });
+        $('#idPlato').val(datos[0]);
+        $("#nombre-platillo").val(datos[1]);
+        $("#tipocomida-platillo").val(datos[2]);
+        $("#ingredientes-platillo").val(datos[3]);
+        $("#utencilios-platillo").val(datos[4]);
+        $("#tiempopreparacion-platillo").val(datos[5]);
+        $("#caducidad-platillo").val(datos[6]);
+        $("#porciones-platillo").val(datos[7]);
+        $("#energia-plarillo").val(datos[8]);
+        $("#costopromedio-platillo").val(datos[9]);
+        $("#rendimiento-platillo").val(datos[10]);
+        $("#proteinas-platillo").val(datos[11]);
+        $("#grasas-platillo").val(datos[12]);
+        $("#hidratoscarbon-platillo").val(datos[13]);
+        $("#preparacion-platillo").val(datos[14]);
+        
+        $("#autor-platillo").val(datos[15]);
+        //$("#imagen-platillo").val(datos[16]);
+
+    });
+
+    //----------------------------Buscar platillo-----------------------------------------
+    function buscarplato(valor) {
+
+       var request = new XMLHttpRequest();
+
+       request.onreadystatechange = function() {
+        if (request.readyState == 4) {
+            if (request.status == 200) {
+                document.getElementById("resultadoPlatillo").innerHTML = request.responseText;
+            }
+        }
+    }
+
+    request.open('GET', 'controlador/buscar-usuario.php?busquedaPlatillo='+valor, true);
+    request.send();
+}
+
+
+
+    //--------------------------Eliminar platillo-----------------------------------------------
+    function eliminarPlatillo(id) {
+     Swal.fire({
+        title: '¿Esta seguro de eliminar el Platillo',
+        text: "¡No podrás revertir esto!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText:'Cancelar',
+        confirmButtonText: 'Si, Eliminar!'
+    }).then((result) => {
+        if (result.value) {
+           document.forms['eliminarPlato'].elements['idPlatillo'].value = id;
+           document.forms['eliminarPlato'].submit();
+
+       }
+   });
+}
+
+function comentarioPlatillo(id){
+
+    document.forms['comentarioForm'].elements['idComentario'].value = id;
+    document.forms['comentarioForm'].submit();
+}
+
+function salir(){
+    document.forms['salirForm'].elements['salirAction'].value = 1;
+    document.forms['salirForm'].submit();
+}
+</script>
+
+<script>
+    const labels = [
+    'Agosto',
+    'Septiembre',
+    'Octubre',
+    'Noviembre',
+    'Diciembre',
+    'Enero',
+    'Febrero',
+    'Marzo',
+    'Abril',
+    'Mayo',
+    'Junio',
+    'Julio'
+    ];
+
+    const data = {
+      labels: labels,
+      datasets: [{
+        label: 'Vistas',
+        backgroundColor: 'rgb(255, 170, 0)',
+        borderColor: 'rgb(255, 195, 0)',
+        pointStyle: 'circle',
+        pointRadius: 5,
+        pointHoverRadius: 10,
+        data: [
+        "<?php echo $totalVisitaAgo; ?>",
+        "<?php echo $totalVisitaSep; ?>",
+        "<?php echo $totalVisitaOct; ?>",
+        "<?php echo $totalVisitaNov; ?>",
+        "<?php echo $totalVisitaDic; ?>",
+        "<?php echo $totalVisitaEne; ?>",
+        "<?php echo $totalVisitaFeb; ?>",
+        "<?php echo $totalVisitaMar; ?>",
+        "<?php echo $totalVisitaAbr; ?>",
+        "<?php echo $totalVisitaMay; ?>",
+        "<?php echo $totalVisitaJun; ?>",
+        "<?php echo $totalVisitaJul; ?>",
+        ],
+    }]
+};
+
+const config = {
+  type: 'line',
+  data: data,
+  options: {
+    responsive: true,
+    plugins: {
+        legend: {
+            position: 'top',
+        },
+        title: {
+            display: true,
+            text: 'Tabla de visitas por mes'
+        }
+    }
+}
+
+};
+
+</script>
+<script>
+    const myChart = new Chart(
+      document.getElementById('grafica-visitas'),
+      config
+      );
+  </script>

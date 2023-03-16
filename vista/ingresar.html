@@ -1,0 +1,37 @@
+<section id="login">
+	<section class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
+		<section class="card p-4 text-light mb-5" style="background-color: #27476666;">
+			<article class="card-header text-center" style="background-color: #ffbf00b8;">
+				<h3>Iniciar sesión </h3>
+			</article>
+			<section class="card-body w-100">
+				<form name="login" action="ingresar" method="post">
+					<article class="input-group form-group mt-3">
+						<section class="bg-primary rounded-start">
+							<span class="m-3"><i class="fas fa-user mt-2"></i></span>
+						</section>
+						<input type="text" class="form-control" placeholder="Usuario"
+						name="usuario" required minlength="5" maxlength="12" required>
+					</article>
+					<article class="input-group form-group mt-3">
+						<article class="bg-primary rounded-start">
+							<span class="m-3"><i class="fas fa-key mt-2"></i></span>
+						</article>
+						<input type="password" class="form-control" placeholder="Contraseña"
+						name="contrasena" required minlength="5" maxlength="12" required>
+					</article>
+					<article class="form-group mt-3">
+						<button type="submit"  name="ingresar" value="ingresar"  class="btn bg-primary float-end text-white w-100" >Ingresar</button>
+					</article>
+				</form>
+			</section>
+			<section class="card-footer">
+				<article class="d-flex justify-content-center">
+					<article class="text-white">
+						Si no es un usuario registrado, inicie sesión <a data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="cursor: pointer;"> <p style="color: #ffe300; font-weight: bold;">aquí.</p></a>
+					</article>
+				</article>
+			</section>
+		</section>
+	</section>
+</section>
