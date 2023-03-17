@@ -40,6 +40,4 @@
         public function setIdPlatillo($idPlatillo){ $this->idPlatillo=$idPlatillo; }
         public function getIdPlatillo(){return $this->idPlatillo;}
     }
-
-   
 ?>

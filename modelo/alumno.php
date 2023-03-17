@@ -68,7 +68,5 @@
         /**Descriptores de acceso del atributo nivelUsuario */
         public function setNivelUsuario($nivelUsuario){ $this->nivelUsuario=$nivelUsuario; }
         public function getNivelUsuario(){ return $this->nivelUsuario; }
-
     }
-
 ?>

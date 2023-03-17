@@ -70,5 +70,4 @@
 		public function setFecha($fecha){$this->fecha=$fecha; }
 		public function getFecha(){return $this->fecha; }
 	}
-
 ?>

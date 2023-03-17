@@ -29,8 +29,6 @@
             $usuario="";
             $contrasena="";
             $nivelUsuario=0;
-        
-
         }
     
         /**Descriptores de acceso del aributo id */
