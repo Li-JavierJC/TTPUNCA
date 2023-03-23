@@ -16,6 +16,7 @@
         private $tiempoComida;
         private $autor;
         private $imagen;
+        private $idAlumno;
    
         /**Metodo constructor del platillo */
         public function __construct(){
@@ -31,6 +32,7 @@
             $tiempoComida="";
             $autor="";
             $imagen="";
+            $idAlumno=0;
         }
         
         /**Descriptores de acceso del atributo id */
@@ -69,16 +71,21 @@
         public function setRendimiento($rendimiento){$this->rendimiento=$rendimiento;}
         public function getRendimiento(){return $this->rendimiento;}
 
-        //Descriptores de tipocomida
+        /**Descriptores de acceso del atributo tiempocomida */
         public function setTiempoComida($tiempoComida){$this->tiempoComida=$tiempoComida;}
         public function getTiempoComida(){return $this->tiempoComida;}
 
-        //Descriptores de autor 
+        /**Descriptores de acceso del atributo autor */
         public function setAutor($autor){$this->autor=$autor;}
         public function getAutor(){return $this->autor;}
         
-        //Descriptores de imagen 
+        /**Descriptores de acceso del atributo imagen */
         public function setImagen($imagen){$this->imagen=$imagen;}
         public function getImagen(){return $this->imagen;}
+
+        /**Descriptores de acceso del atributo idAlumno */
+        public function setIdAlumno($idAlumno){ $this->idAlumno=$idAlumno;}
+        public function getIdAlumno(){ return $this->idAlumno;}
+
     }
 ?>

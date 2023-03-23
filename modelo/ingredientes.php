@@ -7,7 +7,6 @@
         private $id;
         private $nombre;
         private $unidadMedida;
-        private $idAlumno;
         private $idPlatillo;
 
         /**Metodo constructor de la clase Ingredientes */
@@ -16,7 +15,6 @@
             $id=0;
             $nombre="";
             $unidadMedida="";
-            $idAlumno=0;
             $idPlatillo=0;
         }
 
@@ -31,10 +29,6 @@
         /**Descriptores de accesoo del atributo unidadMedida */
         public function setUnidadMedida($unidadMedida){ $this->unidadMedida=$unidadMedida;}
         public function getUnidadMediad(){ return $this->unidadMedida; }
-
-        /**Descriptores de acceso del atributo idAlumno */
-        public function setIdAlumno($idAlumno){ $this->idAlumno=$idAlumno; }
-        public function getIdAlumno(){ return $this->idAlumno;}
 
         /**Descriptores de acceso del  atributo idPlatillo */
         public function setIdPlatillo($idPlatillo){ $this->idPlatillo=$idPlatillo; }
