@@ -1,72 +1,73 @@
-<!-- Contenedor de la seccion de platillos-->
-<section class="container p-2" id="cotenedorr">
-  <!-- Titulo de la secición de los platillos -->
+<main class="contenedor">
+  <!-- Contenedor de la seccion de platillos-->
+  <section class="container p-2" id="cotenedorr">
+    <!-- Titulo de la secición de los platillos -->
 
-  <article class="container  bg p-2 mb-1" style="background-color:#2980B9; color: white; border-radius: 5px;" >
-      <center><h4>Platillos para las comidas principales al día</h4></center>
-  </article>
-   <!-- Caja de busqueda platillos-->
-  <article class="col-md-12 p-2 text-left mb-2">
-    <h5><b>Buscar</b></h5>
-    <input class="form-control me-2" type="text" id="busquedaPlatillo" placeholder="Buscar..." autocomplete="off">
-  </article>
-  <!--Seccion en donde se muestran los resultados de la busqueda -->
-  <section id="resultadoBusquedaPlatillo">
-  </section>
-   <!-- barra de navegacion de los platilos del dia -->
-  <section id="navegacion" class="mb-2" style="border-radius: 10px; border: solid 2px #88d8ff;box-shadow: 0 0 10px rgba(96, 132, 134, 0.57); ">
-    <ul class="nav nav-pills nav-justified p-1 text-info" id="pills-tab" role="tablist" style="background: #F4F6F6;border-radius: 10px; ">
-      <li class="nav-item" role="presentation">
-        <button class="nav-link active" id="pills-desayuno-tab" data-bs-toggle="pill" data-bs-target="#desayuno" type="button" role="tab" aria-controls="pills-desayuno" aria-selected="true">Desayuno</button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" id="pills-colacionM-tab" data-bs-toggle="pill" data-bs-target="#colacionM" type="button" role="tab" aria-controls="pills-colacionM" aria-selected="false">Colación de la Mañana</button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" id="pills-comida-tab" data-bs-toggle="pill" data-bs-target="#comida" type="button" role="tab" aria-controls="pills-comida" aria-selected="false">Comida</button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" id="pills-postre-tab" data-bs-toggle="pill" data-bs-target="#postre" type="button" role="tab" aria-controls="pills-postre" aria-selected="false">Postre</button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" id="pills-colacionT-tab" data-bs-toggle="pill" data-bs-target="#colacionT" type="button" role="tab" aria-controls="pills-colacionT" aria-selected="false">Colación de la Tarde </button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" id="pills-cena-tab" data-bs-toggle="pill" data-bs-target="#cena" type="button" role="tab" aria-controls="pills-cena" aria-selected="false">Cena</button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" id="pills-otros-tab" data-bs-toggle="pill" data-bs-target="#otros" type="button" role="tab" aria-controls="pills-otros" aria-selected="false">Otros</button>
-      </li>
-    </ul>
-  </section>
-  <!-- Contenedor de todos los platillos -->
-  <section class="tab-content" id="pills-tabContent">
-    <!-- Contenedor de platillos de desayuno -->
-    <section class="tab-pane fade show active" id="desayuno" role="tabpanel" aria-labelledby="pills-desayuno-tab">
-      <section class="container p-2">
-        <section class="row align-items-start">
-          <?php 
-            $x=0;
-            $tipoPlatillo=0;
-            foreach($listaPlatillos as $platillo){ 
-              $desayuno= $platillo->getTipocomida();
-              if($desayuno=='Desayuno'){
-                if($x<50){
-                  printf('<section class="col-md-4">');
-                   printf('<a id="imagen-platillo" href="Javascript:mostrarPlatillos(%d)"><img class="card-img-top img-responsive" src ="data:image/png;base64,'.base64_encode($platillo->getImagen()).'" width="290px" height="250px"/></a>', $platillo->getId()); 
-                    printf('<article id="pie-imagen" class="card-body">');
+    <article class="container  bg p-2 mb-1" style="background-color:#FF0060;; color: white; border-radius: 5px;" >
+      <center><h4>Comidas tradicionales del estado de Oaxaca</h4></center>
+    </article>
+    <!-- Caja de busqueda platillos-->
+    <article class="col-md-12 p-2 text-left mb-2">
+      <h5><b>Buscar</b></h5>
+      <input class="form-control me-2" type="text" id="busquedaPlatillo" placeholder="Buscar..." autocomplete="off">
+    </article>
+    <!--Seccion en donde se muestran los resultados de la busqueda -->
+    <section id="resultadoBusquedaPlatillo">
+    </section>
+    <!-- barra de navegacion de los platilos del dia -->
+    <section id="navegacion" class="mb-2" style="border-radius: 10px; border: solid 2px #F4F6F6;box-shadow: 0 0 10px rgba(96, 132, 134, 0.57); ">
+      <ul class="nav nav-pills nav-justified p-1" id="pills-tab" role="tablist" style="background: #F4F6F6;border-radius: 10px; ">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link  active" id="pills-desayuno-tab" data-bs-toggle="pill" data-bs-target="#desayuno" type="button" role="tab" aria-controls="pills-desayuno" aria-selected="true">Desayuno</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="pills-colacionM-tab" data-bs-toggle="pill" data-bs-target="#colacionM" type="button" role="tab" aria-controls="pills-colacionM" aria-selected="false">Colación de la Mañana</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="pills-comida-tab" data-bs-toggle="pill" data-bs-target="#comida" type="button" role="tab" aria-controls="pills-comida" aria-selected="false">Comida</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="pills-postre-tab" data-bs-toggle="pill" data-bs-target="#postre" type="button" role="tab" aria-controls="pills-postre" aria-selected="false">Postre</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="pills-colacionT-tab" data-bs-toggle="pill" data-bs-target="#colacionT" type="button" role="tab" aria-controls="pills-colacionT" aria-selected="false">Colación de la Tarde </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="pills-cena-tab" data-bs-toggle="pill" data-bs-target="#cena" type="button" role="tab" aria-controls="pills-cena" aria-selected="false">Cena</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="pills-otros-tab" data-bs-toggle="pill" data-bs-target="#otros" type="button" role="tab" aria-controls="pills-otros" aria-selected="false">Otros</button>
+        </li>
+      </ul>
+    </section>
+    <!-- Contenedor de todos los platillos -->
+    <section class="tab-content" id="pills-tabContent">
+      <!-- Contenedor de platillos de desayuno -->
+      <section class="tab-pane fade show active" id="desayuno" role="tabpanel" aria-labelledby="pills-desayuno-tab">
+        <section class="container p-2">
+          <section class="row align-items-start">
+            <?php 
+              $x=0;
+              $tipoPlatillo=0;
+              foreach($listaPlatillos as $platillo){ 
+                $desayuno= $platillo->getTiempoComida();
+                if($desayuno==='1'){
+                  if($x<50){
+                    printf('<section class="col-md-4">');
+                     printf('<a id="imagen-platillo" href="Javascript:mostrarPlatillos(%d)"><img class="card-img-top img-responsive" src ="data:image/png;base64,'.base64_encode($platillo->getImagen()).'" width="290px" height="250px"/></a>', $platillo->getId()); 
+                     printf('<article id="pie-imagen" class="card-body">');
                        printf('<h5 class="card-title">%s</h5>', $platillo->getNombre());
                        printf('<a  class="btn btn-primary"  href="Javascript:mostrarPlatillos(%d)">Saber más...</a>', $platillo->getId());
-                    printf('</article>');
-                    printf('<span class="p-2"></span>');
-                  printf('</section>');
-                  $x= $x + 1; 
-                }  
-              }
-              $tipoPlatillo=1;        
-            }
+                     printf('</article>');
+                     printf('<span class="p-2"></span>');
+                   printf('</section>');
+                   $x= $x + 1; 
+                 }  
+               }
+               $tipoPlatillo=1;        
+             }
 
-            if($tipoPlatillo !=1 ){
+             if($tipoPlatillo !=1 ){
               printf('<article class="container">');
                 print('<div class="alert alert-info" role="alert">Aún no hay platillos de la colación del desayuno ): </div>');
               printf('</article>');
@@ -83,201 +84,201 @@
             $x=0;
             $tipoPlatillo=0;
             foreach($listaPlatillos as $platillo){ 
-              $desayuno= $platillo->getTipocomida();
-              if($desayuno=='esayuno'){
+              $colacionM= $platillo->getTiempoComida();
+              if($colacionM==='2'){
                 if($x<50){
                   printf('<section class="col-md-4">');
                    printf('<a id="imagen-platillo" href="Javascript:mostrarPlatillos(%d)"><img class="card-img-top img-responsive" src ="data:image/png;base64,'.base64_encode($platillo->getImagen()).'" width="290px" height="250px"/></a>', $platillo->getId()); 
-                    printf('<article id="pie-imagen" class="card-body">');
-                       printf('<h5 class="card-title">%s</h5>', $platillo->getNombre());
-                       printf('<a  class="btn btn-primary"  href="Javascript:mostrarPlatillos(%d)">Saber más...</a>', $platillo->getId());
-                    printf('</article>');
-                    printf('<span class="p-2"></span>');
-                  printf('</section>');
-                  $x= $x + 1; 
-                }
-                $tipoPlatillo=1;  
-              }       
-            }
-            if($tipoPlatillo !=1 ){
-              printf('<article class="container">');
-                print('<div class="alert alert-info" role="alert">Aún no hay platillos de la colación de la mañana ): </div>');
-              printf('</article>');
-            }
+                   printf('<article id="pie-imagen" class="card-body">');
+                     printf('<h5 class="card-title">%s</h5>', $platillo->getNombre());
+                     printf('<a  class="btn btn-primary"  href="Javascript:mostrarPlatillos(%d)">Saber más...</a>', $platillo->getId());
+                   printf('</article>');
+                   printf('<span class="p-2"></span>');
+                 printf('</section>');
+                 $x= $x + 1; 
+               }
+               $tipoPlatillo=1;  
+             }       
+           }
+           if($tipoPlatillo !=1 ){
+            printf('<article class="container">');
+              print('<div class="alert alert-info" role="alert">Aún no hay platillos de la colación de la mañana ): </div>');
+            printf('</article>');
+          }
 
-          ?>
-        </section>
-      </section>
-    </section>
-    <!-- Contenedor de platillos de comida -->
-    <section class="tab-pane fade" id="comida" role="tabpanel" aria-labelledby="pills-comida-tab">
-      <section class="container p-2">
-        <section class="row align-items-start">
-          <?php 
-            $x=0;
-            $tipoPlatillo=0;
-            foreach($listaPlatillos as $platillo) { 
-              $comida= $platillo->getTipocomida();
-              if($comida=='Comida'){
-                if($x<50){
-                  printf('<section class="col-md-4" >');
-                    printf('<a id="imagen-platillo" href="Javascript:mostrarPlatillos(%d)"><img  class="card-img-top img-responsive" src ="data:image/png;base64,'.base64_encode($platillo->getImagen()).'" width="290px" height="250px"/></a>', $platillo->getId());
-                    printf('<article class="card-body" id="pie-imagen">');
-                       printf('<h5 class="card-title">%s</h5>', $platillo->getNombre());
-                       printf('<a  class="btn btn-primary"  href="Javascript:mostrarPlatillos(%d)">Saber más...</a>', $platillo->getId());
-                    printf('</article>');
-                    printf('<span class="p-2"></span>');
-                  printf('</section>');
-                  $x= $x + 1; 
-                }
-                $tipoPlatillo=1;   
-              }        
-            }
-            if($tipoPlatillo !=1){
-              printf('<article class="container">');
-                print('<div class="alert alert-info" role="alert">Aún no hay platillos de comida ): </div>');
-              printf('</article>');
-            } 
-          ?>
-        </section>
-      </section>
-    </section>
-    <!-- Contenedor de platillos de postre -->
-    <section class="tab-pane fade" id="postre" role="tabpanel" aria-labelledby="pills-postre-tab">
-      <section class="container p-2">
-        <section class="row align-items-start">
-          <?php 
-            $x=0;
-            $tipoPlatillo=0;
-            foreach($listaPlatillos as $platillo){ 
-              $desayuno= $platillo->getTipocomida();
-              if($desayuno=='esayuno'){
-                if($x<50){
-                  printf('<section class="col-md-4">');
-                   printf('<a id="imagen-platillo" href="Javascript:mostrarPlatillos(%d)"><img class="card-img-top img-responsive" src ="data:image/png;base64,'.base64_encode($platillo->getImagen()).'" width="290px" height="250px"/></a>', $platillo->getId()); 
-                    printf('<article id="pie-imagen" class="card-body">');
-                       printf('<h5 class="card-title">%s</h5>', $platillo->getNombre());
-                       printf('<a  class="btn btn-primary"  href="Javascript:mostrarPlatillos(%d)">Saber más...</a>', $platillo->getId());
-                    printf('</article>');
-                    printf('<span class="p-2"></span>');
-                  printf('</section>');
-                  $x= $x + 1; 
-                }
-                $tipoPlatillo=1;  
-              }      
-            }
-            if($tipoPlatillo !=1){
-              printf('<article class="container">');
-                print('<div class="alert alert-info" role="alert">Aún no hay platillos de postre ): </div>');
-              printf('</article>');
-            }
-
-          ?>
-        </section>
-      </section>
-    </section>
-     <!-- Contenedor de platillos de colacion de la tarde -->
-    <section class="tab-pane fade" id="colacionT" role="tabpanel" aria-labelledby="pills-colacionT-tab">
-      <section class="container p-2">
-        <section class="row align-items-start">
-          <?php 
-            $x=0;
-            $tipoPlatillo=0;
-            foreach($listaPlatillos as $platillo){ 
-              $desayuno= $platillo->getTipocomida();
-              if($desayuno=='esayuno'){
-                if($x<50){
-                  printf('<section class="col-md-4">');
-                   printf('<a id="imagen-platillo" href="Javascript:mostrarPlatillos(%d)"><img class="card-img-top img-responsive" src ="data:image/png;base64,'.base64_encode($platillo->getImagen()).'" width="290px" height="250px"/></a>', $platillo->getId()); 
-                    printf('<article id="pie-imagen" class="card-body">');
-                       printf('<h5 class="card-title">%s</h5>', $platillo->getNombre());
-                       printf('<a  class="btn btn-primary"  href="Javascript:mostrarPlatillos(%d)">Saber más...</a>', $platillo->getId());
-                    printf('</article>');
-                    printf('<span class="p-2"></span>');
-                  printf('</section>');
-                  $x= $x + 1; 
-                }
-                 $tipoPlatillo=1;  
-              }     
-            }
-            if($tipoPlatillo !=1){
-              printf('<article class="container">');
-                print('<div class="alert alert-info" role="alert">Aún no hay de platillos de colación de la tarde ): </div>');
-              printf('</article>');
-            }
-
-          ?>
-        </section>
-      </section>
-    </section>
-    <!-- Contenedor de platillos de cena -->
-    <section class="tab-pane fade" id="cena" role="tabpanel" aria-labelledby="pills-cena-tab">
-      <section class="container p-2">
-        <section class="row align-items-start">
-          <?php 
-            $x=0;
-            $tipoPlatillo=0;
-            foreach($listaPlatillos as $platillo) { 
-              $cena= $platillo->getTipocomida();
-              if($cena=='Cena'){
-                if($x<50){
-                  printf('<section class="col-md-4">');
-                    printf('<a id="imagen-platillo" href="Javascript:mostrarPlatillos(%d)"><img class="card-img-top img-responsive" src ="data:image/png;base64,'.base64_encode($platillo->getImagen()).'" width="290px" height="250px"/></a>', $platillo->getId()); 
-                    printf('<article class="card-body" id="pie-imagen">');
-                       printf('<h5 class="card-title">%s</h5>', $platillo->getNombre());
-                       printf('<a  class="btn btn-primary"  href="Javascript:mostrarPlatillos(%d)">Saber más...</a>', $platillo->getId());
-                    printf('</article>');
-                    printf('<span class="p-2"></span>');
-                  printf('</section>');
-                  $x= $x + 1; 
-                } 
-                $tipoPlatillo=1; 
-              }         
-            }
-            if($tipoPlatillo!=1){
-              printf('<article class="container">');
-                print('<div class="alert alert-info" role="alert">Aún no hay de platillos platillos de cena ): </div>');
-              printf('</article>');
-            } 
-          ?>
-        </section>
-      </section>
-    </section>
-      <!-- Contenedor de otros platillos -->
-    <section class="tab-pane fade" id="otros" role="tabpanel" aria-labelledby="pills-otros-tab">
-      <section class="container p-2">
-        <section class="row align-items-start">
-          <?php 
-            $x=0;
-            $tipoPlatillo=0;
-            foreach($listaPlatillos as $platillo){ 
-              $desayuno= $platillo->getTipocomida();
-              if($desayuno=='esayuno'){
-                if($x<50){
-                  printf('<section class="col-md-4">');
-                   printf('<a id="imagen-platillo" href="Javascript:mostrarPlatillos(%d)"><img class="card-img-top img-responsive" src ="data:image/png;base64,'.base64_encode($platillo->getImagen()).'" width="290px" height="250px"/></a>', $platillo->getId()); 
-                    printf('<article id="pie-imagen" class="card-body">');
-                       printf('<h5 class="card-title">%s</h5>', $platillo->getNombre());
-                       printf('<a  class="btn btn-primary"  href="Javascript:mostrarPlatillos(%d)">Saber más...</a>', $platillo->getId());
-                    printf('</article>');
-                    printf('<span class="p-2"></span>');
-                  printf('</section>');
-                  $x= $x + 1; 
-                } 
-                $tipoPlatillo=1; 
-              }      
-            }
-            if($tipoPlatillo!=1){
-              printf('<article class="container">');
-                print('<div class="alert alert-info" role="alert">Aún no hay platillos de "Otros" en la clasificación ): </div>');
-              printf('</article>');
-            }
-
-          ?>
-        </section>
+        ?>
       </section>
     </section>
   </section>
+  <!-- Contenedor de platillos de comida -->
+  <section class="tab-pane fade" id="comida" role="tabpanel" aria-labelledby="pills-comida-tab">
+    <section class="container p-2">
+      <section class="row align-items-start">
+        <?php 
+          $x=0;
+          $tipoPlatillo=0;
+          foreach($listaPlatillos as $platillo) { 
+            $comida= $platillo->getTiempoComida();
+            if($comida==='3'){
+              if($x<50){
+                printf('<section class="col-md-4" >');
+                  printf('<a id="imagen-platillo" href="Javascript:mostrarPlatillos(%d)"><img  class="card-img-top img-responsive" src ="data:image/png;base64,'.base64_encode($platillo->getImagen()).'" width="290px" height="250px"/></a>', $platillo->getId());
+                  printf('<article class="card-body" id="pie-imagen">');
+                   printf('<h5 class="card-title">%s</h5>', $platillo->getNombre());
+                   printf('<a  class="btn btn-primary"  href="Javascript:mostrarPlatillos(%d)">Saber más...</a>', $platillo->getId());
+                 printf('</article>');
+                 printf('<span class="p-2"></span>');
+               printf('</section>');
+               $x= $x + 1; 
+             }
+             $tipoPlatillo=1;   
+           }        
+         }
+         if($tipoPlatillo !=1){
+          printf('<article class="container">');
+            print('<div class="alert alert-info" role="alert">Aún no hay platillos de comida ): </div>');
+          printf('</article>');
+        } 
+      ?>
+    </section>
+  </section>
+</section>
+<!-- Contenedor de platillos de postre -->
+<section class="tab-pane fade" id="postre" role="tabpanel" aria-labelledby="pills-postre-tab">
+  <section class="container p-2">
+    <section class="row align-items-start">
+      <?php 
+        $x=0;
+        $tipoPlatillo=0;
+        foreach($listaPlatillos as $platillo){ 
+          $postre= $platillo->getTiempoComida();
+          if($postre==='4'){
+            if($x<50){
+              printf('<section class="col-md-4">');
+               printf('<a id="imagen-platillo" href="Javascript:mostrarPlatillos(%d)"><img class="card-img-top img-responsive" src ="data:image/png;base64,'.base64_encode($platillo->getImagen()).'" width="290px" height="250px"/></a>', $platillo->getId()); 
+               printf('<article id="pie-imagen" class="card-body">');
+                 printf('<h5 class="card-title">%s</h5>', $platillo->getNombre());
+                 printf('<a  class="btn btn-primary"  href="Javascript:mostrarPlatillos(%d)">Saber más...</a>', $platillo->getId());
+               printf('</article>');
+               printf('<span class="p-2"></span>');
+             printf('</section>');
+             $x= $x + 1; 
+           }
+           $tipoPlatillo=1;  
+         }      
+       }
+       if($tipoPlatillo !=1){
+        printf('<article class="container">');
+          print('<div class="alert alert-info" role="alert">Aún no hay platillos de postre ): </div>');
+        printf('</article>');
+      }
+
+    ?>
+  </section>
+</section>
+</section>
+<!-- Contenedor de platillos de colacion de la tarde -->
+<section class="tab-pane fade" id="colacionT" role="tabpanel" aria-labelledby="pills-colacionT-tab">
+  <section class="container p-2">
+    <section class="row align-items-start">
+      <?php 
+        $x=0;
+        $tipoPlatillo=0;
+        foreach($listaPlatillos as $platillo){ 
+          $colacionT= $platillo->getTiempoComida();
+          if($colacionT==='5'){
+            if($x<50){
+              printf('<section class="col-md-4">');
+               printf('<a id="imagen-platillo" href="Javascript:mostrarPlatillos(%d)"><img class="card-img-top img-responsive" src ="data:image/png;base64,'.base64_encode($platillo->getImagen()).'" width="290px" height="250px"/></a>', $platillo->getId()); 
+               printf('<article id="pie-imagen" class="card-body">');
+                 printf('<h5 class="card-title">%s</h5>', $platillo->getNombre());
+                 printf('<a  class="btn btn-primary"  href="Javascript:mostrarPlatillos(%d)">Saber más...</a>', $platillo->getId());
+               printf('</article>');
+               printf('<span class="p-2"></span>');
+             printf('</section>');
+             $x= $x + 1; 
+           }
+           $tipoPlatillo=1;  
+         }     
+       }
+       if($tipoPlatillo !=1){
+        printf('<article class="container">');
+          print('<div class="alert alert-info" role="alert">Aún no hay de platillos de colación de la tarde ): </div>');
+        printf('</article>');
+      }
+
+    ?>
+  </section>
+</section>
+</section>
+<!-- Contenedor de platillos de cena -->
+<section class="tab-pane fade" id="cena" role="tabpanel" aria-labelledby="pills-cena-tab">
+  <section class="container p-2">
+    <section class="row align-items-start">
+      <?php 
+        $x=0;
+        $tipoPlatillo=0;
+        foreach($listaPlatillos as $platillo) { 
+          $cena= $platillo->getTiempoComida();
+          if($cena==='6'){
+            if($x<50){
+              printf('<section class="col-md-4">');
+                printf('<a id="imagen-platillo" href="Javascript:mostrarPlatillos(%d)"><img class="card-img-top img-responsive" src ="data:image/png;base64,'.base64_encode($platillo->getImagen()).'" width="290px" height="250px"/></a>', $platillo->getId()); 
+                printf('<article class="card-body" id="pie-imagen">');
+                 printf('<h5 class="card-title">%s</h5>', $platillo->getNombre());
+                 printf('<a  class="btn btn-primary"  href="Javascript:mostrarPlatillos(%d)">Saber más...</a>', $platillo->getId());
+               printf('</article>');
+               printf('<span class="p-2"></span>');
+             printf('</section>');
+             $x= $x + 1; 
+           } 
+           $tipoPlatillo=1; 
+         }         
+       }
+       if($tipoPlatillo!=1){
+        printf('<article class="container">');
+          print('<div class="alert alert-info" role="alert">Aún no hay de platillos platillos de cena ): </div>');
+        printf('</article>');
+      } 
+    ?>
+  </section>
+</section>
+</section>
+<!-- Contenedor de otros platillos -->
+<section class="tab-pane fade" id="otros" role="tabpanel" aria-labelledby="pills-otros-tab">
+  <section class="container p-2">
+    <section class="row align-items-start">
+      <?php 
+        $x=0;
+        $tipoPlatillo=0;
+        foreach($listaPlatillos as $platillo){ 
+          $otros= $platillo->getTiempoComida();
+          if($otros==='7'){
+            if($x<50){
+              printf('<section class="col-md-4">');
+               printf('<a id="imagen-platillo" href="Javascript:mostrarPlatillos(%d)"><img class="card-img-top img-responsive" src ="data:image/png;base64,'.base64_encode($platillo->getImagen()).'" width="290px" height="250px"/></a>', $platillo->getId()); 
+               printf('<article id="pie-imagen" class="card-body">');
+                 printf('<h5 class="card-title">%s</h5>', $platillo->getNombre());
+                 printf('<a  class="btn btn-primary"  href="Javascript:mostrarPlatillos(%d)">Saber más...</a>', $platillo->getId());
+               printf('</article>');
+               printf('<span class="p-2"></span>');
+             printf('</section>');
+             $x= $x + 1; 
+           } 
+           $tipoPlatillo=1; 
+         }      
+       }
+       if($tipoPlatillo!=1){
+        printf('<article class="container">');
+          print('<div class="alert alert-info" role="alert">Aún no hay platillos de "Otros" en la clasificación ): </div>');
+        printf('</article>');
+      }
+
+    ?>
+  </section>
+</section>
+</section>
+</section>
   <!--
   <nav aria-label="Page navigation example">
     <ul class="pagination">
@@ -295,14 +296,45 @@
   </nav>
 
 -->
-  <!-- Formulario para mandar el id de cada platillo solicitado para mostrarse -->
-  <form name="mostrarPlatillo" method="post" action="">
-    <input type="hidden" name="idPlatilloMostrar" value="-1">
-  </form>
+<!-- Formulario para mandar el id de cada platillo solicitado para mostrarse -->
+<form name="mostrarPlatillo" method="post" action="">
+  <input type="hidden" name="idPlatilloMostrar" value="-1">
+</form>
 </section>
+</main>
+
 <section  id="ir-arriba" class="container p-2 ir-arriba" style="text-align: right;padding:20px;display:none;font-size:20px; color:#fff;cursor:pointer;position: fixed;bottom:50px;right:20px;max-width: 47px;
-  max-height: 47px;">
-    <a href="#encabezado" class="btn btn-primary cmn-btncircle">
-        <i class="fa fa-arrow-up"></i>
-    </a>
+max-height: 47px;">
+<a href="#encabezado" class="btn btn-primary cmn-btncircle">
+  <i class="fa fa-arrow-up"></i>
+</a>
 </section>
+
+<script>
+  //Busqueda de platillos 
+  $(document).ready(function(){
+    $("#busquedaPlatillo").keyup(function(){
+      var consulta = $(this).val();
+      if (consulta != "") {
+        $.ajax({
+          url:"ajax/buscar-platillos.php",
+          method:"POST",
+          data:{consulta:consulta},
+          success:function(data){
+            $("#navegacion").hide();
+            $("#resultadoBusquedaPlatillo").html(data);
+            $("#resultadoBusquedaPlatillo").css("display","block");
+            $("#pills-tabContent").hide();
+          }
+        });
+      }else{
+        $("#resultadoBusquedaPlatillo").css("display","none");
+        $("#navegacion").show();
+        $("#pills-tabContent").show();
+      }
+
+    });
+  });
+</script>
+
+

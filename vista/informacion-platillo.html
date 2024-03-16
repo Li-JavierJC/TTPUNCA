@@ -1,3 +1,15 @@
+<!-- Codigo para verificar si hay información ntrimental o no-->
+<?php
+    $hayDatos = false; // Inicializamos una variable para verificar si hay datos
+
+    foreach ($listaNutriente as $nutriente) {
+        if ($nutriente->getId() != -1) {
+            $hayDatos = true; // Si hay al menos un dato, actualizamos la variable
+            break; // Rompemos el bucle ya que encontramos un dato
+        }
+    }
+?>
+
 <header id="encabezado-info">
     <section class="row container-fluid" style="color: white;">
         <section class="col-md-1" >
@@ -5,16 +17,17 @@
         </section>
         <section class="col-md-5 p-5">
             <?php 
-                printf('<img  class="img-fluid" style="border-radius: 20px;" src ="data:image/png;base64,'.base64_encode($_SESSION['imagen']).'" width="400px" height="400px" /> ');
+                printf('<img  class="img-fluid" style="border-radius: 20px;" src ="data:image/png;base64,'.base64_encode($platillo->getImagen()).'" width="400px" height="400px" /> ');
             ?>
         </section>
         <section class="col-md-6 p-5">
             <center>  
-                <h2 class="card-title" style=" font-weight: bold;"> <?php echo $_SESSION['nombrePlatillo']?></h2>
-                <p>Este, es uno de los platillos que preparas en un abrir y cerrar los ojos si tienes invitados o alguna reunión. Haz de sobra porque vuelan sin que te des cuenta! :)</p>
+                <h2 class="card-title" style=" font-weight: bold;"> <?php echo $platillo->getNombre()?></h2>
+                <p> <?php echo $platillo->getDescripcion()?></p>
+                
 
-                <p style="font-weight: bold;">Autor:&nbsp;<?php echo $_SESSION['autor']?></p>
-                <?php
+                <p style="font-weight: bold;">Autor:&nbsp;<?php echo $platillo->getAutor()?></p>
+                 <?php
 
                     error_reporting(0);
 
@@ -65,18 +78,50 @@
             </center>
         </section>
     </section>
-    <ul class="nav justify-content-center h6 text-white" style="font-weight:bold; background-color: #170317;">
+    <ul class="nav justify-content-center h6 text-white nav-hover" style="font-weight:bold; background-color: #170317;">
+        <!--Solo de muestra si ya se ha publicado la sección -->
+        <?php if ($validacion->getSeccionDatos() == 4) : ?>
         <li class="nav-item">
-            <a class="nav-link text-white" href="#valores-nutrimentales">Información Nutrimental</a>
+          <a class="nav-link text-white" href="#datos-platillo">Datos del Platillo</a>
+        </li>
+        <?php endif; ?>
+
+        <?php if ($validacion->getSeccionIngredientes() == 4) : ?>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="#ingredientes">Ingredientes</a>
+        </li>
+        <?php endif; ?>
+
+        <?php if ($validacion->getSeccionUtencilio() == 4) : ?>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="#utencilio">Utensilios</a>
+        </li>
+        <?php endif; ?>
+
+        <?php if ($validacion->getSeccionPreparacion() == 4) : ?>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="#preparacion">Preparación</a>
+        </li>
+        <?php endif; ?>
+
+        <!--Solo de muestra si ya se ha publicado la sección y si hay datos de nutrientes-->
+        <?php if ($hayDatos && ($validacion->getSeccionNutriente() == 4)) : ?>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="#informacion-nutrimental">Información nutrimental</a>
+        </li>
+        <?php endif; ?>
+
+        <?php if ($validacion->getSeccionComplemento() == 4) : ?>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="#informacion-adicional">Información adicional</a>
+        </li>
+        <?php endif; ?>
+
+        <li class="nav-item">
+          <a class="nav-link text-white" href="#comentar">Comentar</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-white" href="#preparacion">Preparación</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-white" href="#comentar">Comentar</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-white" href="#comentarios-publicados">Comentarios publicados</a>
+          <a class="nav-link text-white" href="#comentarios-publicados">Comentarios</a>
         </li>
     </ul>
 </header>
@@ -124,112 +169,248 @@
     </section>
   </section>
 </section>
-<!---Seccion de valores nutimentales -->
-<section id="valores-nutrimentales" class="container-fluid">
-    <section class="p-5">
-        <center><h4 class="p-2 text-white" style="background-color:#ffa700; "><b>Información Nutrimental</b></h4></center>
-    </section>
+
+<?php if ($validacion->getSeccionDatos() == 4) : ?>
+<!---Seccion de los datos del platillo -->
+<section id="datos-platillo" class="p-5">
+    <center><h4 class="p-2 text-white" style="background-color:#ffa700; "><b>Datos generales del platillo</b></h4></center>
+</section>
+<section class="container">
     <section class="row">
-        <article class="col-md-3" >
+        <article class="col-md-4" >
             <center>
                 <i class="bi bi-stopwatch-fill fa-4x " style="color: #FEB00A;"></i><br>
                 <h6 class="" style="color: #03526C; font-weight: bold;">Tiempo de preparación</h6>
-                <p><?php echo $_SESSION['tiempopreparacion'];?></p>
+                <p><?php echo  $platillo->getTiempoPreparacion();?></p>
             </center>
         </article>
-        <article class="col-md-3">
+        <article class="col-md-4" >
             <center>
-                <i class="bi bi-person-fill fa-4x " style="color: #FEB00A;"></i><br>
-                <h6 class="" style="color: #03526C; font-weight: bold;">Porciones</h6><br>
-                <p><?php echo $_SESSION['porciones'];?></p>
+                <i class="bi bi-stopwatch-fill fa-4x " style="color: #FEB00A;"></i><br>
+                <h6 class="" style="color: #03526C; font-weight: bold;">Tiempo de Cocción</h6>
+                <p><?php echo  $platillo->getTiempoCoccion();?></p>
             </center>
         </article>
-        <article class="col-md-3">
+        <article class="col-md-4">
             <center>
                 <i class="bi bi-calendar-event-fill fa-4x " style="color: #FEB00A;"></i><br>
                 <h6 class="" style="color: #03526C; font-weight: bold;">Caducidad</h6><br>
-                <p><?php echo $_SESSION['caducidad'];?></p>
+                <p><?php echo $platillo->getCaducidad();?></p>
             </center>
         </article>
-        <article class="col-md-3">
+        <article class="col-md-4">
             <center>
-                <i class="fas fa-cheese fa-4x " style="color: #FEB00A;"></i><br><br>
-                <h6  class="" style="color: #03526C; font-weight: bold;">Rendimiento</h6><br>
-                <p><?php echo $_SESSION['rendimiento'];?></p>
+                <i class="bi bi-person-fill fa-4x " style="color: #FEB00A;"></i><br>
+                <h6 class="" style="color: #03526C; font-weight: bold;">Porciones</h6><br>
+                <p><?php echo $platillo->getPorciones();?></p>
             </center>
         </article>
-    </section>
-    <br>
-    <section class="row">
-        <article class="col-md-3">
+        <article class="col-md-4">
             <center>
                 <i class="bi bi-cash-coin fa-4x " style="color: #FEB00A;"></i><br>
                 <h6 class="" style="color: #03526C; font-weight: bold;">Costo Aproximando</h6>
-                <p><?php echo $_SESSION['costo'];?></p>
+                <p><?php echo $platillo->getCostoPromedio();?></p>
             </center>
         </article>
-        <article class="col-md-3">
+        <article class="col-md-4">
             <center>
-                <img src="vista/images/iconos/energia.png"><br>
-                <h6 class="" style="color: #03526C; font-weight: bold;">Energía</h6>
-                <p><?php echo $_SESSION['energia'];?></p>
-            </center>
-        </article>
-        <article class="col-md-3">
-            <center>
-                <img src="vista/images/iconos/proteina.png"><br>
-                <h6 class="" style="color: #03526C; font-weight: bold;">Proteina</h6><br>
-                <p><?php echo $_SESSION['porciones'];?></p>
-            </center>
-        </article>
-        <article class="col-md-3">
-            <center>
-                <img src="vista/images/iconos/grasa.png"><br>
-                <h6 class="" style="color: #03526C; font-weight: bold;">Grasas</h6><br>
-                <p><?php echo $_SESSION['grasas'];?></p>
+                <i class="fas fa-cheese fa-4x " style="color: #FEB00A;"></i><br><br>
+                <h6  class="" style="color: #03526C; font-weight: bold;">Rendimiento</h6><br>
+                <p><?php echo $platillo->getRendimiento();?></p>
             </center>
         </article>
     </section>
-    <br>
+</section>
+<?php endif; ?>
+
+<?php if ($validacion->getSeccionIngredientes() == 4) : ?>
+<!-- Seccción de ingredientes del platillo-->
+<section id="ingredientes" class="p-5">
+    <center><h4 class="p-2 text-white" style="background-color:#ffa700; "><b>Ingredientes del platillo</b></h4></center>
+</section>
+<section class="container">
     <section class="row">
-        <article class="col-md-3">
+        <section class="col-md-6">
             <center>
-                <img src="vista/images/iconos/carbono.png"><br>
-                <h6  class="" style="color: #03526C; font-weight: bold;">Hidratos de Carbono</h6><br>
-                <p><?php echo $_SESSION['carbono'];?></p>
+                <img class="img-fluid" width="300px" height="300px" src="vista/images/iconos/1.jpg"><br>             
             </center>
-        </article>
+        </section>
+        <section class="col-md-6">
+            <section class="table-responsive container" >
+                <table class="table table-hover table-sm">
+                    <thead class="table text-white" style="background-color:#1e0121;">
+                        <tr>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Tipo de medida</th>
+                            <th scope="col">Nombre</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                          foreach($listaIngredintes as $ingredintes) { 
+                            printf('<tr>');
+                                printf('<td>%s</td>', $ingredintes->getCantidad());  
+                                printf('<td>%s</td>', $ingredintes->getUnidadMedida());
+                                printf('<td>%s</td>', $ingredintes->getNombre());                                  
+                            printf('</tr>');
+                          } 
+                        ?>
+                    </tbody>
+                </table>
+            </section>
+        </section>
     </section>
 </section>
+<?php endif; ?>
+
+<?php if ($validacion->getSeccionUtencilio() == 4) : ?>
+<!-- Seccción de utencilios para el platillo-->
+<section id="utencilio" class="p-5">
+    <center><h4 class="p-2 text-white" style="background-color:#ffa700; "><b>Utencilios para platillo</b></h4></center>
+</section>
+<section  class="container">
+    <section class="row">
+        <section class="col-md-6">
+            <center>
+                <img src="vista/images/iconos/2.jpg" width="400px" height="400px" class="img-fluid"><br>
+            </center>
+        </section>
+        <section class="col-md-6">
+            <section class="table-responsive container" >
+                <table class="table table-hover table-sm">
+                    <thead class="table text-white" style="background-color:#1e0121;">
+                        <tr>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Nombre</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                          foreach($listaUtencilio as $utencilio) { 
+                            printf('<tr>');
+                                printf('<td>%s</td>', $utencilio->getCantidad());  
+                                 printf('<td>%s</td>', $utencilio->getNombre());                                  
+                            printf('</tr>');
+                          } 
+                        ?>
+                    </tbody>
+                </table>
+            </section>
+        </section>
+    </section>
+</section>
+<?php endif; ?>
+
+<?php if ($validacion->getSeccionPreparacion() == 4) : ?>
 <!-- Seccción de preparación del platillo-->
-<section id="preparacion" class="container-fluid">
-    <section class="p-5">
+<section id="preparacion" class="p-5">
         <center><h4 class="p-2 text-white" style="background-color:#ffa700; "><b>Preparación del platillo</b></h4></center>
-    </section>
-    <section class="row container-fluid">
-        <article class="col-md-4">
+</section>
+<section class="container">
+    <section class="row">
+        <section class="col-md-5">
             <center>
-                <img src="vista/images/iconos/utensilios.png"><br>
-                <h6  class="" style="color: #03526C; font-weight: bold;">Utensilios</h6><br>
-                <p><?php echo $_SESSION['utencilios'];?></p>
+                <img src="vista/images/iconos/3.jpg" class="img-fluid"><br>             
             </center>
-        </article>
-        <article class="col-md-4">
-            <center>
-                <img src="vista/images/iconos/ingredientes.png"><br>
-                <h6  class="" style="color: #03526C; font-weight: bold;">Ingredientes</h6><br>
-                <p class="text-start"><?php echo $_SESSION['ingredientes'];?></p>
-            </center>
-        </article>
-        <article class="col-md-4">
-            <center>
-                <img src="vista/images/iconos/preparacion.png"><br>
-                <h6  class="" style="color: #03526C; font-weight: bold;">Preparación</h6><br>
-                <p class="text-start"><?php echo $_SESSION['preparacion'];?></p>
-            </center>
-        </article>
+        </section>
+        <section class="col-md-7">
+            <section class="row">
+                <?php
+                    foreach($listaPreparacion as $preparacion) { 
+                        printf('<section class="col-md-4 p-2">');
+                            printf('<section>');
+                                if ($preparacion->getFoto() != null && strlen($preparacion->getFoto()) > 1){
+                                    printf('<img class="img-fluid" src ="data:image/png;base64,'.base64_encode($preparacion->getFoto()).'" width="150px" height="150px" class="card-img-top"/>');
+                                }
+                            printf('</section>');
+                            printf('<section class="card-body p-2">');
+                                printf('<td><strong>Paso&nbsp;%s:&nbsp;</strong></td>', $preparacion->getPaso());  
+                                printf('<td>%s</td>', $preparacion->getInstruccion());
+                            printf('</section>');
+                        printf('</section>');
+                    }
+                ?>
+            </section>
+        </section>
     </section>
 </section>
+<?php endif; ?>
+
+<!-- Seccción de informacion nutrimental -->
+<?php if ($hayDatos && ($validacion->getSeccionNutriente() == 4)) : ?>
+<section id="informacion-nutrimental" class="p-5">
+        <center><h4 class="p-2 text-white" style="background-color:#ffa700; "><b>Información nutrimental</b></h4></center>
+</section>
+<section class="container">
+    <section class="row">
+        <section class="col-md-4">
+            <center>
+                <img src="vista/images/iconos/4.jpg" class="img-fluid"><br>             
+            </center>
+        </section>
+        <section class="col-md-8">
+            <section class="table-responsive container" >
+                <table class="table table-hover table-sm">
+                    <thead class="table text-white" style="background-color:#1e0121;">
+                        <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Cantidad por receta</th>
+                            <th scope="col">Cantidad por porción</th>
+                            <th scope="col">Unidad de medida</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                          foreach($listaNutriente as $nutriente) { 
+                            printf('<tr>');
+                                printf('<td>%s</td>', $nutriente->getNombre());  
+                                printf('<td>%s</td>', $nutriente->getCantidadR());
+                                printf('<td>%s</td>', $nutriente->getCantidadP());  
+                                printf('<td>%s</td>', $nutriente->getUnidadMedida());
+                                                                
+                            printf('</tr>');
+                          } 
+                        ?>
+                    </tbody>
+                </table>
+            </section>
+        </section>
+    </section>
+</section>
+<?php endif; ?>
+
+<?php if ($validacion->getSeccionComplemento() == 4) : ?>
+<!-- Seccción de informacion adicional de platillo -->
+<section id="informacion-adicional" class="p-5">
+    <center><h4 class="p-2 text-white" style="background-color:#ffa700; "><b>Información adicional del platillo</b></h4></center>
+</section>
+<section class="container">
+    <section class="row">
+        <section class="col-md-6">
+            <center>
+                <img src="vista/images/iconos/5.jpg" width="300px" height="300px" class="img-fluid">         
+            </center>
+        </section>
+        <section class="col-md-6">
+            <section class="card p-5">
+                <ol>
+                    <li><h6><strong>Estado del Platillo</strong></h6></li>
+                     <p> <?php echo $complemento->getEstado()?></p>
+                    <li> <h6><strong>Región del platillo</strong></h6></li>
+                    <p> <?php echo $complemento->getRegion()?></p>
+                       <li><h6><strong>Lengua que hablan en la region</strong></h6></li>
+                     <p> <?php echo $complemento->getLengua()?></p>
+                    <li> <h6><strong>Municipio al que pertenecen</strong></h6></li>
+                    <p> <?php echo $complemento->getMunicipio()?></p>
+                    <li> <h6><strong>Cultura a la que pertenecen</strong></h6></li>
+                    <p> <?php echo $complemento->getCultura()?></p>
+                </ol>
+            </section>
+        </section>
+    </section>
+</section>
+<?php endif; ?>
+
 <!-- Seccción de comentar platillo-->
 <section id="comentar">
     <section class="p-5">
@@ -398,8 +579,36 @@
 </section>
 
 
-<section  id="ir-arriba" class="container p-2 ir-arriba">
-    <a href="#encabezado" class="btn btn-primary cmn-btncircle">
-        <i class="fa fa-arrow-up"></i>
-    </a>
-</section>
+<button id="btn-regresar-arriba" class="btn btn-primary" title="Regresar arriba">
+    <i class="bi bi-arrow-up"></i>
+ </button>
+
+ <script>
+    //funcion para guardar patillo como favorito
+    $(document).ready(function(){
+      $('#btnguardar').click(function(){
+        console.log("Botón clickeado...");
+        let datos=$('#formFavoritos').serialize();
+        console.log(datos);
+        jQuery.ajax({
+          url: "ajax/favoritos.php",
+          data:datos,
+          type:"POST",
+          success:function(){
+            $("#btnguardar").css('background-color', '#18D935');
+            $("#btnguardar").html('<i class="bi bi-bookmark-fill">&nbsp;Añadido a tus Favoritos</i>');
+            Swal.fire({
+              icon: 'success',
+              title: 'Añadido a Favoritos Correctamente',
+              showConfirmButton: false,
+              timer: 2000
+            })
+          },
+          error: function() {
+            alert('Error occurrido');
+          }
+        });
+        return false;
+      });
+    });
+ </script>

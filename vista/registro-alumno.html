@@ -1,90 +1,86 @@
 <!--================ Formulario del Registro del Alumno =================-->
-<section class="login_box_area p_120">
-    <section class="container">
-      <section class="row">
-        <article class="col-lg-6">
-          <span class="login_box_img">
-            <br><br>
-            <img class="img-fluid" src="vista/images/registro/registro-alumno.jpg" alt="">
-          </span>
-        </article>
-        <article class="col-lg-6" >
-          <article class="login_form_inner">
-            <span style="color: rgb(73, 214, 233);"><h3>Registro del Alumno</h3></span>
-            <form class="row g-3 needs-validation" action="registro-alumno" method="post" >
-              <article class="col-md-6">
-                <label for="nombre" class="form-label"><i class="bi bi-person-fill"></i> &nbsp;Nombre</label>
-                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Marcos" required> 
-                
-              </article>
-              <article class="col-md-6">
-                <label for="apellidos" class="form-label"><i class="bi bi-people-fill"></i> &nbsp;Apellidos</label>
-                <input type="text" class="form-control" id="apellidos" name="apellidos" placeholder="Jimnéz Flores" required> 
-                
-              </article>
-              <article class="col-md-6">
-                <label for="sexo" class="form-label"><i class="bi bi-person-check-fill"></i> &nbsp;Sexo</label>
-                <select  class="form-select" id="genero" name="sexo" required>
-                  <option value="" selected="selected">Seleccione...</option>
-                  <option value="Hombre">Hombre</option>
-                  <option value="Mujer">Mujer</option>
-                </select>
-              </article>
-  
-              <article class="col-md-6">
-                <label for="semestre" class="form-label"><i class="fas fa-graduation-cap"></i>&nbsp;Semestre</label>
-                <select class="form-select" name="semestre" id="semestre"  required>
-                  <option value="" selected="selected" >Seleccione...</option>
-                  <option value="Primero">Primero</option>
-                  <option value="Segundo">Segundo</option>
-                  <option value="Tercero">Tercero</option>
-                  <option value="Cuarto">Cuarto</option>
-                  <option value="Quinto">Quinto</option>
-                  <option value="Sexto">Sexto</option>
-                  <option value="Séptimo">Séptimo</option>
-                  <option value="Octavo">Octavo</option>
-                  <option value="Noveno">Noveno</option>
-                  <option value="Décimo">Décimo</option>
-                </select>
-              </article>
-
-              <article class="col-md-6">
-                <label for="carrera" class="form-label"><i class="fas fa-graduation-cap"></i>&nbsp;Carrera</label>
-                <select class="form-select" name="carrera" id="carrera"  required>
-                  <option value="" selected="selected" >Seleccione...</option>
-                  <option value="Licenciatura en Nutrición">Licenciatura en Nutrición</option>
-                  <option value="Ingeniería en Alimentos">Ingeniería en Alimentos</option>
-                  <option value="Ingeniería en Agroindustrias">Ingeniería en Agroindustrias</option>
-                 
-                </select>
-              </article>
-
-              <article class="col-md-6">
-                <label for="edad" class="form-label"><i class="fa-solid fa-calendar-check"></i>&nbsp;Edad</label>
-                <input type="text" class="form-control" name="edad" id="edad" required>
-              </article>
-
-              <article class="col-md-6">
-                <label for="usuario" class="form-label"><i class="bi bi-person-circle"></i>&nbsp;Usuario</label> 
-                <input type="text" class="form-control" name="usuario" id="usuario" onBlur="comprobarAlumno()" required>
-                <span id="resultado"></span>
-              </article>
-              <article class="col-md-6">
-                <label for="contrasena" class="form-label"><i class="fa-solid fa-key"></i>&nbsp;Cotraseña</label> 
-                <input type="password" class="form-control" name="contrasena" id="contrasena"  required>
-              </article>
-
-              <input type="hidden" name="nivelUsuario" value="2">
-              <br>
-              <article class="col-12">
-               <center>
-                <button  type="submit" name="registrarse" value="registrarse" class="btn btn-primary">Registrar</button>
+<main class="contenedor" id="fondo-alumno">
+  <section class="my-4 container">
+    <section class="row">
+      <section class="col-md-6 mt-2 contenedor-image" >
+        <img id="image-flotante" class="img-fluid" src="vista/images/registro/1.jpg" alt="">
+      </section>
+      <section class="col-lg-6" >
+        <article  class="my-3 contenedor-form ">
+          <header class="p-3">
+           <center>
+              <h4><strong>Crear mi cuenta de Alumno</strong></h4>
+           </center>
+          </header>
+          <form class="row p-3 g-3 needs-validation" action="registro-alumno" method="post" >
+            <article class="col-md-6">
+              <label for="nombre" class="form-label"><i class="bi bi-person-fill" style="color: gold;"></i> &nbsp;Nombre</label>
+              <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Marcos" required> 
+            </article>
+            <article class="col-md-6">
+              <label for="apellidos" class="form-label"><i class="bi bi-people-fill" style="color: gold;"></i> &nbsp;Apellidos</label>
+              <input type="text" class="form-control" id="apellidos" name="apellidos" placeholder="Jimnéz Flores" required> 
+            </article>
+            <article class="col-md-6">
+              <label for="sexo" class="form-label"><i class="bi bi-person-check-fill" style="color: gold;"></i> &nbsp;Sexo</label>
+              <select  class="form-select" id="genero" name="sexo" required>
+                <option value="" selected="selected">Seleccione...</option>
+                <option value="Hombre">Hombre</option>
+                <option value="Mujer">Mujer</option>
+              </select>
+            </article>
+            <article class="col-md-6">
+              <label for="semestre" class="form-label"><i class="fas fa-graduation-cap" style="color: gold;"></i>&nbsp;Semestre</label>
+              <select class="form-select" name="semestre" id="semestre"  required>
+                <option value="" selected="selected" >Seleccione...</option>
+                <option value="Primero">Primero</option>
+                <option value="Segundo">Segundo</option>
+                <option value="Tercero">Tercero</option>
+                <option value="Cuarto">Cuarto</option>
+                <option value="Quinto">Quinto</option>
+                <option value="Sexto">Sexto</option>
+                <option value="Séptimo">Séptimo</option>
+                <option value="Octavo">Octavo</option>
+                <option value="Noveno">Noveno</option>
+                <option value="Décimo">Décimo</option>
+              </select>
+            </article>
+            <article class="col-md-6">
+              <label for="carrera" class="form-label"><i class="fas fa-graduation-cap" style="color: gold;"></i>&nbsp;Carrera</label>
+              <select class="form-select" name="carrera" id="carrera"  required>
+                <option value="" selected="selected" >Seleccione...</option>
+                <option value="Licenciatura en Nutrición">Licenciatura en Nutrición</option>
+                <option value="Licenciatura en Informática">Licenciatura en Informática</option>
+                <option value="Licenciatura en Química Clínica">Licenciatura en Química Clínica</option>
+                <option value="Ingeniería en Alimentos">Ingeniería en Alimentos</option>
+                <option value="Ingeniería en Agroindustrias">Ingeniería en Agroindustrias</option>
+                <option value="Ingeniería en Farmacobiología">Ingeniería en Farmacobiología</option>
+              </select>
+            </article>
+            <article class="col-md-6">
+              <label for="edad" class="form-label"><i class="fa-solid fa-calendar-check" style="color: gold;"></i>&nbsp;Edad</label>
+              <input type="number" class="form-control" name="edad" id="edad" required>
+            </article>
+            <article class="col-md-6">
+              <label for="usuario" class="form-label"><i class="bi bi-person-circle" style="color: gold;"></i>&nbsp;Usuario</label> 
+              <input type="text" class="form-control" name="usuario" id="usuario" onBlur="comprobarAlumno()" required>
+              <span id="resultado"></span>
+            </article>
+            <article class="col-md-6">
+              <label for="contrasena" class="form-label"><i class="fa-solid fa-key" style="color: gold;"></i>&nbsp;Cotraseña</label> 
+              <input type="password" class="form-control" name="contrasena" id="contrasena"  required>
+            </article>
+            <input type="hidden" name="nivelUsuario" value="2">
+            <article class="my-4 col-12">
+              <center>
+                <button  type="submit" name="registrarse" value="registrarse" class="btn btn-primary">Crear cuenta</button>
               </center>
             </article>
-          </form>
+          </form>        
         </article>
-      </article>
+      </section>
     </section>
   </section>
-  <br>
-</section>
+</main>
+
+

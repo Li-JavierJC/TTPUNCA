@@ -1,6 +1,56 @@
+header{
+   background-image: linear-gradient(to right, #f92387 0%, #ff4e4e 100%);
+    color: white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
 span#resultado{
     position:absolute;
-    width: 100%;
-    height: 100%;
     text-align: left;
+}
+
+.contenedor{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.contenedor-form{
+    background-image: linear-gradient(to top, #f0e2c7 0%, #fff9e8 100%); 
+    border-radius: 10px;
+}
+
+.contenedor-image {
+  position: relative;
+  width: 550px;
+  height: 550px;
+}
+
+#image-flotante {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation-name: floatAnimation;
+  animation-duration: 3s; 
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes floatAnimation {
+  0% {
+    transform: translate(-50%, -50%);
+  }
+  50% {
+    transform: translate(-50%, -55%); 
+  }
+  100% {
+    transform: translate(-50%, -50%);
+  }
+}
+
+
+.sombreado-image {
+   filter: drop-shadow(0 0 10px rgba(225, 115, 234, 0.56)); 
 }

@@ -17,7 +17,10 @@
                 //se crea la sesion del usuario
               
                 $usuario=$administrador->getUsuario();
+                $idAdministrador=$administrador->getId();
+
                 $_SESSION['usuario']=$usuario;
+                $_SESSION['idAdministrador']=$idAdministrador;
                 $_SESSION['loggedin'] = true;
                 header('location:admin');
             }
@@ -27,6 +30,7 @@
             //Ingresar como alumno
             $alumno=$bd->obtenerAlumno($_POST['usuario'],$_POST['contrasena']);
             if (!empty($alumno->getId())) {
+
                 $nivelUsuario=$alumno->getNivelUsuario();
                 if ($nivelUsuario==2) {
                     //se crea la sesion del usuario
@@ -39,7 +43,7 @@
                     $edad=$alumno->getEdad();
                     $usuario=$alumno->getUsuario();
                     $contrasena=$alumno->getContrasena();
-
+                    session_start();
                     $_SESSION['id']=$id;
                     $_SESSION['nombre']=$nombre;
                     $_SESSION['apellidos']=$apellidos;
@@ -49,6 +53,7 @@
                     $_SESSION['edad']=$edad;
                     $_SESSION['usuario']=$usuario;
                     $_SESSION['contrasena']=$contrasena;
+
                     header('location:cuenta');  
                 }
             }else{
@@ -67,6 +72,7 @@
                         $domicilio=$usuario->getDomicilio();
                         $edad=$usuario->getEdad();
                         $nusuario=$usuario->getUsuario();
+                        $ncontrasena=$usuario->getContrasena();
 
                         $_SESSION['idUsuario']=$idUsuario;
                         $_SESSION['nombre']=$nombre;
@@ -77,6 +83,7 @@
                         $_SESSION['domicilio']=$domicilio;
                         $_SESSION['edad']=$edad;
                         $_SESSION['nusuario']=$nusuario;
+                        $_SESSION['ncontrasena']=$ncontrasena;
 
                         header('location:platillos');
                     }

@@ -1,24 +1,25 @@
-<!-- Contenedor de platillos de comida -->
-<section class="container-fluid">
-    <article class="row justify-content-center align-content-center">
-        <article class="col-4 barra">
-            <img src="vista/images/iconos/logo-admi.png" height="60px">
+<!-- Contenedor de platillos de comida --> 
+<section class="container-fluid" style="background-color:#FFC300">
+  <nav class="navbar">
+    <section class="container-fluid mt-0 barra">
+      <a class="navbar-brand">
+        <img src="vista/images/iconos/logo-a.png" height="80px">
+      </a>
+      <section class="d-flex">
+        <article class="mt-3 me-2">
+          <?php echo $_SESSION['usuario']?>
         </article>
-        <article class="col-8 text-right barra">
-            <ul class="navbar-nav mr-auto">
-                <li>
-                    <span>
-                        <?php echo $_SESSION['usuario']?>&nbsp;
-                    </span>
-                    <a href="#" class="px-3 text-light perfil dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-circle user"></i></a>
-                    <article class="dropdown-menu" aria-labelledby="navbar-dropdown">
-                        <a class="dropdown-item menuperfil cerrar" href="Javascript:salir()" ><i class="fas fa-sign-out-alt m-1"></i>Salir
-                        </a>
-                    </article>
-                </li>
+        <article class="btn-group">
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"  style="background-color:#FFC300; border-color: #FFC300;">
+              <i class="fas fa-user-circle user"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end" style="background-color:#581845;">
+              <li><a class="dropdown-item cerrar" href="Javascript:salir()" style="color:white;"><i class="fas fa-sign-out-alt m-1" ></i>Salir</a></li>
             </ul>
-        </article>
-    </article>
+        </article>                
+      </section>
+    </section>
+  </nav>
 </section>
 <section class="container-fluid">
     <section class="row">
@@ -27,7 +28,9 @@
                 <a class="nav-link active" data-bs-toggle="pill" data-bs-target="#inicio" aria-selected="true"><i class="bi bi-house-fill"></i><span>Inicio</span></a>
                 <a class="nav-link" data-bs-toggle="pill" data-bs-target="#usuario" aria-selected="false"><i class="fas fa-users"></i><span>Usuarios Registrados</span></a>
                 <a class="nav-link" data-bs-toggle="pill" data-bs-target="#alumno" aria-selected="false"><i class="fas fa-user-graduate"></i><span>Alumnos Registrados</span></a>
-                <a class="nav-link" data-bs-toggle="pill" data-bs-target="#consulta"  aria-selected="false"><i class="fas fa-database"></i><span>Consultar Platillos</span></a>
+                <a class="nav-link" data-bs-toggle="pill" data-bs-target="#consulta"  aria-selected="false"><i class="fas fa-database"></i><span>Platillos de alumnos</span></a>
+                <a class="nav-link" data-bs-toggle="pill" data-bs-target="#consulta-platilloUsuarios"  aria-selected="false"><i class="fas fa-database"></i><span>Platillos de usuarios</span></a>
+                <a class="nav-link" data-bs-toggle="pill" data-bs-target="#consulta-platilloAdministrador"  aria-selected="false"><i class="fas fa-database"></i><span>Platillos del administrador</span></a>
                 <a class="nav-link" data-bs-toggle="pill" data-bs-target="#registrar" aria-selected="false"><i class="fas fa-plate-wheat"></i><span>Registrar Patillo</span></a>
                 <a class="nav-link" data-bs-toggle="pill" data-bs-target="#registrar-alumnos" aria-selected="false"><i class="fas fa-id-card"></i><span>Registrar Alumno</span></a>
                 <a class="nav-link" data-bs-toggle="pill" data-bs-target="#registrar-usuarios"  aria-selected="false"><i class="fas fa-user-plus"></i><span>Registar Usuario</span></a>
@@ -47,7 +50,7 @@
                                     <article class="row no-gutters align-items-center">
                                         <article class="col mr-2">
                                             <article class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                <p style="font-size: 15px;">Usuarios Registrados</p>
+                                                <p style="font-size: 15px;"><strong>Usuarios Registrados</strong></p>
                                             </article>
                                             <article class="h5 mb-0 font-weight-bold text-gray-800">
                                                 <?php  echo $totalUsuario;?>
@@ -66,7 +69,7 @@
                                     <article class="row no-gutters align-items-center">
                                        <article class="col mr-2">
                                             <article class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                <p style="font-size: 15px;">Alumnos Registrados</p>
+                                                <p style="font-size: 15px;"><strong>Alumnos Registrados</strong></p>
                                             </article>
                                             <article class="h5 mb-0 font-weight-bold text-gray-800">
                                                 <?php  echo $totalAlumno?>
@@ -85,7 +88,7 @@
                                     <article class="row no-gutters align-items-center">
                                         <article class="col mr-2">
                                             <article class="text-xs font-weight-bold text-info  text-uppercase mb-1">
-                                                <p style="font-size: 15px;">Platillos Publicados</p>
+                                                <p style="font-size: 15px;"><strong>Platillos Publicados</strong></p>
                                             </article>
                                             <article class="h5 mb-0 font-weight-bold text-gray-800">
                                                 <?php  echo $totalPlatillo;?>
@@ -98,13 +101,13 @@
                                 </section>
                             </section>
                         </section>
-                            <section class="col-xl-3 col-md-6 mb-4 ">
-                                <section class="card border-left-primary shadow h-100 py-2">
-                                    <section class="card-body">
-                                        <article class="row no-gutters align-items-center">
-                                           <article class="col mr-2">
+                        <section class="col-xl-3 col-md-6 mb-4 ">
+                            <section class="card border-left-primary shadow h-100 py-2">
+                                <section class="card-body">
+                                    <article class="row no-gutters align-items-center">
+                                       <article class="col mr-2">
                                             <article class="text-xs font-weight-bold text-info  text-uppercase mb-1">
-                                                <p style="font-size: 15px; color: #00f700;">Visitantes</p>
+                                                <p style="font-size: 15px; color: #00f700;"><strong>Visitantes</strong></p>
                                             </article>
                                             <article class="h5 mb-0 font-weight-bold text-gray-800">
                                                 <?php  echo  $totalVisitante;?>
@@ -128,7 +131,7 @@
                                     <article class="row no-gutters align-items-center">
                                         <article class="col mr-2">
                                             <article class="text-xs font-weight-bold text-info  text-uppercase mb-1">
-                                                <p style="font-size: 15px; color: #790844;">Visitas Totales</p>
+                                                <p style="font-size: 15px; color: #790844;"><strong>Visitas Totales</strong></p>
                                             </article>
                                             <article class="h5 mb-0 font-weight-bold text-gray-800">
                                                 <?php  echo  $totalVisita;?>
@@ -154,6 +157,7 @@
                     </article>
                     <section class="table-responsive" id="resultadoBuscarUsuario"></section>
                     <section class="table-responsive" id="consultaUsuarios">
+                        
                         <table id="myTabl" class="table table-sm">
                             <thead class="table-dark">
                                 <tr>
@@ -171,10 +175,10 @@
                             </thead>
                             <tbody>
                                 <?php 
-                                    $numero=1;
+                                    $contador = 1; // Inicializar el contador a 1
                                     foreach($listaUsuarios as $usuario) { 
                                         printf('<tr>');
-                                            printf('<td>%s</td>', $usuario->getId());    
+                                            printf('<td>%d</td>', $contador); // Mostrar el número secuencial en lugar del id    
                                             printf('<td>%s</td>', $usuario->getNombre());
                                             printf('<td>%s</td>', $usuario->getApellidos());
                                             printf('<td>%s</td>', $usuario->getSexo());
@@ -184,10 +188,12 @@
                                             printf('<td>%s</td>', $usuario->getEdad());
                                             printf('<td>%s</td>', $usuario->getUsuario());
                                             printf('<td id="contrasena-g">%s</td>', $usuario->getContrasena());
-                                            printf('<td ><a class="text-success editbtn " style="cursor:pointer;" data-bs-toggle="modal" data-bs-target="#editarUsuario"><i class="bi bi-pencil-square"></i></a></td>');
+
+                                            printf('<td><a class="text-success editbtn" style="cursor:pointer;" data-bs-toggle="modal" data-bs-target="#editarUsuario" data-userid="%d"><i class="bi bi-pencil-square"></i></a></td>', $usuario->getId());
+
                                             printf('<td><a  class="text-danger" href="Javascript:eliminarUsuario(%d)"><i class="bi bi-trash-fill"></i></a></td>', $usuario->getId());
                                         printf('</tr>');
-                                        $numero++;
+                                        $contador++; // Incrementar el contador en cada iteración
                                     } 
                                 ?>
                             </tbody>
@@ -297,11 +303,11 @@
                             </thead>
                             <tbody id="resultadoAlumno">
                                 <?php
-                                    $numero=1;
+                                    $contador = 1; // Inicializar el contador a 1
                                     foreach($listaAlumnos as $alumno) { 
                                         printf('<tr>');
                                               
-                                            printf('<td>%s</td>', $alumno->getId());
+                                            printf('<td>%d</td>', $contador); // Mostrar el número secuencial en lugar del id 
                                             printf('<td>%s</td>', $alumno->getNombre());
                                             printf('<td>%s</td>', $alumno->getApellidos());
                                             printf('<td>%s</td>', $alumno->getSexo());
@@ -310,10 +316,13 @@
                                             printf('<td>%s</td>', $alumno->getEdad());
                                             printf('<td>%s</td>', $alumno->getUsuario());
                                             printf('<td id="contrasena-a">%s</td>', $alumno->getContrasena());
-                                            printf('<td><a class="text-success editAlumno"  style="cursor:pointer;" data-bs-toggle="modal" data-bs-target="#editarAlumno"><i class="bi bi-pencil-square"></i></a></td>');
+
+                                            printf('<td><a class="text-success editAlumno" style="cursor:pointer;" data-bs-toggle="modal" data-bs-target="#editarAlumno" data-alumnoid="%d"><i class="bi bi-pencil-square"></i></a></td>', $alumno->getId());
+
+
                                             printf('<td><a class="text-danger"  href="Javascript:eliminarAlumno(%d)"><i class="bi bi-trash-fill"></i></a></td>', $alumno->getId());
                                         printf('</tr>');
-                                        $numero++;
+                                         $contador++; // Incrementar el contador en cada iteración
                                     } 
                                 ?>
                             </tbody>
@@ -403,150 +412,72 @@
                 </section>
                 <section class="tab-pane fade " id="consulta">
                     <article style="background-color: #061533; color:aliceblue; padding: 0.5%;">
-                        <h3>Platillos Registrados</h3>
+                        <h3>Platillos publicados por alumnos</h3>
                     </article>
                     <!-- Caja de busqueda del alumno-->
-                    <article class="col-md-12 p-2 text-left mb-2">
+                    <article class="col-md-12 p-2 text-left mb-2"> 
                         <h5><b>Buscar</b></h5>
                         <input class="form-control me-2" type="text" id="busquedaPlatillo" placeholder="Buscar..." autocomplete="off">
                     </article>
                     <section class="table-responsive" id="resultadoBuscarPlatillo"></section>
                     <section class="table-responsive" id="consultaPlatillos">
-                        <table class="table table-hover table-sm">
-                            <thead class="table-dark">
-                                <tr>
-                                    <th scope="col">Número</th>
-                                    <th scope="col">Nombre</th>
-                                    <th scope="col">Tipo Comida</th>
-                                    <th scope="col">Autor</th>
-                                    <th scope="col">Imagen</th>
-                                    <th scope="col">Comentarios</th>
-                                    <th scope="col" colspan="2">Opciones</th>
-                                </tr>
-                            </thead>
-                            <tbody id="resultadoPlatillo">
-                                <?php 
-                                    $numero=1;
-                                    foreach($listaPlatillos as $platillo) { 
-                                    printf('<tr>');
-                                        printf('<td>%s</td>', $platillo->getId());    
-                                        printf('<td>%s</td>', $platillo->getNombre());
-                                        printf('<td>%s</td>', $platillo->getTipocomida());
-                                        printf('<td id="ingredientes-m">%s</td>', $platillo->getIngredientes());
-                                        printf('<td id="utencilios-m">%s</td>', $platillo->getUtencilios());
-                                        printf('<td id="tiempopreparacion-m">%s</td>', $platillo->getTiempopreparacion());
-                                        printf('<td id="caducidad-m">%s</td>', $platillo->getCaducidad());
-                                        printf('<td id="porciones-m">%s</td>', $platillo->getPorciones());
-                                        printf('<td id="energia-m">%s</td>', $platillo->getEnergia());
-                                        printf('<td id="costopromedio-m">%s</td>', $platillo->getCostopromedio());
-                                        printf('<td id="rendimiento-m">%s</td>', $platillo->getRendimiento());
-                                        printf('<td id="proteinas-m">%s</td>', $platillo->getProteinas());
-                                        printf('<td id="grasas-m">%s</td>', $platillo->getGrasas());
-                                        printf('<td id="hidratoscarbono-m">%s</td>', $platillo->getHidratoscarbono());
-                                        printf('<td id="preparacion-m">%s</td>', $platillo->getPreparacion());         
-
-                                        printf('<td>%s</td>', $platillo->getAutor());
-                                        printf('<td>'.'<img src ="data:image/png;base64,'.base64_encode($platillo->getImagen()).'" width="50px" height="50px"/>'.'</td>');
-                                        printf('<td><a class="text-primary" href="Javascript:comentarioPlatillo(%d)"><i class="bi bi-chat-left-dots-fill"></i></a></td>', $platillo->getId()); 
-                                        printf('<td><a class="text-success editPlatillo"  style="cursor:pointer;" data-bs-toggle="modal" data-bs-target="#editarPlatillo"><i class="bi bi-pencil-square"></i></a></td>');                          
-                                        printf('<td><a class="text-danger"  href="Javascript:eliminarPlatillo(%d)"><i class="bi bi-trash-fill"></i></a></td>', $platillo->getId());                                  
-                                        printf('</tr>');
-                                        $numero++;
-                                    } 
-                                ?>
-                            </tbody>
+                        <table class="table table-hover table-xl">
+                          <thead class="table text-white" style="background-color:#1e0121;">
+                            <tr>
+                                <th scope="col">Número</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Imagen</th>
+                                <th scope="col">Estado de validación</th>
+                                <th scope="col" colspan="2">Opciones</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                            <?php
+                              $contador = 1; // Inicializar el contador a 1
+                              foreach($listaPlatillosAlumnos as $platillo) { 
+                                printf('<tr>');
+                                  printf('<td>%d</td>', $contador); // Mostrar el número secuencial en lugar del id 
+                                  printf('<td>%s</td>', $platillo->getNombre());
+                                  printf('<td>'.'<img src ="data:image/png;base64,'.base64_encode($platillo->getImagen()).'" width="50px" height="50px"/>'.'</td>');                         
+                                  printf('
+                                      <td>
+                                          <a class="text-primary" href="#" onclick="verModal(%d)" data-bs-toggle="modal" data-bs-target="#verEstado" style="text-decoration: none;">
+                                              <article class="container">
+                                                  <center>
+                                                      <p class="p-1 col-md-6 rounded text-white text-break small" style="background-color:#51CAE3;"><strong>Ver</strong>&nbsp;<i class="bi bi-eye-fill"></i></p>
+                                                  </center>
+                                              </article>
+                                          </a>
+                                      </td>
+                                  ', $platillo->getId());
+                                  printf('<td><a class="btn btn-success text-white p-1 rounded d-inline-flex align-items-center"  href="Javascript:validarPlatilloAlumno(%d)" style="text-decoration:none;">Validar&nbsp;<i class="bi bi-check2-circle"></i></a></td>', $platillo->getId());                                                 
+                                  printf('<td><a class="eliminar-platillo bg-danger text-white p-1 rounded d-inline-flex align-items-center" data-platillo-id="%d" href="#" style="text-decoration: none;">Eliminar&nbsp;<i class="bi bi-trash-fill ml-1"></i></a></td>', $platillo->getId());
+                                             
+                                printf('</tr>');
+                                $contador++; // Incrementar el contador en cada iteración
+                              } 
+                            ?>
+                          </tbody>
                         </table>
-                    </section>
-                    <!--- ------------------Modal de mofificar datos del Platillo ------------------------------------------------>
-                    <section class="modal fade" id="editarPlatillo" tabindex="-1" aria-hidden="true">
-                        <section class="modal-dialog modal-dialog-scrollable modal-lg ">
+                         <!-- Modal -->
+                        <section class="modal fade" id="verEstado" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <section class="modal-dialog modal-dialog-centered ">
                             <section class="modal-content">
-                                <article class="modal-header " style="background: #FF5F6D;
-                                    background: -webkit-linear-gradient(to right, #FFC371, #FF5F6D); 
-                                    background: linear-gradient(to right, #FFC371, #FF5F6D);
-                                    color:white;">
-                                    <h5 class="modal-title w-100 text-center" style="font-weight:bold;">Editar Platillo</h5>
-                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close" ></button>
-                                </article>
-                                <section class="modal-body" style="font-weight: bold; color: #20B2AA;">
-                                    <form class="row g-3 needs-validation" action="admin" method="post" enctype="multipart/form-data">
-                                        <input type="hidden" name="idPlato" id="idPlato" >
-                                        <article class="col-md-6">
-                                            <label for="nombre" class="form-label">Nombre del Platillo</label>
-                                            <input type="text" name="nombre" id="nombre-platillo" class="form-control" required>
-                                        </article>
-                                        <article class="col-md-6">
-                                            <label for="tipocomida">Tipo de comida</label>
-                                            <select  class="form-select" id="tipocomida-platillo" name="tipocomida"  required>
-                                                <option value="" selected="selected"></option>
-                                                <option value="Desayuno">Desayuno</option>
-                                                <option value="Comida">Comida</option>
-                                                <option value="Cena">Cena</option>
-                                            </select>
-                                        </article>
-                                        <article class="col-md-6">
-                                            <label for="ingredientes" class="form-label">Ingredientes</label>
-                                            <textarea name="ingredientes" id="ingredientes-platillo" class="form-control"  required></textarea>
-                                        </article>
-                                        <article class="col-md-6">
-                                            <label for="utencilios" class="form-label">Utencilios</label>
-                                            <textarea name="utencilios" id="utencilios-platillo" class="form-control" required></textarea>
-                                        </article>
-                                        <article class="col-md-6">
-                                            <label for="tiempo" class="form-label">Tiempo de preparación</label>
-                                            <input type="text" name="tiempopreparacion" id="tiempopreparacion-platillo" class="form-control" required >
-                                        </article>
-                                        <article class="col-md-6">
-                                            <label for="caducidad" class="form-label">Caducidad</label>
-                                            <input type="text" name="caducidad" id="caducidad-platillo" class="form-control" required>
-                                        </article>
-                                        <article class="col-md-6">
-                                            <label for="porciones" class="form-label">Porciones</label>
-                                            <input type="text" name="porciones" id="porciones-platillo" class="form-control" required>
-                                        </article>
-                                        <article class="col-md-6">
-                                            <label for="energia" class="form-label">Energia</label>
-                                            <input type="text" name="energia" id="energia-plarillo" class="form-control" required>
-                                        </article>
-                                        <article class="col-md-6">  
-                                            <label for="costo" class="form-label">Costo promedio</label>
-                                            <input type="text" name="costopromedio" id="costopromedio-platillo" class="form-control" required> 
-                                        </article>
-                                        <article class="col-md-6">
-                                            <label for="rendimiento" class="form-label">Rendimiento</label>
-                                            <input type="text" name="rendimiento" id="rendimiento-platillo" class="form-control" required>
-                                        </article>
-                                        <article class="col-md-6">
-                                            <label for="proteinas" class="form-label">Proteinas</label>
-                                            <input type="text" name="proteinas" id="proteinas-platillo" class="form-control" required>
-                                        </article>
-                                        <article class="col-md-6">
-                                            <label for="grasas" class="form-label">Grasas</label>
-                                            <input type="text" name="grasas" id="grasas-platillo" class="form-control" required>
-                                        </article>
-                                        <article class="col-md-6">
-                                            <label  for="hidratoscarbono" class="form-label"> Hidratos de carbono</label>
-                                            <input type="text" name="hidratoscarbono" id="hidratoscarbon-platillo" class="form-control" required>
-                                        </article>
-                                        <article class="col-md-6">
-                                            <label for="preparacion" class="form-label">Preparación</label>
-                                            <textarea class="form-control" name="preparacion" id="preparacion-platillo" required></textarea>
-                                        </article>
-                                        <article class="col-md-6">
-                                            <label for="autor" class="form-label">Autor</label>
-                                            <input type="text" name="autor" id="autor-platillo" class="form-control" required>
-                                        </article>
-                                        <article class="col-md-6"> 
-                                            <label for="imagen" class="form-label">Subir imagen solo si deseas actualizarlo</label>
-                                            <input type="file" name="imagen" id="imagen-platillo" class="form-control">
-                                        </article>
-                                        <article class="modal-footer" style="background-color: #74AECA1A; ">
-                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-                                            <button type="submit" class="btn btn-success" name="editarPlato" value="editarPlato">Guardar Cambios</button>
-                                        </article>
-                                    </form>
+                              <section class="modal-header" style="background-color: #09386A; color: white;">
+                                <h1 class="modal-title fs-5 w-100 text-center" id="exampleModalLabel">Estados de validación del platillo</h1>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </section>
+                              <section class="modal-body">
+                                <section class="container">
+                                  <section id="resultadoEstado">
+                                  </section>
                                 </section>
+                              </section>
+                              <section class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                              </section>
                             </section>
+                          </section>
                         </section>
                     </section>
                     <form name="eliminarPlato" method="post" action="">
@@ -557,83 +488,509 @@
                         <input type="hidden" name="idComentario">
                     </form>
                 </section>
-                <section class="tab-pane fade" id="registrar">
+                <section class="tab-pane fade " id="consulta-platilloUsuarios">
                     <article style="background-color: #061533; color:aliceblue; padding: 0.5%;">
-                        <h3>Registro de Platillos</h3>
-                    </article><br>
-                    <section class="container-fluid font-weight-bold p-3"  style="color: #072b39; background-color:#f9f9f9; border-right:#00dbff 8px  solid; border-radius: 5px;">
-                        <form class="was-validated" action="admin" method="post" enctype="multipart/form-data">                        
-                            <section id="parte1">
-                                <article>
-                                    <label for="nombre" class="form-label">Nombre del Platillo</label>
-                                    <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Chips Saludable" required>
-                                    <label for="ingredientes" class="form-label">Ingredientes</label>
-                                    <textarea name="ingredientes" id="ingredientes" class="form-control" placeholder="3 papas lavaadas &#10;1 Cucharadita de paprika&#10;1 cucharadita de curri&#10;Sal de mesa&#10; 2 cucharadas de acite oliva" required></textarea>
-                                    <label for="ingredientes" class="form-label">Utencilios</label>
-                                    <textarea name="utencilios" id="utencilios" class="form-control" placeholder="Mandolina de cocina o cuchillo&#10;Tazón&#10;Cuchara&#10;Charola" required></textarea>
-                                    <label for="tiempo" class="form-label">Tiempo de preparación</label>
-                                    <input type="text" name="tiempopreparacion" id="tiempopreparacion" class="form-control" placeholder="40 minutos" required >
-                                </article>
-                                <article>
-                                    <button id="btnsiguiente" class=" btn btn-info m-3" onclick="btnSiguiente()">Siguiente</button>
-                                </article>
+                        <h3>Platillos publicados por usuarios</h3>
+                    </article>
+                    <!-- Caja de busqueda del alumno-->
+                    <article class="col-md-12 p-2 text-left mb-2">
+                        <h5><b>Buscar</b></h5>
+                        <input class="form-control me-2" type="text" id="busquedaPlatilloUsuario" placeholder="Buscar..." autocomplete="off">
+                    </article>
+                    <section class="table-responsive" id="resultadoBuscarPlatilloUsuario"></section>
+                    <section class="table-responsive" id="consultaPlatillosUsuarios">
+                        <table class="table table-hover table-xl">
+                          <thead class="table text-white" style="background-color:#1e0121;">
+                            <tr>
+                                <th scope="col">Número</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Imagen</th>
+                                <th scope="col">Estado de validación</th>
+                                <th scope="col" colspan="2">Opciones</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                            <?php
+                              $contador = 1; // Inicializar el contador a 1
+                              foreach($listaPlatillosUsuarios as $platillo) { 
+                                printf('<tr>');
+                                  printf('<td>%d</td>', $contador); // Mostrar el número secuencial en lugar del id 
+                                  printf('<td>%s</td>', $platillo->getNombre());
+                                  printf('<td>'.'<img src ="data:image/png;base64,'.base64_encode($platillo->getImagen()).'" width="50px" height="50px"/>'.'</td>');                         
+                                  printf('
+                                      <td>
+                                          <a class="text-primary" href="#" onclick="verModalUsuario(%d)" data-bs-toggle="modal" data-bs-target="#verEstadoUsuario" style="text-decoration: none;">
+                                              <article class="container">
+                                                  <center>
+                                                      <p class="p-1 col-md-6 rounded text-white text-break small" style="background-color:#51CAE3;"><strong>Ver</strong>&nbsp;<i class="bi bi-eye-fill"></i></p>
+                                                  </center>
+                                              </article>
+                                          </a>
+                                      </td>
+                                  ', $platillo->getId());
+                                  printf('<td><a class="btn btn-success text-white p-1 rounded d-inline-flex align-items-center"  href="Javascript:validarPlatilloUsuario(%d)" style="text-decoration:none;">Validar&nbsp;<i class="bi bi-check2-circle"></i></a></td>', $platillo->getId());                                                 
+                                  printf('<td><a class="eliminar-platillo bg-danger text-white p-1 rounded d-inline-flex align-items-center" data-platillo-id="%d" href="#" style="text-decoration: none;">Eliminar&nbsp;<i class="bi bi-trash-fill ml-1"></i></a></td>', $platillo->getId());
+                                             
+                                printf('</tr>');
+                                $contador++; // Incrementar el contador en cada iteración
+                              } 
+                            ?>
+                          </tbody>
+                        </table>
+                         <!-- Modal -->
+                        <section class="modal fade" id="verEstadoUsuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <section class="modal-dialog modal-dialog-centered ">
+                            <section class="modal-content">
+                              <section class="modal-header" style="background-color: #09386A; color: white;">
+                                <h1 class="modal-title fs-5 w-100 text-center" id="exampleModalLabel">Estados de validación del platillo</h1>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </section>
+                              <section class="modal-body">
+                                <section class="container">
+                                  <section id="resultadoEstadoUsuario">
+                                  </section>
+                                </section>
+                              </section>
+                              <section class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                              </section>
                             </section>
-                            <section id="parte2">
-                                <article>
-                                    <label for="caducidad" class="form-label">Caducidad</label>
-                                    <input type="text" name="caducidad" id="caducidad" class="form-control" placeholder="5 dias" required>
-                                    <label for="porciones" class="form-label">Porciones</label>
-                                    <input type="text" name="porciones" id="porciones" class="form-control" placeholder="6" required>
-                                    <label for="energia" class="form-label">Energia</label>
-                                    <input type="text" name="energia" id="energia" class="form-control" placeholder="323" required>
-                                    <label for="costo" class="form-label">Costo promedio</label>
-                                    <input type="text" name="costopromedio" id="costopromedio" class="form-control" placeholder="$ 15 pesos" required >
-                                </article>
-                                <article>
-                                    <button class="btn btn-warning m-3" onclick="btnAnterior2()">Anterior</button>
-                                    <button class="btn btn-info m-3" onclick="btnSiguiente2()">Siguiente</button>
-                                </article>
-                            </section>
-                            <section id="parte3">
-                               <article>
-                                    <label for="rendimiento" class="form-label">Rendimiento</label>
-                                    <input type="text" name="rendimiento" id="rendimiento" class="form-control" placeholder="" required>
-                                    <label for="proteinas" class="form-label">Proteinas</label>
-                                    <input type="text" name="proteinas" id="proteinas" class="form-control" placeholder="" required>
-                                    <label for="grasas" class="form-label">Grasas</label>
-                                    <input type="text" name="grasas" id="grasas" class="form-control" placeholder="" required>
-                                    <label  for="hidratoscarbono" class="form-label"> Hidratos de carbono</label>
-                                    <input type="text" name="hidratoscarbono" id="hidratoscarbon" class="form-control" placeholder="" required>
-                                </article>
-                                <article>
-                                    <button class="btn btn-warning m-3" onclick="btnAnterior3()">Anterior</button>
-                                    <button class="btn btn-info m-3" onclick="btnSiguiente3()">Siguiente</button>
-                                </article>
-                            </section>
-                            <section id="parte4">
-                                <article>
-                                    <label for="preparacion" class="form-label">Preparación</label>
-                                    <textarea class="form-control" name="preparacion" id="preparacion" placeholder="1.- Rebana las papas con la mandolina o con un cuchillo muy filoso para que queden muy delgadas. &#10;2.- Mezcla el resto de los ingredientes y marina ahí las rodajas de papa, por 10 minutos, moviendo constantemente&#10;3.- Prepara una charola con papel encerado y acomoda las rodajas de papa en ella, un poco separadas entre sí.&#10;4.- Hornea a 180OC durante 20 minutos o hasta que doren." required></textarea>
-                                    <label for="tipocomida">Tipo de comidada</label>
-                                    <select  class="form-select" id="tipocomida" name="tipocomida" required>
-                                        <option value="" selected="selected">Seleccione...</option>
-                                        <option value="Desayuno">Desayuno</option>
-                                        <option value="Comida">Comida</option>
-                                        <option value="Cena">Cena</option>
-                                    </select>
-                                    <label for="autor" class="form-label">Autor</label>
-                                    <input type="text" name="autor" id="autor" class="form-control" placeholder="Profeco" required>
-                                    <label for="imagen" class="form-label"> Subir imagen</label>
-                                    <input type="file" name="imagen" id="imagen" class="form-control" required="">
-                                </article>
-                                <article>
-                                    <button class="btn btn-warning m-3" onclick="btnAnterior4()">Anterior</button>
-                                    <button type="submit"    name="registrarplatillo" value="registrarplatillo" class="btn btn-primary">Registrar Platillo</button>
-                                </article>
-                            </section>                
-                        </form>
-                    </section><br>
+                          </section>
+                        </section>
+                    </section>
+                    <form name="eliminarPlato" method="post" action="">
+                        <input type="hidden" name="idPlatillo" value="-1">
+                    </form>
+                    <!----------------------------Comentario de Platillo----------------------------------------- -->
+                    <form name="comentarioForm" method="post" action="">
+                        <input type="hidden" name="idComentario">
+                    </form>
                 </section>
+                <section class="tab-pane fade " id="consulta-platilloAdministrador">
+                    <article style="background-color: #061533; color:aliceblue; padding: 0.5%;">
+                        <h3>Platillos publicados por el admistrador</h3>
+                    </article>
+                    <!-- Caja de busqueda de platillos publicados por el administrador-->
+                    <article class="col-md-12 p-2 text-left mb-2">
+                        <h5><b>Buscar</b></h5>
+                        <input class="form-control me-2" type="text" id="busquedaPlatilloAdmin" placeholder="Buscar..." autocomplete="off">
+                    </article>
+                    <section class="table-responsive" id="resultadoBuscarPlatilloAdmin"></section>
+                    <section class="table-responsive" id="consultaPlatillosAdmin">
+                        <table class="table table-hover table-xl">
+                          <thead class="table text-white" style="background-color:#1e0121;">
+                            <tr>
+                                <th scope="col">Número</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Imagen</th>
+                                <th scope="col" colspan="2">Opciones </th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                            <?php
+                              $contador = 1; // Inicializar el contador a 1
+                              foreach($listaPlatillosAdministrador as $platillo) { 
+                                printf('<tr>');
+                                  printf('<td>%d</td>', $contador); // Mostrar el número secuencial en lugar del id 
+                                  printf('<td>%s</td>', $platillo->getNombre());
+                                  printf('<td>'.'<img src ="data:image/png;base64,'.base64_encode($platillo->getImagen()).'" width="50px" height="50px"/>'.'</td>');                         
+                                  printf('<td><a class="btn btn-success text-white p-1 rounded d-inline-flex align-items-center"  href="Javascript:editarPlatilloAdministrador(%d)" style="text-decoration:none;">Actualizar&nbsp;<i class="bi bi-arrow-repeat ml-1" ></i></a></td>', $platillo->getId());                                                 
+                                  printf('<td><a class="eliminar-platillo bg-danger text-white p-1 rounded d-inline-flex align-items-center" data-platillo-id="%d" href="#" style="text-decoration: none;">Eliminar&nbsp;<i class="bi bi-trash-fill ml-1"></i></a></td>', $platillo->getId());
+                                             
+                                printf('</tr>');
+                                $contador++; // Incrementar el contador en cada iteración
+                              } 
+                            ?>
+                          </tbody>
+                        </table>
+                    </section>
+                    <form name="eliminarPlato" method="post" action="">
+                        <input type="hidden" name="idPlatillo" value="-1">
+                    </form>
+                    <!----------------------------Comentario de Platillo----------------------------------------- -->
+                    <form name="comentarioForm" method="post" action="">
+                        <input type="hidden" name="idComentario">
+                    </form>
+                </section>
+               
+                <section class="tab-pane fade " id="registrar">
+          <article style="background-color: #0C2233; color:aliceblue; padding: 0.5%;">
+            <article class="row">
+              <article class="col-md-8">
+                <h3>Registrar Platillo</h3>
+              </article>
+              <article class="col-md-4">
+                <h4><i class="bi bi-info-circle-fill " data-bs-toggle="modal" data-bs-target="#modalInstrucciones" style="cursor:pointer;">&nbsp;Instrucciones</i> </h4>
+              </article>
+            </article>
+          </article>
+          <!-- Modal de instrucciones para el registro del platillo -->
+          <section class="modal fade" id="modalInstrucciones" tabindex="-1" aria-hidden="true">
+            <section class="modal-dialog modal-lg">
+              <section class="modal-content">
+                <header class="modal-header text-white" style="background-color: #087c9f;">
+                  <h5 class="w-100 text-center fw-bold">Instrucciones</h5>
+                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </header>
+                <article class="modal-body">
+                  <div class="container">
+                    <div class="card shadow">
+                      <div class="card-body">
+                        <h5 class="card-title  text-white p-2 rounded" style="background-color: #900C3F;">Instrucciones de Registro</h5>
+                        <ul class="list-group list-group-flush text-start">
+                          <li class="list-group-item">
+                            <strong>1. Registro de Datos:</strong> Completa los formularios de cada sección.
+                          </li>
+                          <li class="list-group-item">
+                            <strong>2. Guardar:</strong> Al completar un formulario, haz clic en el botón <strong class="text-info">Guardar</strong>.
+                          </li>
+                          <li class="list-group-item">
+                            <strong>3. Validación:</strong> Si hay errores de validación, verifica que todos los campos estén completos.
+                          </li>
+                          <li class="list-group-item">
+                            <strong>4. Éxito:</strong> Si los datos se guardaron correctamente, verás un mensaje de <strong class="text-success">Datos guardados correctamente</strong>.
+                          </li>
+                          <li class="list-group-item">
+                            <strong>5. Repite:</strong> Repite el proceso para todas las secciones.
+                          </li>
+                          <li class="list-group-item">
+                            <strong>6. Finalizar:</strong> Después de completar todas las secciones, haz clic en la pestaña <strong class="text-info">Finalizar</strong>.
+                          </li>
+                          <li class="list-group-item">
+                            <strong>7. Confirmar:</strong> Luego, haz clic en el botón <strong class="text-primary">Finalizar y guardar todo</strong>. Espera y confirma el mensaje de <strong class="text-success">Registro completado</strong>, luego haz clic en <strong>Aceptar</strong>.
+                          </li>
+                          <li class="list-group-item">
+                            <strong>8. Campos Incompletos:</strong> Si faltan campos por completar, verás un mensaje indicando que debes llenar todos los formularios.
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+                <article class="modal-footer" style="background-color: #fafaff;">
+                  <button type="button" class="btn  btn-info text-white" data-bs-dismiss="modal">Cerrar</button>
+                </article>
+              </section>
+            </section>
+          </section>
+          <section class="container-fluid font-weight-bold p-3"  style="color: #072b39; background-color:#f9f9f9; border-right:#00dbff 8px  solid; border-radius: 5px;">
+            <nav>
+              <section class="nav nav-tabs" id="nav-tab" role="tablist">
+                <button class="nav-link active" id="nav-datos-tab" data-bs-toggle="tab" data-bs-target="#nav-datos" type="button" role="tab" aria-controls="nav-datos" aria-selected="true">Datos del platillo</button>
+                <button class="nav-link" id="nav-ingredientes-tab" data-bs-toggle="tab" data-bs-target="#nav-ingredientes" type="button" role="tab" aria-controls="nav-ingredientes" aria-selected="false">Ingredientes</button>
+                <button class="nav-link" id="nav-utencilios-tab" data-bs-toggle="tab" data-bs-target="#nav-utencilios" type="button" role="tab" aria-controls="nav-utencilios" aria-selected="false">Utencilios</button>
+                <button class="nav-link" id="nav-preparacion-tab" data-bs-toggle="tab" data-bs-target="#nav-preparacion" type="button" role="tab" aria-controls="nav-preparacion" aria-selected="false">Preparación</button>
+                <button class="nav-link" id="nav-nutriente-tab" data-bs-toggle="tab" data-bs-target="#nav-nutriente" type="button" role="tab" aria-controls="nav-nutriente" aria-selected="false">Información nutrimental</button>
+                <button class="nav-link" id="nav-complemento-tab" data-bs-toggle="tab" data-bs-target="#nav-complemento" type="button" role="tab" aria-controls="nav-complemento" aria-selected="false">Información adicional</button>
+                <button class="nav-link" id="nav-finalizar-tab" data-bs-toggle="tab" data-bs-target="#nav-finalizar" type="button" role="tab" aria-controls="nav-finalizar" aria-selected="false">Finalizar</button>
+              </section>
+            </nav>
+            <main class="tab-content" id="nav-tabContent">
+              <section class="tab-pane fade show active" id="nav-datos" role="tabpanel" aria-labelledby="nav-datos-tab" tabindex="0">
+                <!-- Sección 1: Datos del -->
+                <section id="section1" class="mt-1">
+                  <header class="p-1" style="background-color: #00b1ce; color:white; border-radius:5px;">
+                    <h4>Sección 1: Datos del platillo</h4>
+                  </header>
+                  <form id="formDatosP" class="row g-3 needs-validation"  method="POST"  enctype="multipart/form-data">
+                    <article class="col-md-6">
+                      <label for="nombrePlatillo" class="form-label">Nombre</label>
+                      <input type="text" class="form-control" name="nombrePlatillo" id="nombrePlatillo" placeholder="Gelatina de Durazno" required>
+                    </article>
+                    <article class="col-md-6">
+                      <label for="tiempoComida" class="form-label">Tiempo de Comida</label>
+                      <select class="form-select text-center" name="tiempoComida" id="tiempoComida" required>
+                        <option value="">-- Seleccione --</option>
+                        <option value="1">Desayuno</option>
+                        <option value="2">Colación de la mañana</option>
+                        <option value="3">Comida</option>
+                        <option value="4">Postre</option>
+                        <option value="5">Colación de la tarde</option>
+                        <option value="6">Cena</option>
+                        <option value="7">Otros</option>
+                      </select>
+                    </article>
+                    <article class="col-md-6">
+                      <label for="tiempoPreparacion" class="form-label">Tiempo de preparación</label>
+                      <input type="text" name="tiempoPreparacion" id="tiempoPreparacion"  class="form-control" placeholder="40 minutos" required>
+                    </article>
+                    <article class="col-md-6">
+                      <label for="tiempoCoccion" class="form-label">Tiempo de coccion</label>
+                      <input type="text" class="form-control" name="tiempoCoccion" id="tiempoCoccion" placeholder="1 hora" required>
+                    </article>
+                    <article class="col-md-6">
+                      <label for="caducidad" class="form-label">Caducidad</label>
+                      <input type="text" class="form-control" name="caducidad" id="caducidad"  placeholder="5 días en refrigeración" required>
+                    </article>
+                    <article class="col-md-6">
+                      <label for="porciones" class="form-label">Porciones</label>
+                      <input type="text" class="form-control" name="porciones" id="porciones" placeholder="6" required>
+                    </article>
+                    <article class="col-md-6">
+                      <label for="costoPromedio" class="form-label">Costo Promedio</label>
+                      <input type="text" class="form-control" name="costoPromedio" id="costoPromedio" placeholder="$48 pesos" required>
+                    </article>
+                    <article class="col-md-6">
+                      <label for="rendimiento" class="form-label">Rendimiento</label>
+                      <input type="text" class="form-control" name="rendimiento" id="rendimiento" placeholder="2" required>
+                    </article>
+                    <article class="col-md-6">
+                      <label for="descripcion" class="form-label">Descripcion del Platillo</label>
+                      <textarea name="descripcion" id="descripcion" class="form-control" placeholder="Este, es uno de los platillos que preparas en un abrir y cerrar los ojos si tienes invitados o alguna reunión. Haz de sobra porque vuelan sin que te des cuenta! :)" required></textarea>
+                    </article>
+                    <article class="col-md-6">
+                      <label for="imagenPlatillo" class="form-label">Subir imagen del Platillo</label>
+                      <input type="file" class="form-control" name="imagenPlatillo" id="imagenPlatillo"  accept="image/*" required>  
+                    </article>
+                    <article class="col-md-6">
+                     <label for="autor" class="form-label">Autor</label>
+                      <input type="text" name="autor" id="autor" class="form-control" placeholder="Ej. Jesús Robles Sánchez" required>
+                    </article>
+                    <input type="hidden" name="idAdministrador" id="idAdministrador" value="<?php echo $_SESSION['idAdministrador']?>">
+                    <input type="hidden" name="idUsuario" id="idUsuario" value="0">
+                    <input type="hidden" name="idAlumno" id="idAlumno" value="0">
+                  </form>
+                  <br>
+                  <article class="p-2" style="background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%); border-radius:5px;">
+                    <center>
+                     <button class="btn btn-info text-white" onclick="validarFormulario('formDatosP', 'nav-datos')">Guardar</button>
+                    </center>
+                  </article>                 
+                </section>
+              </section>
+              <section class="tab-pane fade" id="nav-ingredientes" role="tabpanel" aria-labelledby="nav-ingredientes-tab" tabindex="0">
+                <!-- Sección 2: Ingredientes -->
+                <section id="section2" class="mt-1">
+                  <header class="p-1" style="background-color: #00b1ce; color:white; border-radius:5px;">
+                    <h4>Sección 2: Ingredientes</h4>
+                  </header>
+                  <!-- Campos del formulario de Ingredientes -->
+                  <form id="formIgredientes" class="container mt-3">
+                    <hr>
+                    <section id="grupoFormularioContainer">
+                      <section class="grupo-formulario row">
+                        <article class="col-md-3 p-1">
+                          <input type="text" name="nombreIngrediente" id="nombreIngrediente" class="form-control" placeholder="Nombre" required>
+                        </article>
+                        <article class="col-md-3 p-1">
+                          <input type="text" name="cantidad" id="cantidad" class="form-control" placeholder="Cantidad" required>
+                        </article>
+                        <article class="col-md-3 p-1">
+                          <input type="text" name="unidadMedida" class="form-control" placeholder="Unidad de Medida" required>
+                          </article>
+                        <article class="col-md-3 p-1">
+                          <button class="btn btn-danger remove-btn" type="button">Eliminar</button>
+                        </article>
+                      </section>
+                    </section>
+                    <section class="p-1">
+                      <button class="btn btn-primary" id="btnAgregar" type="button">Agregar más</button>
+                    </section>
+                  </form>
+                  <br>
+                  <article class="p-2" style="background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%); border-radius:5px;">
+                    <center>
+                     <button class="btn btn-info text-white" onclick="validarFormulario('formIgredientes', 'nav-ingredientes')">Guardar</button>
+                    </center>
+                  </article>
+                </section>
+              </section>
+              <section class="tab-pane fade" id="nav-utencilios" role="tabpanel" aria-labelledby="nav-utencilios-tab" tabindex="0">
+                <!-- Sección 3: Utencilios -->
+                <section id="section3" class="mt-1">
+                  <header class="p-1" style="background-color: #00b1ce; color:white; border-radius:5px;">
+                    <h4>Sección 3: Utencilios</h4>
+                  </header>
+                  <!-- Campos del formulario de Utencilios -->
+                  <form id="formUtencilio" class="container mt-3">
+                    <hr>
+                    <section id="formularioUtenciliosContainer">
+                      <section class="formulario-utencilios row">
+                        <article class="col-md-4 p-1">
+                          <input type="text" name="nombreUtencilio" id="nombreUtencilio" class="form-control" placeholder="Nombre del utencilio" required>
+                        </article>
+                        <article class="col-md-4 p-1">
+                          <input type="number" name="cantidad" id="cantidad" min="1" class="form-control" placeholder="Cantidad de utencilios" required>
+                        </article>
+                        <article class="col-md-4 p-1">
+                          <button class="btn btn-danger remove-btn-utencilios" type="button">Eliminar</button>
+                        </article>
+                      </section>
+                    </section>
+                    <section class="p-1">
+                      <button class="btn btn-primary" id="btnAgregarUtencilios" type="button">Agregar más</button>
+                    </section>
+                  </form>
+                  <br>
+                  <article class="p-2" style="background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%); border-radius:5px;">
+                    <center>
+                     <button class="btn btn-info text-white" onclick="validarFormulario('formUtencilio', 'nav-utencilios')">Guardar</button>
+                    </center>
+                  </article>
+                </section>
+              </section>
+              <section class="tab-pane fade" id="nav-preparacion" role="tabpanel" aria-labelledby="nav-preparacion-tab" tabindex="0">
+                <!-- Sección 4: Preparacion -->
+                <section id="section4" class="mt-1">
+                  <header class="p-1" style="background-color: #00b1ce; color:white; border-radius:5px;">
+                    <h4>Sección 4: Preparación</h4>
+                  </header>
+                  <!-- Campos del formulario de Preparación -->
+                  <form id="formPreparacion" class="container mt-3 " method="POST"  enctype="multipart/form-data">
+                    <hr>
+                    <section id="formularioPreparacionContainer">
+                      <section class="formulario-preparacion row"  >
+                        <article class="col-md-3 p-1">
+                          <label for="paso">Número de paso</label>
+                          <input type="number" name="paso" id="paso" min="1" class="form-control" required>
+                        </article>
+                        <article class="col-md-3 p-1">
+                          <label for="instruccion">Instrucción</label>
+                          <textarea class="form-control" name="instruccion" id="instruccion"required></textarea>
+                        </article>
+                        <article class="col-md-3 p-1">
+                          <label for="imagen">Foto del paso</label>
+                          <input type="file" name="fotoPreparacion" id="fotoPreparacion" class="form-control" accept="image/*">
+                        </article>
+                        <article class="col-md-3 p-4">
+                          <button class="btn btn-danger remove-btn-preparacion" type="button">Eliminar</button>
+                        </article>
+                      </section>
+                    </section>
+                    <section class="p-1">
+                      <button class="btn btn-primary" id="btnAgregarPreparacion" type="button">Agregar más</button>
+                    </section>
+                  </form>
+                  <br>
+                  <article class="p-2" style="background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%); border-radius:5px;">
+                    <center>
+                     <button class="btn btn-info text-white" onclick="validarFormulario('formPreparacion', 'nav-preparacion')">Guardar</button>
+                    </center>
+                  </article>
+                </section>
+              </section>
+              <section class="tab-pane fade" id="nav-nutriente" role="tabpanel" aria-labelledby="nav-nutriente-tab" tabindex="0">
+                <!-- Sección 5: Información Nutrimental -->
+                <section id="section5" class="mt-1">
+                  <header class="p-1" style="background-color: #00b1ce; color:white; border-radius:5px;">
+                    <h4>Sección 5: Información Nutrimental</h4>
+                  </header>
+                  <!-- Campos del Información Nutrimental -->
+                  <form id="formNutriente" class="container mt-3">
+                    <hr>
+                    <section id="formularioNutrimentalContainer">
+                      <section class="formulario-nutrimental row">
+                        <article class="col-md-2 p-1">
+                          <input type="text" class="form-control" name="nombreNutriente" id="nombreNutriente" placeholder="Nombre" required>
+                        </article>
+                        <article class="col-md-3 p-1">
+                          <input type="number" step="0.01" class="form-control" name="cantidadR" id="cantidadR" placeholder="Cantidad por receta" required>
+                        </article>
+                        <article class="col-md-3 p-1">
+                          <input type="number" step="0.01" class="form-control" name="cantidadP" id="cantidadP" placeholder="Cantidad por porción" required>
+                        </article>
+                        <article class="col-md-2 p-1">
+                          <input type="text" class="form-control" name="unidadMedida" id="unidadMedida" placeholder="Unidad de Medida" required>
+                        </article>
+                        <article class="col-md-2 p-1">
+                          <button class="btn btn-danger remove-btn-nutrimental" type="button">Eliminar</button>
+                        </article>
+                      </section>
+                    </section>
+                    <section class="p-1">
+                      <button class="btn btn-primary" id="btnAgregarNutrimental" type="button">Agregar más</button>
+                    </section>
+                  </form>
+                  <br>
+                  <article class="p-2" style="background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%); border-radius:5px;">
+                    <center>
+                     <button class="btn btn-info text-white" onclick="validarFormulario('formNutriente', 'nav-nutriente')">Guardar</button>
+                    </center>
+                  </article>
+                </section>  
+              </section>
+              <section class="tab-pane fade" id="nav-complemento" role="tabpanel" aria-labelledby="nav-complemento-tab" tabindex="0">
+                <!-- Sección 6: Informacion adicional -->
+                <section id="section6" class="mt-1">
+                  <header class="p-1" style="background-color: #00b1ce; color:white; border-radius:5px;">
+                    <h4>Sección 6: Información Adicional</h4>
+                  </header>
+                  <form id="formComplemento" class="container row">
+                    <article class="col-md-6">
+                      <label for="codigo" class="form-label text-dark"><i class="bi bi-geo-fill" style="color: #F77C44;"></i>&nbsp;Estado a la que pertenece el platillo</label>
+                      <select  class="form-select" id="estado" name="estado" required>
+                        <option value="" selected="selected">-- Seleccione --</option>
+                        <option value="Aguascalientes">Aguascalientes</option>
+                        <option value="Baja California">Baja California</option>
+                        <option value="Baja California Sur">Baja California Sur</option>
+                        <option value="Campeche">Campeche</option>
+                        <option value="Coahuila de Zaragoza">Coahuila de Zaragoza </option>
+                        <option value="Colima">Colima</option>
+                        <option value="Chiapas">Chiapas</option>
+                        <option value="Chihuahua">Chihuahua</option>
+                        <option value="Ciudad de México">Ciudad de México</option>
+                        <option value="Durango">Durango</option>
+                        <option value="Guanajuato">Guanajuato</option>
+                        <option value="Guerrero">Guerrero</option>
+                        <option value="Hidalgo">Hidalgo</option>
+                        <option value="Jalisco">Jalisco</option>
+                        <option value="México">México</option>
+                        <option value="Michoacán de Ocampo">Michoacán de Ocampo</option>
+                        <option value="Morelos">Morelos</option>
+                        <option value="Nayarit">Nayarit</option>
+                        <option value="Nuevo León">Nuevo León</option>
+                        <option value="Oaxaca">Oaxaca</option>
+                        <option value="Puebla">Puebla</option>
+                        <option value="Querétaro">Querétaro</option>
+                        <option value="Quintana Roo">Quintana Roo</option>
+                        <option value="San Luis Potosí">San Luis Potosí</option>
+                        <option value="Sinaloa">Sinaloa</option>
+                        <option value="Sonora">Sonora</option>
+                        <option value="Tabasco">Tabasco</option>
+                        <option value="Tamaulipas">Tamaulipas</option>
+                        <option value="Tlaxcala">Tlaxcala</option>
+                        <option value="Veracruz">Veracruz</option>
+                        <option value="Yucatán">Yucatán</option>
+                        <option value="Zacatecas">Zacatecas</option>
+                      </select>
+                    </article>
+                    <article class="col-md-6">
+                      <label for="region" class="form-label">Región del platillo</label>
+                      <input type="text" name="region" id="region" class="form-control" required>
+                    </article>
+                    <article class="col-md-6">
+                      <label for="municipio" class="form-label">Municipio del platillo</label>
+                      <input type="text" name="municipio" id="municipio" class="form-control" required>
+                    </article>
+                    <article class="col-md-6">
+                      <label for="lengua" class="form-label">Lengua que hablan</label>
+                      <input type="text" name="lengua" id="lengua" class="form-control" required>
+                    </article>
+                    <article class="col-md-6">
+                      <label for="cultura" class="form-label">Cultura que pertenecen</label>
+                      <input type="text" name="cultura" id="cultura" class="form-control" required>
+                    </article>
+                  </form>
+                  <br>
+                  <article class="p-2" style="background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%); border-radius:5px;">
+                    <center>
+                     <button class="btn btn-info text-white" onclick="validarFormulario('formComplemento', 'nav-complemento')">Guardar</button>
+                    </center>
+                  </article>
+                </section>
+              </section>
+              <section class="tab-pane fade" id="nav-finalizar" role="tabpanel" aria-labelledby="nav-finalizar-tab" tabindex="0">
+                <center>
+                  <article class="col-sm-6">
+                    <img src="vista/images/cuenta/2.jpg" class="img-fluid" >
+                    <button type="button" class="btn btn-primary" onclick="registrarTodo()">Finalizar y guardar todo</button>
+                  </article>
+                </center>
+                <br>
+              </section>
+            </main>          
+          </section>
+        </section>
                 <section class="tab-pane fade" id="registrar-alumnos">
                     <article style="background-color: #061533; color:aliceblue; padding: 0.5%;">
                         <h3>Registrar de Alumno</h3>
@@ -774,74 +1131,100 @@
                 </section>
                 <section class="tab-pane fade" id="encuesta">
                     <article style="background-color: #061533; color:aliceblue; padding: 0.5%;">
-                        <h3>Resultados de la encuesta de la platforma</h3>
+                        <h3>Resultados de los usuarios que nos visitan</h3>
                     </article><br>
-                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                      <li class="nav-item">
-                        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Graficos</a>
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                      <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="graficas" data-bs-toggle="tab" data-bs-target="#graficas-pane" type="button" role="tab" aria-controls="graficas-pane" aria-selected="true"><strong>Gráficas</strong></button>
                       </li>
-                      <li class="nav-item">
-                        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Tabla de registros</a>
+                      <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="registro-encuesta" data-bs-toggle="tab" data-bs-target="#registro-encuesta-pane" type="button" role="tab" aria-controls="registro-encuesta-pane" aria-selected="false"><strong>Registros</strong></button>
                       </li>
-                      
                     </ul>
-                    <div class="tab-content" id="pills-tabContent">
-                      <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                          <section class="container col-xl-8 col-md-6 mb-4">
-                            <canvas id="grafica-visitas"></canvas>
+                    <section class="tab-content" id="myTabContent">
+                        <section class="tab-pane fade show active" id="graficas-pane" role="tabpanel" aria-labelledby="graficas" tabindex="0">
+                            <center>
+                                <section class="row p-2">
+                                    <section class="col-md-3 ">
+                                      <h6>Género que nos visitan en porcentaje</h6>
+                                      <canvas id="grafico" width="100" height="100"></canvas>
+                                    </section>
+                                    <section class="col-md-3">
+                                        <h6>Medios por donde nos conocieron en porcentaje</h6>
+                                        <canvas id="graficoMedios" width="100" height="100"></canvas>
+                                    </section>
+                                    <section class="col-md-3">
+                                        <h6>Estados de visitantes en porcentaje</h6>
+                                        <canvas id="graficoEstado" width="100" height="100"></canvas>
+                                    </section>
+                                    <section class="col-md-3">
+                                        <h6>Calificación promedio de la plataforma </h6>
+                                        <canvas id="graficoCalificacion" width="100" height="100"></canvas>
+                                    </section>
+                                </section>
+                            </center>
                         </section>
-                      </div>
-                      <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                          <section class="table-responsive" id="consultaUsuarios">
-                        <table id="myTabl" class="table table-sm">
-                            <thead class="table bg-info text-white">
-                                <tr>
-                                    <th scope="col">Número</th>
-                                    <th scope="col">Nombre</th>
-                                    <th scope="col">Sexo</th>
-                                    <th scope="col">Edad</th>
-                                    <th scope="col">Medio de comunicación</th>
-                                    <th scope="col">Estado</th>
-                                    <th scope="col">Municipio</th>
-                                    <th scope="col">Comentario</th>
-                                    <th scope="col">Calificación</th>
-                                    <th scope="col">Fecha</th>
-                                    <th scope="col" colspan="2">Opciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php 
-                                    $numero=1;
-                                    foreach($consultarEncuesta as $encuesta) { 
-                                        printf('<tr>');
-                                            printf('<td>%s</td>', $encuesta->getId());    
-                                            printf('<td>%s</td>', $encuesta->getNombre());
-                                            printf('<td>%s</td>', $encuesta->getSexo());
-                                            printf('<td>%s</td>', $encuesta->getEdad());
-                                            printf('<td>%s</td>', $encuesta->getMedio());
-                                            printf('<td>%s</td>', $encuesta->getEstado());
-                                            printf('<td>%s</td>', $encuesta->getMunicipio());
-                                            printf('<td>%s</td>', $encuesta->getComentario());
-                                            printf('<td>%s</td>', $encuesta->getCalificacion());
-                                            printf('<td>%s</td>', $encuesta->getFecha());
-                                            printf('<td ><a class="text-success editbtn " style="cursor:pointer;" data-bs-toggle="modal" data-bs-target="#editarUsuario"><i class="bi bi-pencil-square"></i></a></td>');
-                                            printf('<td><a  class="text-danger" href="Javascript:eliminarUsuario(%d)"><i class="bi bi-trash-fill"></i></a></td>', $usuario->getId());
-                                        printf('</tr>');
-                                        $numero++;
-                                    } 
-                                ?>
-                            </tbody>
-                        </table>
-                    </section>
-                      </div>
-                     
-                    </div>
-                      
+                        <section class="tab-pane fade" id="registro-encuesta-pane" role="tabpanel" aria-labelledby="registro-encuesta" tabindex="0">
+                            <section class="table-responsive" id="consultaEncuesta">
+                                <table class="table table-hover table-sm">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th scope="col">Número</th>
+                                            <th scope="col">Nombre</th>
+                                            <th scope="col">Sexo</th>
+                                            <th scope="col">Medio</th>
+                                            <th scope="col">Estado</th>
+                                            <th scope="col">Municipio</th>
+                                            <th scope="col">Comentario</th>
+                                            <th scope="col">Calificación</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="resultadoEncuesta">
+                                        <?php
+                                            $contador = 1; // Inicializar el contador a 1
+                                            foreach($listaEncuesta as $encuesta) { 
+                                                printf('<tr>');
+                                                      
+                                                    printf('<td>%d</td>', $contador); // Mostrar el número secuencial en lugar del id 
+                                                    printf('<td>%s</td>', $encuesta->getNombre());
+                                                    printf('<td>%s</td>', $encuesta->getSexo());
+                                                    printf('<td>%s</td>', $encuesta->getMedio());
+                                                    printf('<td>%s</td>', $encuesta->getEstado());
+                                                    printf('<td>%s</td>', $encuesta->getMunicipio());
+                                                    printf('<td>%s</td>', $encuesta->getComentario());
+                                                    printf('<td>%s</td>', $encuesta->getCalificacion());
+                                                printf('</tr>');
+                                                 $contador++; // Incrementar el contador en cada iteración
+                                            } 
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </section>
+                        </section>
+                    </section>                     
                 </section>
             </section>
         </main>
     </section>
 </section>
+<!-- Formulario para mandar el id para editar platillo de administrador-->
+<form name="editarPlatilloAdministrador" method="post" action="">
+    <input type="hidden" name="idPlatilloEditar" value="-1">
+    <input type="hidden" name="nombre" value="<?php echo $_SESSION['usuario'];?>">
+</form>
+
+<!--Formulario para mandar el id paravalidar el platillo del alumno-->
+<form name="validarPlatilloAlumno" method="post" action="">
+    <input type="hidden" name="idPlatilloValidar" value="-1">
+    <input type="hidden" name="nombre" value="<?php echo $_SESSION['usuario'];?>">
+</form>
+
+<!--Formulario para mandar el id para validar el platillo del usuario-->
+<form name="validarPlatilloUsuario" method="post" action="">
+    <input type="hidden" name="idPlatilloValidarU" value="-1">
+    <input type="hidden" name="nombre" value="<?php echo $_SESSION['usuario'];?>">
+</form>
+
 <!--Cerrar session -->                   
 <form name="salirForm" method="post" action="">
     <input type="hidden" name="salirAction" id="salirAction" value="-1">
@@ -850,11 +1233,14 @@
 <script>
     //----------------------------Modificar usuario-----------------------------------------
     $('.editbtn').on('click', function(){
-        $tr=$(this).closest('tr');
-        var datos=$tr.children("td").map(function(){
+        let userId = $(this).data('userid'); // Obtener el ID del usuario del atributo data-userid
+        $('#idUpdate').val(userId);
+        
+        let $tr = $(this).closest('tr');
+        let datos = $tr.children("td").map(function(){
             return $(this).text();
-        });
-        $('#idUpdate').val(datos[0]);
+        }).get();
+
         $("#nombre").val(datos[1]);
         $("#apellidos").val(datos[2]);
         $("#sexo").val(datos[3]);
@@ -866,22 +1252,20 @@
         $("#contrasena").val(datos[9]);
     });
 
+
     //----------------------------Buscar usuario-----------------------------------------
     function buscar(valor) {
-
-       var request = new XMLHttpRequest();
-
-       request.onreadystatechange = function() {
-        if (request.readyState == 4) {
-            if (request.status == 200) {
-                document.getElementById("resultado").innerHTML = request.responseText;
+        let request = new XMLHttpRequest();
+        request.onreadystatechange = function() {
+            if (request.readyState == 4) {
+                if (request.status == 200) {
+                    document.getElementById("resultado").innerHTML = request.responseText;
+                }
             }
         }
+        request.open('GET', 'controlador/buscar-usuario.php?busqueda='+valor, true);
+        request.send();
     }
-
-    request.open('GET', 'controlador/buscar-usuario.php?busqueda='+valor, true);
-    request.send();
-}
 
     //--------------------------Eliminar usuario ------------------------------------------
     function eliminarUsuario(id) {
@@ -904,11 +1288,14 @@
 
     //----------------------------Modificar Alumno----------------------------------------- -->                  
     $('.editAlumno').on('click', function(){
-        $tr=$(this).closest('tr');
-        var datos=$tr.children("td").map(function(){
+        let alumnoId = $(this).data('alumnoid'); // Obtener el ID del alumno del atributo data-alumnoid
+        $('#idAlum').val(alumnoId);
+        
+        let $tr = $(this).closest('tr');
+        let datos = $tr.children("td").map(function(){
             return $(this).text();
-        });
-        $('#idAlum').val(datos[0]);
+        }).get();
+
         $("#nombre-alumno").val(datos[1]);
         $("#apellidos-alumno").val(datos[2]);
         $("#sexo-alumno").val(datos[3]);
@@ -920,185 +1307,486 @@
     });
 
 
-    //----------------------------Buscar Alumno-----------------------------------------
-    function buscaralumno(valor) {
-
-       var request = new XMLHttpRequest();
-
-       request.onreadystatechange = function() {
-        if (request.readyState == 4) {
-            if (request.status == 200) {
-                document.getElementById("resultadoAlumno").innerHTML = request.responseText;
-            }
-        }
-    }
-
-    request.open('GET', 'controlador/buscar-usuario.php?busquedaAlumno='+valor, true);
-    request.send();
-}
 
     //----------------------------Eliminar Alumno----------------------------------------- -->
     function eliminarAlumno(id) {
-     Swal.fire({
-        title: '¿Esta seguro de eliminar el Alumno?',
-        text: "¡No podrás revertir esto!",
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        cancelButtonText:'Cancelar',
-        confirmButtonText: 'Si, Eliminar!'
-    }).then((result) => {
-        if (result.value) {
-           document.forms['eliminarAlum'].elements['idAlumno'].value = id;
-           document.forms['eliminarAlum'].submit();
-       }
-   });
-}
-
-    //----------------------------Modificar Platillo----------------------------------------- -->
-
-    $('.editPlatillo').on('click', function(){
-        $tr=$(this).closest('tr');
-        var datos=$tr.children("td").map(function(){
-            return $(this).text();
-        });
-        $('#idPlato').val(datos[0]);
-        $("#nombre-platillo").val(datos[1]);
-        $("#tipocomida-platillo").val(datos[2]);
-        $("#ingredientes-platillo").val(datos[3]);
-        $("#utencilios-platillo").val(datos[4]);
-        $("#tiempopreparacion-platillo").val(datos[5]);
-        $("#caducidad-platillo").val(datos[6]);
-        $("#porciones-platillo").val(datos[7]);
-        $("#energia-plarillo").val(datos[8]);
-        $("#costopromedio-platillo").val(datos[9]);
-        $("#rendimiento-platillo").val(datos[10]);
-        $("#proteinas-platillo").val(datos[11]);
-        $("#grasas-platillo").val(datos[12]);
-        $("#hidratoscarbon-platillo").val(datos[13]);
-        $("#preparacion-platillo").val(datos[14]);
-        
-        $("#autor-platillo").val(datos[15]);
-        //$("#imagen-platillo").val(datos[16]);
-
-    });
-
-    //----------------------------Buscar platillo-----------------------------------------
-    function buscarplato(valor) {
-
-       var request = new XMLHttpRequest();
-
-       request.onreadystatechange = function() {
-        if (request.readyState == 4) {
-            if (request.status == 200) {
-                document.getElementById("resultadoPlatillo").innerHTML = request.responseText;
-            }
-        }
+        Swal.fire({
+            title: '¿Esta seguro de eliminar el Alumno?',
+            text: "¡No podrás revertir esto!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText:'Cancelar',
+            confirmButtonText: 'Si, Eliminar!'
+        }).then((result) => {
+            if (result.value) {
+               document.forms['eliminarAlum'].elements['idAlumno'].value = id;
+               document.forms['eliminarAlum'].submit();
+           }
+       });
     }
 
-    request.open('GET', 'controlador/buscar-usuario.php?busquedaPlatillo='+valor, true);
-    request.send();
-}
+    // Moficar el platillo
+    function editarPlatilloAdministrador(id){
+        document.forms['editarPlatilloAdministrador'].elements['idPlatilloEditar'].value = id;
+        document.forms['editarPlatilloAdministrador'].submit();
+    }
+
+    //Validar platillo que el usuario publico
+    function validarPlatilloAlumno(id){
+        document.forms['validarPlatilloAlumno'].elements['idPlatilloValidar'].value=id;
+        document.forms['validarPlatilloAlumno'].submit();
+    } 
+
+    //Validar platillo que el usuario publico
+    function validarPlatilloUsuario(id){
+        document.forms['validarPlatilloUsuario'].elements['idPlatilloValidarU'].value=id;
+        document.forms['validarPlatilloUsuario'].submit();
+    } 
 
 
 
     //--------------------------Eliminar platillo-----------------------------------------------
     function eliminarPlatillo(id) {
-     Swal.fire({
-        title: '¿Esta seguro de eliminar el Platillo',
-        text: "¡No podrás revertir esto!",
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        cancelButtonText:'Cancelar',
-        confirmButtonText: 'Si, Eliminar!'
-    }).then((result) => {
-        if (result.value) {
-           document.forms['eliminarPlato'].elements['idPlatillo'].value = id;
-           document.forms['eliminarPlato'].submit();
-
-       }
-   });
-}
-
-function comentarioPlatillo(id){
-
-    document.forms['comentarioForm'].elements['idComentario'].value = id;
-    document.forms['comentarioForm'].submit();
-}
-
-function salir(){
-    document.forms['salirForm'].elements['salirAction'].value = 1;
-    document.forms['salirForm'].submit();
-}
-</script>
-
-<script>
-    const labels = [
-    'Agosto',
-    'Septiembre',
-    'Octubre',
-    'Noviembre',
-    'Diciembre',
-    'Enero',
-    'Febrero',
-    'Marzo',
-    'Abril',
-    'Mayo',
-    'Junio',
-    'Julio'
-    ];
-
-    const data = {
-      labels: labels,
-      datasets: [{
-        label: 'Vistas',
-        backgroundColor: 'rgb(255, 170, 0)',
-        borderColor: 'rgb(255, 195, 0)',
-        pointStyle: 'circle',
-        pointRadius: 5,
-        pointHoverRadius: 10,
-        data: [
-        "<?php echo $totalVisitaAgo; ?>",
-        "<?php echo $totalVisitaSep; ?>",
-        "<?php echo $totalVisitaOct; ?>",
-        "<?php echo $totalVisitaNov; ?>",
-        "<?php echo $totalVisitaDic; ?>",
-        "<?php echo $totalVisitaEne; ?>",
-        "<?php echo $totalVisitaFeb; ?>",
-        "<?php echo $totalVisitaMar; ?>",
-        "<?php echo $totalVisitaAbr; ?>",
-        "<?php echo $totalVisitaMay; ?>",
-        "<?php echo $totalVisitaJun; ?>",
-        "<?php echo $totalVisitaJul; ?>",
-        ],
-    }]
-};
-
-const config = {
-  type: 'line',
-  data: data,
-  options: {
-    responsive: true,
-    plugins: {
-        legend: {
-            position: 'top',
-        },
-        title: {
-            display: true,
-            text: 'Tabla de visitas por mes'
-        }
+        Swal.fire({
+            title: '¿Esta seguro de eliminar el Platillo',
+            text: "¡No podrás revertir esto!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText:'Cancelar',
+            confirmButtonText: 'Si, Eliminar!'
+        }).then((result) => {
+            if (result.value) {
+               document.forms['eliminarPlato'].elements['idPlatillo'].value = id;
+               document.forms['eliminarPlato'].submit();
+           }
+       });
     }
-}
 
-};
+    function comentarioPlatillo(id){
+        document.forms['comentarioForm'].elements['idComentario'].value = id;
+        document.forms['comentarioForm'].submit();
+    }
 
+    //------- Funcion para mandar el parametro del id de platillo selecionado y mostrar modal
+    function verModal(id) {
+        jQuery.ajax({
+          url: "ajax/estadoValidacion.php", 
+          data: { id: id }, // se pasa el 'id' como parametro al servidor
+          type: "POST",
+          success: function (data) {
+              // Suponiendo que 'data' contiene el contenido modal obtenido del servidor
+              $("#resultadoEstado").html(data);
+              $("#verEstado").modal("show"); // se muestra el modal
+          },
+          error: function () {
+            //se muestra el error en la consola, si es que hay
+            console.error("Error fetching modal content.");
+          },
+        });
+    }
+
+    //------- Funcion para mandar el parametro del id de platillo selecionado y mostrar modal
+    function verModalUsuario(id) {
+         jQuery.ajax({
+          url: "ajax/estadoValidacionUsuario.php", 
+          data: { id: id }, // se pasa el 'id' como parametro al servidor
+          type: "POST",
+          success: function (data) {
+              // Suponiendo que 'data' contiene el contenido modal obtenido del servidor
+              $("#resultadoEstadoUsuario").html(data);
+              $("#verEstadoUsuario").modal("show"); // se muestra el modal
+          },
+          error: function () {
+            //se muestra el error en la consola, si es que hay
+            console.error("Error fetching modal content.");
+          },
+        });
+    }
+
+    /* Busqueda de usuarios */
+    $(document).ready(function(){
+        $("#busquedaUsuario").keyup(function(){
+          let consulta = $(this).val();
+
+          if (consulta != "") {
+            $.ajax({
+              url:"ajax/buscar-usuario.php",
+              method:"POST",
+              data:{consulta:consulta},
+              success:function(data){
+                $("#consultaUsuarios").hide();
+                $("#resultadoBuscarUsuario").html(data);
+                $("#resultadoBuscarUsuario").css("display","block");
+               
+              }
+            });
+          }else{
+            $("#resultadoBuscarUsuario").css("display","none");
+            $("#consultaUsuarios").show();
+          }
+
+        });
+    });
+
+
+    /* Busqueda de alumnos */
+    $(document).ready(function(){
+        $("#busquedaAlumno").keyup(function(){
+          let consulta = $(this).val();
+          if (consulta != "") {
+            $.ajax({
+              url:"ajax/buscar-alumno.php",
+              method:"POST",
+              data:{consulta:consulta},
+              success:function(data){
+                $("#consultaAlumnos").hide();
+                $("#resultadoBuscarAlumno").html(data);
+                $("#resultadoBuscarAlumno").css("display","block");
+               
+              }
+            });
+          }else{
+            $("#resultadoBuscarAlumno").css("display","none");
+            $("#consultaAlumnos").show();
+          }
+
+        });
+    });
+
+    /* Busqueda de platillos de alumnos */
+    $(document).ready(function(){
+        $("#busquedaPlatillo").keyup(function(){
+          let consulta = $(this).val();
+          if (consulta != "") {
+            $.ajax({
+              url:"ajax/buscar-platillo.php",
+              method:"POST",
+              data:{consulta:consulta},
+              success:function(data){
+                $("#consultaPlatillos").hide();
+                $("#resultadoBuscarPlatillo").html(data);
+                $("#resultadoBuscarPlatillo").css("display","block");
+               
+              }
+            });
+          }else{
+            $("#resultadoBuscarPlatillo").css("display","none");
+            $("#consultaPlatillos").show();
+          }
+
+        });
+    });
+
+    /* Busqueda de platillos de usuarios */
+    $(document).ready(function(){
+        $("#busquedaPlatilloUsuario").keyup(function(){
+          let consulta = $(this).val();
+          if (consulta != "") {
+            $.ajax({
+              url:"ajax/buscar-platilloU.php",
+              method:"POST",
+              data:{consulta:consulta},
+              success:function(data){
+                $("#consultaPlatillosUsuarios").hide();
+                $("#resultadoBuscarPlatilloUsuario").html(data);
+                $("#resultadoBuscarPlatilloUsuario").css("display","block");
+               
+              }
+            });
+          }else{
+            $("#resultadoBuscarPlatilloUsuario").css("display","none");
+            $("#consultaPlatillosUsuarios").show();
+          }
+
+        });
+    });
+
+    /* Busqueda de platillos del administrador */
+    $(document).ready(function(){
+        $("#busquedaPlatilloAdmin").keyup(function(){
+          let consulta = $(this).val();
+          if (consulta != "") {
+            $.ajax({
+              url:"ajax/buscar-platilloAdmin.php",
+              method:"POST",
+              data:{consulta:consulta},
+              success:function(data){
+                $("#consultaPlatillosAdmin").hide();
+                $("#resultadoBuscarPlatilloAdmin").html(data);
+                $("#resultadoBuscarPlatilloAdmin").css("display","block");
+               
+              }
+            });
+          }else{
+            $("#resultadoBuscarPlatilloAdmin").css("display","none");
+            $("#consultaPlatillosAdmin").show();
+          }
+
+        });
+    });
+
+
+    /*Funcion para agregar o eliminar formulario de Ingredientes */
+    $(document).ready(function() {
+        // Agregar nuevo grupo de formulario al hacer clic en el botón "Agregar más"
+        $('#btnAgregar').click(function() {
+          let grupoFormulario = '<section class="grupo-formulario row">' +
+          '<article class="col-md-3 p-1">' +
+          '<input type="text" name="nombreIngrediente" id="nombreIngrediente" class="form-control" placeholder="Nombre" required>' +
+          '</article>' +
+          '<article class="col-md-3 p-1">' +
+          '<input type="text" name="cantidad" id="cantidad" class="form-control" placeholder="Cantidad" required>' +
+          '</article>' +
+          '<article class="col-md-3 p-1">' +
+          '<input type="text" name="unidadMedida" class="form-control" placeholder="Unidad de Medida" required>' +
+          '</article>' +
+          '<article class="col-md-3 p-1">' +
+          '<button class="btn btn-danger remove-btn" type="button">Eliminar</button>' +
+          '</article>' +
+          '</section>';
+          $('#grupoFormularioContainer').append(grupoFormulario);
+        });
+
+        // Eliminar grupo de formulario al hacer clic en el botón "Eliminar"
+        $(document).on('click', '.remove-btn', function() {
+          $(this).closest('.grupo-formulario').remove();
+        });
+    });
+
+    /*Funcion para agregar o eliminar formulario de Preparacion */
+    $(document).ready(function() {
+        // Agregar nuevo grupo de formulario al hacer clic en el botón "Agregar más"
+        $('#btnAgregarPreparacion').click(function() {
+          let formularioPreparacion = '<section class="formulario-preparacion row">' +
+          '<article class="col-md-3 p-1">' +
+          '<label for="paso">Número de paso</label>'+
+          '<input type="number" name="paso" id="paso" min="1" class="form-control" required>' +
+          '</article>' +
+          '<article class="col-md-3 p-1">' +
+          '<label for="instruccion">Instrucción</label>'+
+          '<textarea class="form-control" name="instruccion" id="instruccion" required></textarea>' +
+          '</article>' +
+          '<article class="col-md-3 p-1">' +
+          '<label for="imagen">Foto del paso</label>'+
+          '<input type="file" name="fotoPreparacion" id="fotoPreparacion" class="form-control" accept="image/*">' +
+          '</article>' +
+          '<article class="col-md-3 p-4">' +
+          '<button class="btn btn-danger remove-btn-preparacion" type="button">Eliminar</button>' +
+          '</article>' +
+          '</section>';
+          $('#formularioPreparacionContainer').append(formularioPreparacion);
+        });
+        // Eliminar grupo de formulario al hacer clic en el botón "Eliminar"
+        $(document).on('click', '.remove-btn-preparacion', function() {
+          $(this).closest('.formulario-preparacion').remove();
+        });
+    });
+
+    /*Funcion para agregar o eliminar formulario de Utencilios */
+    $(document).ready(function() {
+        // Agregar nuevo grupo de formulario al hacer clic en el botón "Agregar más"
+        $('#btnAgregarUtencilios').click(function() {
+          let formularioUtencilios = '<section class="formulario-utencilios row">' +
+          '<article class="col-md-4 p-1">' +
+          '<input type="text" name="nombreUtencilio" id="nombreUtencilio" class="form-control" placeholder="Nombre del utencilio" required>' +
+          '</article>' +
+          '<article class="col-md-4 p-1">' +
+          '<input type="number" name="cantidad" id="cantidad" min="1" class="form-control" placeholder="Cantidad de utencilios" required>' +
+          '</article>' +
+          '<article class="col-md-4 p-1">' +
+          '<button class="btn btn-danger remove-btn-Utencilios" type="button">Eliminar</button>' +
+          '</article>' +
+          '</section>';
+          $('#formularioUtenciliosContainer').append(formularioUtencilios);
+        });
+        // Eliminar grupo de formulario al hacer clic en el botón "Eliminar"
+        $(document).on('click', '.remove-btn-Utencilios', function() {
+          $(this).closest('.formulario-utencilios').remove();
+        });
+    });
+
+    /*Funcion para agregar o eliminar formulario de informacion nutrimental */
+    $(document).ready(function() {
+        // Agregar nuevo grupo de formulario al hacer clic en el botón "Agregar más"
+        $('#btnAgregarNutrimental').click(function() {
+          let formularioNutrimental = '<section class="formulario-nutrimental row">' +
+          '<article class="col-md-2 p-1">' +
+          '<input type="text" class="form-control" name="nombreNutriente" id="nombreNutriente" placeholder="Nombre" required>' +
+          '</article>' +
+          '<article class="col-md-3 p-1">' +
+          '<input type="number" step="0.01" class="form-control" name="cantidadR" id="cantidadR" placeholder="Cantidad por receta" required>' +
+          '</article>' +
+          '<article class="col-md-3 p-1">' +
+          '<input type="number" step="0.01" class="form-control" name="cantidadP" id="cantidadP" placeholder="Cantidad por porción" required>' +
+          '</article>' +
+          '<article class="col-md-2 p-1">'+
+          '<input type="text" class="form-control" name="unidadMedida" id="unidadMedida" placeholder="Unidad de Medida" required>'+
+          '</article>'+
+          '<article class="col-md-2 p-1">' +
+          '<button class="btn btn-danger remove-btn-nutrimental" type="button">Eliminar</button>' +
+          '</article>' +
+          '</section>';
+          $('#formularioNutrimentalContainer').append(formularioNutrimental);
+        });
+        // Eliminar grupo de formulario al hacer clic en el botón "Eliminar"
+        $(document).on('click', '.remove-btn-nutrimental', function() {
+          $(this).closest('.formulario-nutrimental').remove();
+        });
+    });
+
+    /*Funcion para eliminar un platillo */
+    $(document).on('click', '.eliminar-platillo', function() {
+        const platilloId = $(this).data('platillo-id'); // Obtener el ID del platillo desde el atributo data
+        const row = $(this).closest('tr'); // Obtener la fila correspondiente al botón de eliminación
+
+        console.log(platilloId);
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: 'Esta acción eliminará el platillo',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: 'ajax/eliminarPlatillo.php', // Ruta al archivo PHP que manejará la eliminación del platillo
+                    method: 'POST',
+                    data: { idPlatillo: platilloId },
+                    success: function(response) {
+                        // Eliminar la fila de la tabla en el cliente
+                        row.remove();
+
+                        Swal.fire({
+                            icon: 'success',
+                            title: '¡Eliminado!',
+                            text: 'El platillo se eliminó correctamente.',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    },
+                    error: function(error) {
+                        console.error('Error al eliminar el platillo: ', error);
+                    }
+                });
+            }
+        });
+    });
+
+
+    function salir(){
+        document.forms['salirForm'].elements['salirAction'].value = 1;
+        document.forms['salirForm'].submit();
+    }
 </script>
+
 <script>
+    const labels = <?php echo json_encode($labels); ?>;
+    const data = {
+        labels: labels,
+        datasets: [{
+            label: 'Vistas',
+            backgroundColor: 'rgb(255, 170, 0)',
+            borderColor: 'rgb(255, 195, 0)',
+            pointStyle: 'circle',
+            pointRadius: 5,
+            pointHoverRadius: 10,
+            data: <?php echo json_encode($data); ?>
+        }]
+    };
+
+    const config = {
+        type: 'line',
+        data: data,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Tabla de visitas por mes'
+                }
+            }
+        }
+    };
+
     const myChart = new Chart(
       document.getElementById('grafica-visitas'),
       config
-      );
-  </script>
+    );
+
+    const ctxPie = document.getElementById('grafico').getContext('2d');
+
+    const dataPie = {
+      labels: <?php echo json_encode($labelsG); ?>, // Reemplazar con tus datos de género (por ejemplo: ['Hombres', 'Mujeres'])
+      datasets: [{
+        data: <?php echo json_encode($dataG); ?>, // Reemplazar con la cantidad de cada género (por ejemplo: [50, 30])
+        backgroundColor: ['#1AB7FF', '#F832E0'] // Colores de fondo para las secciones (puedes añadir más colores si es necesario)
+      }]
+    };
+
+    const configPie = {
+      type: 'pie',
+      data: dataPie,
+    };
+
+    const myChartPie = new Chart(ctxPie, configPie);
+
+    const ctxPieM = document.getElementById('graficoMedios').getContext('2d');
+    const dataPieM = {
+      labels: <?php echo json_encode($labelsM); ?>, // Reemplazar con tus datos de categorías de medios
+      datasets: [{
+        data: <?php echo json_encode($dataM); ?>, // Reemplazar con la cantidad de cada categoría de medios
+        backgroundColor: ['#1AB7FF', '#F832E0', '#FFD700', '#32CD32', '#FF4500', '#8A2BE2', '#FF69B4'] // Colores de fondo para las secciones (puedes añadir más colores si es necesario)
+      }]
+    };
+
+    const configPieM = {
+      type: 'pie',
+      data: dataPieM,
+    };
+
+    const myChartPieM = new Chart(ctxPieM, configPieM);
+
+    const ctxPieE = document.getElementById('graficoEstado').getContext('2d');
+    const dataPieE = {
+      labels: <?php echo json_encode($labelsE); ?>, // Reemplazar con tus datos de categorías de medios
+      datasets: [{
+        data: <?php echo json_encode($dataE); ?>, // Reemplazar con la cantidad de cada categoría de medios
+        backgroundColor: ['#1AB7FF', '#F832E0', '#FFD700', '#32CD32', '#FF4500', '#8A2BE2', '#FF69B4'] // Colores de fondo para las secciones (puedes añadir más colores si es necesario)
+      }]
+    };
+
+    const configPieE = {
+      type: 'pie',
+      data: dataPieE,
+    };
+
+    const myChartPieE = new Chart(ctxPieE, configPieE);
+
+    const ctxPieC = document.getElementById('graficoCalificacion').getContext('2d');
+    const dataPieC = {
+      labels: <?php echo json_encode($labelsC); ?>, // Reemplazar con tus datos de categorías de medios
+      datasets: [{
+        data: <?php echo json_encode($dataC); ?>, // Reemplazar con la cantidad de cada categoría de medios
+        backgroundColor: ['#1AB7FF', '#F832E0', '#FFD700', '#32CD32', '#FF4500', '#8A2BE2', '#FF69B4'] // Colores de fondo para las secciones (puedes añadir más colores si es necesario)
+      }]
+    };
+
+    const configPieC = {
+      type: 'pie',
+      data: dataPieC,
+    };
+
+    const myChartPieC = new Chart(ctxPieC, configPieC);
+
+
+</script>

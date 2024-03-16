@@ -1,72 +1,73 @@
-<!-- Contenedor de la seccion de platillos-->
-<section class="container p-2" id="cotenedorr">
-  <!-- Titulo de la secición de los platillos -->
-  <article class="container  bg p-2 mb-3" style="background-color:#2980B9; color: white; border-radius: 5px;" >
+<main class="contenedor">
+  <!-- Contenedor de la seccion de platillos-->
+  <section class="container p-2" id="cotenedorr">
+    <!-- Titulo de la secición de los platillos -->
+    <article class="container  bg p-2 mb-3" style="background-color:#2980B9; color: white; border-radius: 5px;" >
       <center><h4>Mis platillos favoritos</h4></center>
-  </article>
-  
-  <!-- barra de navegacion de los platilos del dia -->
-  <section style="border-radius: 10px; border: solid 2px #88d8ff;box-shadow: 0 0 10px rgba(96, 132, 134, 0.57); ">
-    <ul class="nav nav-pills nav-justified p-1 text-info" id="pills-tab" role="tablist" style="background: #F4F6F6;border-radius: 10px; ">
-      <li class="nav-item" role="presentation">
-        <button class="nav-link active" id="pills-desayuno-tab" data-bs-toggle="pill" data-bs-target="#desayuno" type="button" role="tab" aria-controls="pills-desayuno" aria-selected="true">Desayuno</button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" id="pills-colacionM-tab" data-bs-toggle="pill" data-bs-target="#colacionM" type="button" role="tab" aria-controls="pills-colacionM" aria-selected="false">Colación de la Mañana</button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" id="pills-comida-tab" data-bs-toggle="pill" data-bs-target="#comida" type="button" role="tab" aria-controls="pills-comida" aria-selected="false">Comida</button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" id="pills-postre-tab" data-bs-toggle="pill" data-bs-target="#postre" type="button" role="tab" aria-controls="pills-postre" aria-selected="false">Postre</button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" id="pills-colacionT-tab" data-bs-toggle="pill" data-bs-target="#colacionT" type="button" role="tab" aria-controls="pills-colacionT" aria-selected="false">Colación de la Tarde </button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" id="pills-cena-tab" data-bs-toggle="pill" data-bs-target="#cena" type="button" role="tab" aria-controls="pills-cena" aria-selected="false">Cena</button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" id="pills-otros-tab" data-bs-toggle="pill" data-bs-target="#otros" type="button" role="tab" aria-controls="pills-otros" aria-selected="false">Otros</button>
-      </li>
-    </ul>
-  </section>
-  <span class="ir-arriba icon-arrow-up2"></span>
-  <!-- Contenedor de todos los platillos -->
-  <section class="tab-content" id="pills-tabContent">
-    <!-- Contenedor de platillos de desayuno -->
-    <section class="tab-pane fade show active" id="desayuno" role="tabpanel" aria-labelledby="pills-desayuno-tab">
-      <section class="container p-2">
-        <section class="row align-items-start">
-          <?php 
-            $tipoPlatillo=0;
-            $idusuario=$_SESSION['idUsuario'];
-            foreach($listaFavoritos as $favoritos){
-              if($idusuario==$favoritos->getIdUsuario()){
-                $idplatillo=$favoritos->getIdPlatillo();
-                foreach($listaPlatillos as $platillo){
-                  if($idplatillo==$platillo->getId()){
-                    $desayuno= $platillo->getTipocomida();
-                    if($desayuno=='Desayuno'){
-                      printf('<section class="col-md-4">');
-                        printf('<article class="nav nav-pills nav-justified">');
-                          printf('<h6 class="nav-item text-info"><strong> Agregado:</strong>&nbsp;%s</h6>', $favoritos->getFecha());
-                          printf('<td><a class="text-danger nav-item" style="max-width: 80px;" href="Javascript:eliminarFavoritos(%d)"><i class="bi bi-trash-fill"></i></a></td>', $favoritos->getId());
-                        printf('</article>'); 
-                        printf('<a id="imagen-platillo" href="Javascript:mostrarPlatillos(%d)"><img class="card-img-top img-responsive" src ="data:image/png;base64,'.base64_encode($platillo->getImagen()).'" width="290px" height="250px"/></a>', $platillo->getId()); 
-                        printf('<article id="pie-imagen" class="card-body">');
+    </article>
+
+    <!-- barra de navegacion de los platilos del dia -->
+    <section style="border-radius: 10px; border: solid 2px #88d8ff;box-shadow: 0 0 10px rgba(96, 132, 134, 0.57); ">
+      <ul class="nav nav-pills nav-justified p-1 text-info" id="pills-tab" role="tablist" style="background: #F4F6F6;border-radius: 10px; ">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="pills-desayuno-tab" data-bs-toggle="pill" data-bs-target="#desayuno" type="button" role="tab" aria-controls="pills-desayuno" aria-selected="true">Desayuno</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="pills-colacionM-tab" data-bs-toggle="pill" data-bs-target="#colacionM" type="button" role="tab" aria-controls="pills-colacionM" aria-selected="false">Colación de la Mañana</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="pills-comida-tab" data-bs-toggle="pill" data-bs-target="#comida" type="button" role="tab" aria-controls="pills-comida" aria-selected="false">Comida</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="pills-postre-tab" data-bs-toggle="pill" data-bs-target="#postre" type="button" role="tab" aria-controls="pills-postre" aria-selected="false">Postre</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="pills-colacionT-tab" data-bs-toggle="pill" data-bs-target="#colacionT" type="button" role="tab" aria-controls="pills-colacionT" aria-selected="false">Colación de la Tarde </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="pills-cena-tab" data-bs-toggle="pill" data-bs-target="#cena" type="button" role="tab" aria-controls="pills-cena" aria-selected="false">Cena</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="pills-otros-tab" data-bs-toggle="pill" data-bs-target="#otros" type="button" role="tab" aria-controls="pills-otros" aria-selected="false">Otros</button>
+        </li>
+      </ul>
+    </section>
+    <span class="ir-arriba icon-arrow-up2"></span>
+    <!-- Contenedor de todos los platillos -->
+    <section class="tab-content" id="pills-tabContent">
+      <!-- Contenedor de platillos de desayuno -->
+      <section class="tab-pane fade show active" id="desayuno" role="tabpanel" aria-labelledby="pills-desayuno-tab">
+        <section class="container p-2">
+          <section class="row align-items-start">
+            <?php 
+              $tipoPlatillo=0;
+              $idusuario=$_SESSION['idUsuario'];
+              foreach($listaFavoritos as $favoritos){
+                if($idusuario==$favoritos->getIdUsuario()){
+                  $idplatillo=$favoritos->getIdPlatillo();
+                  foreach($listaPlatillos as $platillo){
+                    if($idplatillo==$platillo->getId()){
+                      $desayuno= $platillo->getTiempoComida();
+                      if($desayuno==='1'){
+                        printf('<section class="col-md-4">');
+                          printf('<article class="nav nav-pills nav-justified">');
+                            printf('<h6 class="nav-item text-info"><strong> Agregado:</strong>&nbsp;%s</h6>', $favoritos->getFecha());
+                            printf('<td><a class="text-danger nav-item" style="max-width: 80px;" href="Javascript:eliminarFavoritos(%d)"><i class="bi bi-trash-fill"></i></a></td>', $favoritos->getId());
+                          printf('</article>'); 
+                          printf('<a id="imagen-platillo" href="Javascript:mostrarPlatillos(%d)"><img class="card-img-top img-responsive" src ="data:image/png;base64,'.base64_encode($platillo->getImagen()).'" width="290px" height="250px"/></a>', $platillo->getId()); 
+                          printf('<article id="pie-imagen" class="card-body">');
                            printf('<h5 class="card-title">%s</h5>', $platillo->getNombre());
                            printf('<a  class="btn btn-primary"  href="Javascript:mostrarPlatillos(%d)">Saber más...</a>', $platillo->getId());
-                        printf('</article>');
-                        printf('<span class="p-2"></span>');
-                      printf('</section>');
-                      $tipoPlatillo=1;     
-                    }
-                  }
-                }
-              }
-            }
-            if($tipoPlatillo !=1 ){
+                         printf('</article>');
+                         printf('<span class="p-2"></span>');
+                       printf('</section>');
+                       $tipoPlatillo=1;     
+                     }
+                   }
+                 }
+               }
+             }
+             if($tipoPlatillo !=1 ){
               printf('<article class="container">');
                 print('<div class="alert alert-info" role="alert">No tiene ningún platillo de Desayuno como favorito</div>');
               printf('</article>');
@@ -88,8 +89,8 @@
                 $idplatillo=$favoritos->getIdPlatillo();
                 foreach($listaPlatillos as $platillo){
                   if($idplatillo==$platillo->getId()){
-                    $desayuno= $platillo->getTipocomida();
-                    if($desayuno=='esayuno'){
+                    $desayuno= $platillo->getTiempoComida();
+                    if($colacionM==='2'){
                       printf('<section class="col-md-4">');
                         printf('<article class="nav nav-pills nav-justified">');
                           printf('<h6 class="nav-item text-info"><strong> Agregado:</strong>&nbsp;%s</h6>', $favoritos->getFecha());
@@ -97,246 +98,246 @@
                         printf('</article>'); 
                         printf('<a id="imagen-platillo" href="Javascript:mostrarPlatillos(%d)"><img class="card-img-top img-responsive" src ="data:image/png;base64,'.base64_encode($platillo->getImagen()).'" width="290px" height="250px"/></a>', $platillo->getId()); 
                         printf('<article id="pie-imagen" class="card-body">');
-                           printf('<h5 class="card-title">%s</h5>', $platillo->getNombre());
-                           printf('<a  class="btn btn-primary"  href="Javascript:mostrarPlatillos(%d)">Saber más...</a>', $platillo->getId());
-                        printf('</article>');
-                        printf('<span class="p-2"></span>');
-                      printf('</section>');
-                      $tipoPlatillo=1;
-                    }
-                  }
-                }
-              }
-            }
-            if($tipoPlatillo !=1 ){
-              printf('<article class="container">');
-                print('<div class="alert alert-info" role="alert">No tiene ningún platillo de colación de la mañana como favorito</div>');
-              printf('</article>');
-            }
-          ?>
-        </section>
-      </section>
-    </section>
-    <!-- Contenedor de platillos de comida -->
-    <section class="tab-pane fade" id="comida" role="tabpanel" aria-labelledby="pills-comida-tab">
-      <section class="container p-2">
-        <section class="row align-items-start">
-          <?php
-            $tipoPlatillo=0; 
-            $idusuario=$_SESSION['idUsuario'];
-            foreach($listaFavoritos as $favoritos){
-              if($idusuario==$favoritos->getIdUsuario()){
-                $idplatillo=$favoritos->getIdPlatillo();
-                foreach($listaPlatillos as $platillo){
-                  if($idplatillo==$platillo->getId()){
-                    $comida= $platillo->getTipocomida();
-                    if($comida=='Comida'){
-                      printf('<section class="col-md-4">');
-                        printf('<article class="nav nav-pills nav-justified">');
-                          printf('<h6 class="nav-item text-info"><strong> Agregado:</strong>&nbsp;%s</h6>', $favoritos->getFecha());
-                          printf('<td><a class="text-danger nav-item" style="max-width: 80px;" href="Javascript:eliminarFavoritos(%d)"><i class="bi bi-trash-fill"></i></a></td>', $favoritos->getId());
-                        printf('</article>'); 
-                        printf('<a id="imagen-platillo" href="Javascript:mostrarPlatillos(%d)"><img class="card-img-top img-responsive" src ="data:image/png;base64,'.base64_encode($platillo->getImagen()).'" width="290px" height="250px"/></a>', $platillo->getId()); 
-                        printf('<article id="pie-imagen" class="card-body">');
-                           printf('<h5 class="card-title">%s</h5>', $platillo->getNombre());
-                           printf('<a  class="btn btn-primary"  href="Javascript:mostrarPlatillos(%d)">Saber más...</a>', $platillo->getId());
-                        printf('</article>');
-                        printf('<span class="p-2"></span>');
-                      printf('</section>');
-                      $tipoPlatillo=1;
-                    }
-                  }
-                }
-              }
-            }
-            if($tipoPlatillo !=1 ){
-              printf('<article class="container">');
-                print('<div class="alert alert-info" role="alert">No tiene ningún platillo de comida como favorito</div>');
-              printf('</article>');
-            }
-          ?>
-        </section>
-      </section>
-    </section>
-    <!-- Contenedor de platillos de postre -->
-    <section class="tab-pane fade" id="postre" role="tabpanel" aria-labelledby="pills-postre-tab">
-      <section class="container p-2">
-        <section class="row align-items-start">
-          <?php
-            $tipoPlatillo=0; 
-            $idusuario=$_SESSION['idUsuario'];
-            foreach($listaFavoritos as $favoritos){
-              if($idusuario==$favoritos->getIdUsuario()){
-                $idplatillo=$favoritos->getIdPlatillo();
-                foreach($listaPlatillos as $platillo){
-                  if($idplatillo==$platillo->getId()){
-                    $comida= $platillo->getTipocomida();
-                    if($comida=='Postre'){
-                      printf('<section class="col-md-4">');
-                        printf('<article class="nav nav-pills nav-justified">');
-                          printf('<h6 class="nav-item text-info"><strong> Agregado:</strong>&nbsp;%s</h6>', $favoritos->getFecha());
-                          printf('<td><a class="text-danger nav-item" style="max-width: 80px;" href="Javascript:eliminarFavoritos(%d)"><i class="bi bi-trash-fill"></i></a></td>', $favoritos->getId());
-                        printf('</article>'); 
-                        printf('<a id="imagen-platillo" href="Javascript:mostrarPlatillos(%d)"><img class="card-img-top img-responsive" src ="data:image/png;base64,'.base64_encode($platillo->getImagen()).'" width="290px" height="250px"/></a>', $platillo->getId()); 
-                        printf('<article id="pie-imagen" class="card-body">');
-                           printf('<h5 class="card-title">%s</h5>', $platillo->getNombre());
-                           printf('<a  class="btn btn-primary"  href="Javascript:mostrarPlatillos(%d)">Saber más...</a>', $platillo->getId());
-                        printf('</article>');
-                        printf('<span class="p-2"></span>');
-                      printf('</section>');
-                      $tipoPlatillo=1;
-                    }
-                  }
-                }
-              }
-            }
-            if($tipoPlatillo !=1 ){
-              printf('<article class="container">');
-                print('<div class="alert alert-info" role="alert">No tiene ningún platillo de postre como favorito</div>');
-              printf('</article>');
-            }
-          ?>
-        </section>
-      </section>
-    </section>
-    <!-- Contenedor de platillos de colacion de la tarde -->
-    <section class="tab-pane fade" id="colacionT" role="tabpanel" aria-labelledby="pills-colacionT-tab">
-      <section class="container p-2">
-        <section class="row align-items-start">
-          <?php
-            $tipoPlatillo=0; 
-            $idusuario=$_SESSION['idUsuario'];
-            foreach($listaFavoritos as $favoritos){
-              if($idusuario==$favoritos->getIdUsuario()){
-                $idplatillo=$favoritos->getIdPlatillo();
-                foreach($listaPlatillos as $platillo){
-                  if($idplatillo==$platillo->getId()){
-                    $comida= $platillo->getTipocomida();
-                    if($comida=='Postre'){
-                      printf('<section class="col-md-4">');
-                        printf('<article class="nav nav-pills nav-justified">');
-                          printf('<h6 class="nav-item text-info"><strong> Agregado:</strong>&nbsp;%s</h6>', $favoritos->getFecha());
-                          printf('<td><a class="text-danger nav-item" style="max-width: 80px;" href="Javascript:eliminarFavoritos(%d)"><i class="bi bi-trash-fill"></i></a></td>', $favoritos->getId());
-                        printf('</article>'); 
-                        printf('<a id="imagen-platillo" href="Javascript:mostrarPlatillos(%d)"><img class="card-img-top img-responsive" src ="data:image/png;base64,'.base64_encode($platillo->getImagen()).'" width="290px" height="250px"/></a>', $platillo->getId()); 
-                        printf('<article id="pie-imagen" class="card-body">');
-                           printf('<h5 class="card-title">%s</h5>', $platillo->getNombre());
-                           printf('<a  class="btn btn-primary"  href="Javascript:mostrarPlatillos(%d)">Saber más...</a>', $platillo->getId());
-                        printf('</article>');
-                        printf('<span class="p-2"></span>');
-                      printf('</section>');
-                      $tipoPlatillo=1;
-                    }
-                  }
-                }
-              }
-            }
-            if($tipoPlatillo !=1 ){
-              printf('<article class="container">');
-                print('<div class="alert alert-info" role="alert">No tiene ningún platillo de colación de la tarde como favorito</div>');
-              printf('</article>');
-            }
-          ?>
-        </section>
-      </section>
-    </section>
-    <!-- Contenedor de platillos de cena -->
-    <section class="tab-pane fade" id="cena" role="tabpanel" aria-labelledby="pills-cena-tab">
-      <section class="container p-2">
-        <section class="row align-items-start">
-          <?php
-            $tipoPlatillo=0; 
-            $idusuario=$_SESSION['idUsuario'];
-            foreach($listaFavoritos as $favoritos){
-              if($idusuario==$favoritos->getIdUsuario()){
-                $idplatillo=$favoritos->getIdPlatillo();
-                foreach($listaPlatillos as $platillo){
-                  if($idplatillo==$platillo->getId()){
-                    $cena= $platillo->getTipocomida();
-                    if($cena=='Cena'){
-                      printf('<section class="col-md-4">');
-                        printf('<article class="nav nav-pills nav-justified">');
-                          printf('<h6 class="nav-item text-info"><strong> Agregado:</strong>&nbsp;%s</h6>', $favoritos->getFecha());
-                          printf('<td><a class="text-danger nav-item" style="max-width: 80px;" href="Javascript:eliminarFavoritos(%d)"><i class="bi bi-trash-fill"></i></a></td>', $favoritos->getId());
-                        printf('</article>'); 
-                        printf('<a id="imagen-platillo" href="Javascript:mostrarPlatillos(%d)"><img class="card-img-top img-responsive" src ="data:image/png;base64,'.base64_encode($platillo->getImagen()).'" width="290px" height="250px"/></a>', $platillo->getId()); 
-                        printf('<article id="pie-imagen" class="card-body">');
-                           printf('<h5 class="card-title">%s</h5>', $platillo->getNombre());
-                           printf('<a  class="btn btn-primary"  href="Javascript:mostrarPlatillos(%d)">Saber más...</a>', $platillo->getId());
-                        printf('</article>');
-                        printf('<span class="p-2"></span>');
-                      printf('</section>');
-                      $tipoPlatillo=1;
-                    }
-                  }
-                }
-              }
-            }
-            if($tipoPlatillo !=1 ){
-              printf('<article class="container">');
-                print('<div class="alert alert-info" role="alert">No tiene ningún platillo de cena como favorito</div>');
-              printf('</article>');
-            }
-          ?>
-        </section>
-      </section>
-    </section>
-    <!-- Contenedor de otros platillos -->
-    <section class="tab-pane fade" id="otros" role="tabpanel" aria-labelledby="pills-otros-tab">
-      <section class="container p-2">
-        <section class="row align-items-start">
-          <?php
-            $tipoPlatillo=0; 
-            $idusuario=$_SESSION['idUsuario'];
-            foreach($listaFavoritos as $favoritos){
-              if($idusuario==$favoritos->getIdUsuario()){
-                $idplatillo=$favoritos->getIdPlatillo();
-                foreach($listaPlatillos as $platillo){
-                  if($idplatillo==$platillo->getId()){
-                    $cena= $platillo->getTipocomida();
-                    if($cena=='ena'){
-                      printf('<section class="col-md-4">');
-                        printf('<article class="nav nav-pills nav-justified">');
-                          printf('<h6 class="nav-item text-info"><strong> Agregado:</strong>&nbsp;%s</h6>', $favoritos->getFecha());
-                          printf('<td><a class="text-danger nav-item" style="max-width: 80px;" href="Javascript:eliminarFavoritos(%d)"><i class="bi bi-trash-fill"></i></a></td>', $favoritos->getId());
-                        printf('</article>'); 
-                        printf('<a id="imagen-platillo" href="Javascript:mostrarPlatillos(%d)"><img class="card-img-top img-responsive" src ="data:image/png;base64,'.base64_encode($platillo->getImagen()).'" width="290px" height="250px"/></a>', $platillo->getId()); 
-                        printf('<article id="pie-imagen" class="card-body">');
-                           printf('<h5 class="card-title">%s</h5>', $platillo->getNombre());
-                           printf('<a  class="btn btn-primary"  href="Javascript:mostrarPlatillos(%d)">Saber más...</a>', $platillo->getId());
-                        printf('</article>');
-                        printf('<span class="p-2"></span>');
-                      printf('</section>');
-                      $tipoPlatillo=1;
-                    }
-                  }
-                }
-              }
-            }
-            if($tipoPlatillo !=1 ){
-              printf('<article class="container">');
-                print('<div class="alert alert-info" role="alert">No tiene ningún platillo de otros como favorito</div>');
-              printf('</article>');
-            }
-          ?>
-        </section>
+                         printf('<h5 class="card-title">%s</h5>', $platillo->getNombre());
+                         printf('<a  class="btn btn-primary"  href="Javascript:mostrarPlatillos(%d)">Saber más...</a>', $platillo->getId());
+                       printf('</article>');
+                       printf('<span class="p-2"></span>');
+                     printf('</section>');
+                     $tipoPlatillo=1;
+                   }
+                 }
+               }
+             }
+           }
+           if($tipoPlatillo !=1 ){
+            printf('<article class="container">');
+              print('<div class="alert alert-info" role="alert">No tiene ningún platillo de colación de la mañana como favorito</div>');
+            printf('</article>');
+          }
+        ?>
       </section>
     </section>
   </section>
-  <!-- Formulario para mandar el id de cada platillo solicitado para mostrarse -->
-  <form name="mostrarPlatillo" method="post" action="">
-    <input type="hidden" name="idPlatilloMostrar" value="-1">
-  </form>
-  <form name="eliminarFavorito" method="post" action="">
-      <input type="hidden" name="idFavoritos" value="-1">
-  </form>
+  <!-- Contenedor de platillos de comida -->
+  <section class="tab-pane fade" id="comida" role="tabpanel" aria-labelledby="pills-comida-tab">
+    <section class="container p-2">
+      <section class="row align-items-start">
+        <?php
+          $tipoPlatillo=0; 
+          $idusuario=$_SESSION['idUsuario'];
+          foreach($listaFavoritos as $favoritos){
+            if($idusuario==$favoritos->getIdUsuario()){
+              $idplatillo=$favoritos->getIdPlatillo();
+              foreach($listaPlatillos as $platillo){
+                if($idplatillo==$platillo->getId()){
+                  $comida= $platillo->getTiempoComida();
+                  if($comida==='3'){
+                    printf('<section class="col-md-4">');
+                      printf('<article class="nav nav-pills nav-justified">');
+                        printf('<h6 class="nav-item text-info"><strong> Agregado:</strong>&nbsp;%s</h6>', $favoritos->getFecha());
+                        printf('<td><a class="text-danger nav-item" style="max-width: 80px;" href="Javascript:eliminarFavoritos(%d)"><i class="bi bi-trash-fill"></i></a></td>', $favoritos->getId());
+                      printf('</article>'); 
+                      printf('<a id="imagen-platillo" href="Javascript:mostrarPlatillos(%d)"><img class="card-img-top img-responsive" src ="data:image/png;base64,'.base64_encode($platillo->getImagen()).'" width="290px" height="250px"/></a>', $platillo->getId()); 
+                      printf('<article id="pie-imagen" class="card-body">');
+                       printf('<h5 class="card-title">%s</h5>', $platillo->getNombre());
+                       printf('<a  class="btn btn-primary"  href="Javascript:mostrarPlatillos(%d)">Saber más...</a>', $platillo->getId());
+                     printf('</article>');
+                     printf('<span class="p-2"></span>');
+                   printf('</section>');
+                   $tipoPlatillo=1;
+                 }
+               }
+             }
+           }
+         }
+         if($tipoPlatillo !=1 ){
+          printf('<article class="container">');
+            print('<div class="alert alert-info" role="alert">No tiene ningún platillo de comida como favorito</div>');
+          printf('</article>');
+        }
+      ?>
+    </section>
+  </section>
+</section>
+<!-- Contenedor de platillos de postre -->
+<section class="tab-pane fade" id="postre" role="tabpanel" aria-labelledby="pills-postre-tab">
+  <section class="container p-2">
+    <section class="row align-items-start">
+      <?php
+        $tipoPlatillo=0; 
+        $idusuario=$_SESSION['idUsuario'];
+        foreach($listaFavoritos as $favoritos){
+          if($idusuario==$favoritos->getIdUsuario()){
+            $idplatillo=$favoritos->getIdPlatillo();
+            foreach($listaPlatillos as $platillo){
+              if($idplatillo==$platillo->getId()){
+                $comida= $platillo->getTiempoComida();
+                if($postre==='4'){
+                  printf('<section class="col-md-4">');
+                    printf('<article class="nav nav-pills nav-justified">');
+                      printf('<h6 class="nav-item text-info"><strong> Agregado:</strong>&nbsp;%s</h6>', $favoritos->getFecha());
+                      printf('<td><a class="text-danger nav-item" style="max-width: 80px;" href="Javascript:eliminarFavoritos(%d)"><i class="bi bi-trash-fill"></i></a></td>', $favoritos->getId());
+                    printf('</article>'); 
+                    printf('<a id="imagen-platillo" href="Javascript:mostrarPlatillos(%d)"><img class="card-img-top img-responsive" src ="data:image/png;base64,'.base64_encode($platillo->getImagen()).'" width="290px" height="250px"/></a>', $platillo->getId()); 
+                    printf('<article id="pie-imagen" class="card-body">');
+                     printf('<h5 class="card-title">%s</h5>', $platillo->getNombre());
+                     printf('<a  class="btn btn-primary"  href="Javascript:mostrarPlatillos(%d)">Saber más...</a>', $platillo->getId());
+                   printf('</article>');
+                   printf('<span class="p-2"></span>');
+                 printf('</section>');
+                 $tipoPlatillo=1;
+               }
+             }
+           }
+         }
+       }
+       if($tipoPlatillo !=1 ){
+        printf('<article class="container">');
+          print('<div class="alert alert-info" role="alert">No tiene ningún platillo de postre como favorito</div>');
+        printf('</article>');
+      }
+    ?>
+  </section>
+</section>
+</section>
+<!-- Contenedor de platillos de colacion de la tarde -->
+<section class="tab-pane fade" id="colacionT" role="tabpanel" aria-labelledby="pills-colacionT-tab">
+  <section class="container p-2">
+    <section class="row align-items-start">
+      <?php
+        $tipoPlatillo=0; 
+        $idusuario=$_SESSION['idUsuario'];
+        foreach($listaFavoritos as $favoritos){
+          if($idusuario==$favoritos->getIdUsuario()){
+            $idplatillo=$favoritos->getIdPlatillo();
+            foreach($listaPlatillos as $platillo){
+              if($idplatillo==$platillo->getId()){
+                $comida= $platillo->getTiempoComida();
+                if($colacionT==='5'){
+                  printf('<section class="col-md-4">');
+                    printf('<article class="nav nav-pills nav-justified">');
+                      printf('<h6 class="nav-item text-info"><strong> Agregado:</strong>&nbsp;%s</h6>', $favoritos->getFecha());
+                      printf('<td><a class="text-danger nav-item" style="max-width: 80px;" href="Javascript:eliminarFavoritos(%d)"><i class="bi bi-trash-fill"></i></a></td>', $favoritos->getId());
+                    printf('</article>'); 
+                    printf('<a id="imagen-platillo" href="Javascript:mostrarPlatillos(%d)"><img class="card-img-top img-responsive" src ="data:image/png;base64,'.base64_encode($platillo->getImagen()).'" width="290px" height="250px"/></a>', $platillo->getId()); 
+                    printf('<article id="pie-imagen" class="card-body">');
+                     printf('<h5 class="card-title">%s</h5>', $platillo->getNombre());
+                     printf('<a  class="btn btn-primary"  href="Javascript:mostrarPlatillos(%d)">Saber más...</a>', $platillo->getId());
+                   printf('</article>');
+                   printf('<span class="p-2"></span>');
+                 printf('</section>');
+                 $tipoPlatillo=1;
+               }
+             }
+           }
+         }
+       }
+       if($tipoPlatillo !=1 ){
+        printf('<article class="container">');
+          print('<div class="alert alert-info" role="alert">No tiene ningún platillo de colación de la tarde como favorito</div>');
+        printf('</article>');
+      }
+    ?>
+  </section>
+</section>
+</section>
+<!-- Contenedor de platillos de cena -->
+<section class="tab-pane fade" id="cena" role="tabpanel" aria-labelledby="pills-cena-tab">
+  <section class="container p-2">
+    <section class="row align-items-start">
+      <?php
+        $tipoPlatillo=0; 
+        $idusuario=$_SESSION['idUsuario'];
+        foreach($listaFavoritos as $favoritos){
+          if($idusuario==$favoritos->getIdUsuario()){
+            $idplatillo=$favoritos->getIdPlatillo();
+            foreach($listaPlatillos as $platillo){
+              if($idplatillo==$platillo->getId()){
+                $cena= $platillo->getTiempoComida();
+                if($cena==='6'){
+                  printf('<section class="col-md-4">');
+                    printf('<article class="nav nav-pills nav-justified">');
+                      printf('<h6 class="nav-item text-info"><strong> Agregado:</strong>&nbsp;%s</h6>', $favoritos->getFecha());
+                      printf('<td><a class="text-danger nav-item" style="max-width: 80px;" href="Javascript:eliminarFavoritos(%d)"><i class="bi bi-trash-fill"></i></a></td>', $favoritos->getId());
+                    printf('</article>'); 
+                    printf('<a id="imagen-platillo" href="Javascript:mostrarPlatillos(%d)"><img class="card-img-top img-responsive" src ="data:image/png;base64,'.base64_encode($platillo->getImagen()).'" width="290px" height="250px"/></a>', $platillo->getId()); 
+                    printf('<article id="pie-imagen" class="card-body">');
+                     printf('<h5 class="card-title">%s</h5>', $platillo->getNombre());
+                     printf('<a  class="btn btn-primary"  href="Javascript:mostrarPlatillos(%d)">Saber más...</a>', $platillo->getId());
+                   printf('</article>');
+                   printf('<span class="p-2"></span>');
+                 printf('</section>');
+                 $tipoPlatillo=1;
+               }
+             }
+           }
+         }
+       }
+       if($tipoPlatillo !=1 ){
+        printf('<article class="container">');
+          print('<div class="alert alert-info" role="alert">No tiene ningún platillo de cena como favorito</div>');
+        printf('</article>');
+      }
+    ?>
+  </section>
+</section>
+</section>
+<!-- Contenedor de otros platillos -->
+<section class="tab-pane fade" id="otros" role="tabpanel" aria-labelledby="pills-otros-tab">
+  <section class="container p-2">
+    <section class="row align-items-start">
+      <?php
+        $tipoPlatillo=0; 
+        $idusuario=$_SESSION['idUsuario'];
+        foreach($listaFavoritos as $favoritos){
+          if($idusuario==$favoritos->getIdUsuario()){
+            $idplatillo=$favoritos->getIdPlatillo();
+            foreach($listaPlatillos as $platillo){
+              if($idplatillo==$platillo->getId()){
+                $cena= $platillo->getTiempoComida();
+                if($otros==='7'){
+                  printf('<section class="col-md-4">');
+                    printf('<article class="nav nav-pills nav-justified">');
+                      printf('<h6 class="nav-item text-info"><strong> Agregado:</strong>&nbsp;%s</h6>', $favoritos->getFecha());
+                      printf('<td><a class="text-danger nav-item" style="max-width: 80px;" href="Javascript:eliminarFavoritos(%d)"><i class="bi bi-trash-fill"></i></a></td>', $favoritos->getId());
+                    printf('</article>'); 
+                    printf('<a id="imagen-platillo" href="Javascript:mostrarPlatillos(%d)"><img class="card-img-top img-responsive" src ="data:image/png;base64,'.base64_encode($platillo->getImagen()).'" width="290px" height="250px"/></a>', $platillo->getId()); 
+                    printf('<article id="pie-imagen" class="card-body">');
+                     printf('<h5 class="card-title">%s</h5>', $platillo->getNombre());
+                     printf('<a  class="btn btn-primary"  href="Javascript:mostrarPlatillos(%d)">Saber más...</a>', $platillo->getId());
+                   printf('</article>');
+                   printf('<span class="p-2"></span>');
+                 printf('</section>');
+                 $tipoPlatillo=1;
+               }
+             }
+           }
+         }
+       }
+       if($tipoPlatillo !=1 ){
+        printf('<article class="container">');
+          print('<div class="alert alert-info" role="alert">No tiene ningún platillo de otros como favorito</div>');
+        printf('</article>');
+      }
+    ?>
+  </section>
+</section>
+</section>
+</section>
+<!-- Formulario para mandar el id de cada platillo solicitado para mostrarse -->
+<form name="mostrarPlatillo" method="post" action="">
+  <input type="hidden" name="idPlatilloMostrar" value="-1">
+</form>
+<form name="eliminarFavorito" method="post" action="">
+  <input type="hidden" name="idFavoritos" value="-1">
+</form>
 </section>
 <section  id="ir-arriba" class="container p-2 ir-arriba" style="text-align: right;padding:20px;display:none;font-size:20px; color:#fff;cursor:pointer;position: fixed;bottom:50px;right:20px;max-width: 47px;
-  max-height: 47px;">
-    <a href="#encabezado" class="btn btn-primary cmn-btncircle">
-        <i class="fa fa-arrow-up"></i>
-    </a>
+max-height: 47px;">
+<a href="#encabezado" class="btn btn-primary cmn-btncircle">
+  <i class="fa fa-arrow-up"></i>
+</a>
 </section>
 
 
-      
+</main>

@@ -1,0 +1,7 @@
+id,nombre,apellidos,sexo,escolaridad,ocupacion,domicilio,edad,usuario
+1,Raúl,"Hernández Flores",Hombre,Preescolar,Comerciante,Teotitlan,24,raul24
+2,Eduardo,"Peréz Lopéz",Hombre,Bachillerato,Comerciante,Teotitlan,30,eduardo30
+3,Federico,"Anastacio Hernandéz",Hombre,Primaria,Comerciante,Teotitlan,29,federico29
+5,Juan,"Hernández Flores",Hombre,Bachillerato,Comerciante,Teotitlan,45,juan45
+7,Ceila,Castillo,Mujer,Licenciatura,"profesora particular","calle Ricardo Flores magos 19 a col. centro TeotitlÃ¡n de flores magon Oaxaca",27,Cei
+8,Israel,Reyes,Hombre,Bachillerato,Estudiante,Teotitlan,22,Isra

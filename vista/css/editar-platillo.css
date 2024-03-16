@@ -1,0 +1,34 @@
+#encabezado {
+	display: none;
+}
+.barra {
+    background:#FA7070;
+    color: #ffffff;
+    font-weight: bold;
+    margin: 0;
+}
+
+.cerrar:hover {
+    background-color:#581845;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.568);
+    color: #ffffff;
+}
+
+.user {
+    font-size: 35px;
+}
+
+.contenedor{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.hoverIR-h6 {
+    transition: color 0.3s, background-color 0.3s; 
+}
+
+.hoverIR-h6:hover {
+    color:white; 
+    background-color: #011b58; 
+}

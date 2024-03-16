@@ -1,0 +1,722 @@
+<!-- Encabezado-->
+<section class="container-fluid" style="background-color:#FFC300">
+  <nav class="navbar">
+    <section class="container-fluid mt-0 barra">
+      <a class="navbar-brand">
+        <img src="vista/images/iconos/logo-a.png" height="80px" >
+      </a>
+      <section class="d-flex">
+        <article class="mt-3 me-2">
+          <?php echo $_SESSION['nombre'];?>&nbsp;
+        </article>
+        <article class="btn-group">
+          <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"  style="background-color:#FFC300; border-color: #FFC300;">
+            <i class="fas fa-user-circle user"></i>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end" style="background-color:#581845;">
+            <li><a class="dropdown-item cerrar" href="admin" style="color:white;"><i class="bi bi-arrow-left-circle-fill m-1"></i>Regresar</a></li>
+            <li><a class="dropdown-item cerrar" href="Javascript:salir()" style="color:white;"><i class="fas fa-sign-out-alt m-1" ></i>Salir</a></li>
+          </ul>
+        </article>                
+      </section>
+    </section>
+  </nav>
+</section>
+<section class="contenedor">
+  <!-- Titulo de la seccion de la parte superior-->
+  <section class="container-fluid" style="background-color: #0C2233; color: aliceblue;">
+    <section class="row">
+      <article class="col-md-8 d-flex justify-content-center">
+        <h6 class="fw-bold fs-5 fs-md-4 fs-lg-3"><i class="bi bi-check2-circle"></i>&nbsp;Validar datos del platillo</h6>
+      </article>
+      <article class="col-md-2 d-flex justify-content-center flex-grow-1 p-1 hoverIR-h6"  style="cursor:pointer;">
+        <h6 class="fw-bold fs-6 fs-md-5 fs-lg-4"><i class="bi bi-info-circle-fill" data-bs-toggle="modal" data-bs-target="#modalInstrucciones">&nbsp;Instrucciones</i> </h6>
+      </article>
+      <article class="col-md-2 d-flex justify-content-center flex-grow-1 p-1 hoverIR-h6" style="cursor:pointer;">
+        <h6 class="fw-bold fs-6 fs-md-5 fs-lg-4 "><a href="admin" style="color:white; text-decoration: none;"><i class="bi bi-arrow-left-circle-fill m-1"></i>Regresar</a></h6>
+      </article>
+    </section>
+  </section>
+
+  <!-- Modal de instrucciones para el registro del platillo -->
+  <section class="modal fade" id="modalInstrucciones" tabindex="-1" aria-hidden="true">
+    <section class="modal-dialog">
+      <section class="modal-content">
+        <header class="modal-header text-white" style="background-color:#09386A;">
+          <h5 class="modal-title w-100 text-center fw-bold" id="exampleModalLabel">Instrucciones</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </header>
+        <article class="modal-body">
+          <div class="container text-justify">
+            <div class="card shadow">
+              <div class="card-body">
+                <h5 class="card-title text-center text-white p-2 rounded" style="background-color: #900C3F;">Validación de Estados de Secciones</h5>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">
+                    <strong>1. Revisión de Estado:</strong> Revisa el estado de validación de cada "Sección" para tomar acciones.
+                  </li>
+                  <li class="list-group-item">
+                    <strong>2. En Proceso:</strong> Espera si el estado de validación está en proceso de validación.
+                  </li>
+                  <li class="list-group-item">
+                    <strong>3. En Revisión:</strong> Espera si el estado de validación está en proceso de revisión.
+                  </li>
+                  <li class="list-group-item">
+                    <strong>4. Modificar:</strong> Si el estado es "Modificar", lee la nota en la sección de estados de validación.
+                  </li>
+                  <li class="list-group-item">
+                    <strong>5. Publicado:</strong> ¡Felicidades! La información se ha publicado en la sección de platillos.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="modal-footer" style="background-color: #fafaff;">
+          <button type="button" class="btn btn-info text-white" data-bs-dismiss="modal">Cerrar</button>
+        </article>
+      </section>
+    </section>
+  </section>
+
+  <section class="container-fluid row">
+    <section class="col-md-4 mt-3 "  style="color: #072b39; background-color:#f8f8f86b; border-right:#e0e6e9 6px solid; max-height: 100%;">
+      <header class="p-1" style="background-color: #09386A; color: white;  border-top-right-radius: 0.25rem; border-top-left-radius: 0.25rem;">
+        <center><h5 class="fw-bold">Estados de validación del platillo</h5></center>
+      </header>
+      <form id="formValidarDatos">
+        <input type="hidden" name="idPlatillo" value="<?php echo $idPlatilloValidar?>">
+        <section>
+          <section class="table-responsive">
+            <table class="table ">
+              <thead style="background-color:#900C3F; color: white;">
+                <tr>
+                  <th><h6>Secciones</h6></th>
+                  <th><h6>Estado de validación</h6></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Datos del platillo</td>
+                  <td>
+                    <article class="input-group">
+                      <?php  $dato = $validacion->getSeccionDatos();?>
+                      <select name="seccionDatos" id="estado_validacion" class="form-select">
+                        <option value="1" <?php if ($dato == 1) echo "selected"; ?>>En proceso</option>
+                        <option value="2" <?php if ($dato == 2) echo "selected"; ?>>En revisión</option>
+                        <option value="3" <?php if ($dato == 3) echo "selected"; ?>>Modificar</option>
+                        <option value="4" <?php if ($dato == 4) echo "selected"; ?>>Publicado</option>
+                      </select>
+                      <span class="input-group-text" id="icono_estado"></span>
+                    </article>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Ingredientes</td>
+                  <td>
+                    <article class="input-group">
+                      <?php  $dato = $validacion->getSeccionIngredientes();?>
+                      <select name="seccionIngredientes" id="estado_validacion_ingredientes" class="form-select">
+                        <option value="1" <?php if ($dato == 1) echo "selected"; ?>>En proceso</option>
+                        <option value="2" <?php if ($dato == 2) echo "selected"; ?>>En revisión</option>
+                        <option value="3" <?php if ($dato == 3) echo "selected"; ?>>Modificar</option>
+                        <option value="4" <?php if ($dato == 4) echo "selected"; ?>>Publicado</option>
+                      </select>
+                      <span class="input-group-text" id="icono_estado_ingredientes"></span>
+                    </article>
+                    
+                  </td>
+                </tr>
+                <tr>
+                  <td>Utencilios</td>
+                  <td>
+                    <article class="input-group">  
+                      <?php   $dato = $validacion->getSeccionUtencilio();?>
+                      <select name="seccionUtencilio" id="estado_validacion_utencilio" class="form-select">
+                        <option value="1" <?php if ($dato == 1) echo "selected"; ?>>En proceso</option>
+                        <option value="2" <?php if ($dato == 2) echo "selected"; ?>>En revisión</option>
+                        <option value="3" <?php if ($dato == 3) echo "selected"; ?>>Modificar</option>
+                        <option value="4" <?php if ($dato == 4) echo "selected"; ?>>Publicado</option>
+                      </select>
+                      <span class="input-group-text" id="icono_estado_utencilio"></span>
+                    </article>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Preparación</td>
+                  <td>
+                    <article class="input-group">
+                      <?php $dato = $validacion->getSeccionPreparacion();?>
+                      <select name="seccionPreparacion" id="estado_validacion_preparacion" class="form-select">
+                        <option value="1" <?php if ($dato == 1) echo "selected"; ?>>En proceso</option>
+                        <option value="2" <?php if ($dato == 2) echo "selected"; ?>>En revisión</option>
+                        <option value="3" <?php if ($dato == 3) echo "selected"; ?>>Modificar</option>
+                        <option value="4" <?php if ($dato == 4) echo "selected"; ?>>Publicado</option>
+                      </select>
+                      <span class="input-group-text" id="icono_estado_preparacion"></span>
+                    </article>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Información Nutrimental</td>
+                  <td>
+                    <article class="input-group">
+                      <?php $dato = $validacion->getSeccionNutriente();?>
+                      <select name="seccionNutriente" id="estado_validacion_nutriente" class="form-select">
+                        <option value="1" <?php if ($dato == 1) echo "selected"; ?>>En proceso</option>
+                        <option value="2" <?php if ($dato == 2) echo "selected"; ?>>En revisión</option>
+                        <option value="3" <?php if ($dato == 3) echo "selected"; ?>>Modificar</option>
+                        <option value="4" <?php if ($dato == 4) echo "selected"; ?>>Publicado</option>
+                      </select>
+                      <span class="input-group-text" id="icono_estado_nutriente"></span>
+                    </article>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Información Adicional</td>
+                  <td>
+                    <article class="input-group">
+                      <?php  $dato = $validacion->getSeccionComplemento();?>
+                      <select name="seccionComplemento" id="estado_validacion_complemento" class="form-select">
+                        <option value="1" <?php if ($dato == 1) echo "selected"; ?>>En proceso</option>
+                        <option value="2" <?php if ($dato == 2) echo "selected"; ?>>En revisión</option>
+                        <option value="3" <?php if ($dato == 3) echo "selected"; ?>>Modificar</option>
+                        <option value="4" <?php if ($dato == 4) echo "selected"; ?>>Publicado</option>
+                      </select>
+                      <span class="input-group-text" id="icono_estado_complemento"></span>
+                    </article>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+          <section>
+            <h6><strong>Escribir nota</strong> <em>(Opcional)</em>:</h6>
+            <!-- Sección de nota -->
+            <section class="border border-secondary border-2 rounded-2">
+              <?php
+                $nota = $validacion->getNota();
+                if (empty($nota)) {
+                  printf('<textarea name="nota" class="form-control" rows="2" placeholder="Escribe tu nota aquí..."></textarea>');
+                } else {
+
+                  printf('<textarea name="nota" class="form-control" rows="4">%s</textarea>', $nota);
+                }
+              ?>
+            </section>
+          </section>
+        </section>
+        <section class="p-3">
+          <center>
+            <button type="button" class="btn btn-success" onclick="validarPlatillo()"  style="background-color:#066C29">Validar datos</button>
+          </center>  
+        </section>
+      </form>
+    </section>
+    <section class="mt-3 col-md-8 font-weight-bold p-3">
+      <!-- Pestañas de navegacion -->
+      <nav>
+        <section class="nav nav-tabs" id="nav-tab" role="tablist">
+          <button class="nav-link active" id="nav-datos-tab" data-bs-toggle="tab" data-bs-target="#nav-datos" type="button" role="tab" aria-controls="nav-datos" aria-selected="true">Datos del platillo</button>
+          <button class="nav-link" id="nav-ingredientes-tab" data-bs-toggle="tab" data-bs-target="#nav-ingredientes" type="button" role="tab" aria-controls="nav-ingredientes" aria-selected="false">Ingredientes</button>
+          <button class="nav-link" id="nav-utencilios-tab" data-bs-toggle="tab" data-bs-target="#nav-utencilios" type="button" role="tab" aria-controls="nav-utencilios" aria-selected="false">Utencilios</button>
+          <button class="nav-link" id="nav-preparacion-tab" data-bs-toggle="tab" data-bs-target="#nav-preparacion" type="button" role="tab" aria-controls="nav-preparacion" aria-selected="false">Preparación</button>
+          <button class="nav-link" id="nav-nutriente-tab" data-bs-toggle="tab" data-bs-target="#nav-nutriente" type="button" role="tab" aria-controls="nav-nutriente" aria-selected="false">Información nutrimental</button>
+          <button class="nav-link" id="nav-complemento-tab" data-bs-toggle="tab" data-bs-target="#nav-complemento" type="button" role="tab" aria-controls="nav-complemento" aria-selected="false">Información adicional</button>
+        </section>
+      </nav>
+      <!-- Contenido de la seccion -->
+      <main class="tab-content" id="nav-tabContent">
+        <section class="tab-pane fade show active" id="nav-datos" role="tabpanel" aria-labelledby="nav-datos-tab" tabindex="0">
+          <!-- Sección 1: Datos del platillo -->
+          <section id="section1" class="mt-1">
+            <header class="p-1" style="background-color: #00b1ce; color:white; border-radius:5px;">
+              <h4>Sección 1: Datos del platillo</h4>
+            </header>
+            <form id="formDatosP" class="row g-3 needs-validation"  method="POST"  enctype="multipart/form-data">
+              <input type="hidden" name="idPlatillo" id="idPlatillo" value="<?php echo $platillo->getId(); ?>" required>
+              <article class="col-md-6">
+                <label for="nombrePlatillo" class="form-label">Nombre</label>
+                <input type="text" class="form-control" name="nombrePlatillo" id="nombrePlatillo" required value="<?php echo $platillo->getNombre(); ?>">
+
+              </article>
+              <article class="col-md-6">
+                <label for="tiempoComida" class="form-label">Tiempo de Comida</label>
+                <select class="form-select text-center" name="tiempoComida" id="tiempoComida" required>
+                  <?php
+                  $opcionesTiempoComida = array(
+                    1 => 'Desayuno', 2 => 'Colación de la mañana', 3 => 'Comida', 4 => 'Postre', 5 => 'Colación de la tarde',
+                    6 => 'Cena', 7 => 'Otros'
+                  );
+
+                  foreach ($opcionesTiempoComida as $valor => $texto) {
+                    $selected = ($platillo->getTiempoComida() == $valor) ? 'selected' : '';
+                    echo '<option value="' . $valor . '" ' . $selected . '>' . $texto . '</option>';
+                  }
+                  ?>
+                </select>
+              </article>
+              <article class="col-md-6">
+                <label for="tiempoPreparacion" class="form-label">Tiempo de preparación</label>
+                <input type="text" name="tiempoPreparacion" id="tiempoPreparacion"  class="form-control" required value="<?php echo $platillo->getTiempoPreparacion(); ?>">
+              </article>
+              <article class="col-md-6">
+                <label for="tiempoCoccion" class="form-label">Tiempo de coccion</label>
+                <input type="text" class="form-control" name="tiempoCoccion" id="tiempoCoccion" required value="<?php echo $platillo->getTiempoCoccion(); ?>">
+              </article>
+              <article class="col-md-6">
+                <label for="caducidad" class="form-label">Caducidad</label>
+                <input type="text" class="form-control" name="caducidad" id="caducidad" required value="<?php echo $platillo->getCaducidad(); ?>">
+              </article>
+              <article class="col-md-6">
+                <label for="porciones" class="form-label">Porciones</label>
+                <input type="text" class="form-control" name="porciones" id="porciones" required value="<?php echo $platillo->getPorciones(); ?>">
+              </article>
+              <article class="col-md-6">
+                <label for="costoPromedio" class="form-label">Costo Promedio</label>
+                <input type="text" class="form-control" name="costoPromedio" id="costoPromedio" required value="<?php echo $platillo->getCostoPromedio(); ?>">
+              </article>
+              <article class="col-md-6">
+                <label for="rendimiento" class="form-label">Rendimiento</label>
+                <input type="text" class="form-control" name="rendimiento" id="rendimiento" required value="<?php echo $platillo->getRendimiento(); ?>">
+              </article>
+              <article class="col-md-6">
+                <label for="descripcion" class="form-label">Descripcion del Platillo</label>
+                <textarea name="descripcion" id="descripcion" class="form-control" required><?php echo $platillo->getDescripcion(); ?></textarea>
+              </article>
+              <article class="col-md-6">
+                <img src="data:image/png;base64,<?php echo base64_encode($platillo->getImagen()); ?>" width="50px" height="50px">
+                <label for="imagenPlatillo" class="form-label">Subir imagen del Platillo <strong>(Si deseas Actualizarla)</strong></label>
+                <br>
+                <input type="file" class="form-control mt-1" name="imagenPlatillo" id="imagenPlatillo"  accept="image/*">
+              </article>
+            </form>                
+          </section>
+        </section>
+        <section class="tab-pane fade" id="nav-ingredientes" role="tabpanel" aria-labelledby="nav-ingredientes-tab" tabindex="0">
+          <!-- Sección 2: Ingredientes -->
+          <section id="section2" class="mt-1">
+            <header class="p-1" style="background-color: #00b1ce; color:white; border-radius:5px;">
+              <h4>Sección 2: Ingredientes</h4>
+            </header>
+            <!-- Campos del formulario de Ingredientes -->
+           <form id="formIngredientes" class="container mt-3">
+            <hr>
+            <input type="hidden" name="idPlatillo" id="idPlatillo" value="<?php echo $platillo->getId(); ?>" required>
+            <section id="grupoFormularioContainer">
+              <?php foreach ($listaIngredientes as $ingrediente): ?>
+                <section class="grupo-formulario row" data-form-id="formIngredientes">
+                  <input type="hidden" name="idIngrediente" class="idIngrediente" value="<?php echo $ingrediente->getId(); ?>" required>
+                  <article class="col-md-4 p-1">
+                    <input type="text" name="nombreIngrediente" class="form-control" required value="<?php echo $ingrediente->getNombre(); ?>">
+                  </article>
+                  <article class="col-md-4 p-1">
+                    <input type="text" name="cantidad" class="form-control" required value="<?php echo $ingrediente->getCantidad(); ?>">
+                  </article>
+                  <article class="col-md-4 p-1">
+                    <input type="text" name="unidadMedida" class="form-control" required value="<?php echo $ingrediente->getUnidadMedida(); ?>">
+                  </article>
+                </section>
+              <?php endforeach; ?>
+            </section>
+          </form>
+          </section>
+        </section>
+        <section class="tab-pane fade" id="nav-utencilios" role="tabpanel" aria-labelledby="nav-utencilios-tab" tabindex="0">
+          <!-- Sección 3: Utencilios -->
+          <section id="section3" class="mt-1">
+            <header class="p-1" style="background-color: #00b1ce; color:white; border-radius:5px;">
+              <h4>Sección 3: Utencilios</h4>
+            </header>
+            <!-- Campos del formulario de Utencilios -->
+            <form id="formUtencilio" class="container mt-3">
+              <hr>
+              <input type="hidden" name="idPlatillo" id="idPlatillo" value="<?php echo $platillo->getId(); ?>" required>
+              <section id="formularioUtenciliosContainer">
+                <?php foreach ($listaUtencilio as $utencilio): ?>
+                  <section class="formulario-utencilios row" data-form-id="formUtencilio">
+                    <input type="hidden" name="idUtencilio" class="idUtencilio" value="<?php echo $utencilio->getId(); ?>" required>
+                    <article class="col-md-8 p-1">
+                      <input type="text" name="nombreUtencilio" class="form-control" required value="<?php echo $utencilio->getNombre(); ?>">
+                    </article>
+                    <article class="col-md-4 p-1">
+                      <input type="number" name="cantidad" min="1" class="form-control" required value="<?php echo $utencilio->getCantidad(); ?>">
+                    </article>
+                  </section>
+                <?php endforeach; ?>
+              </section>
+            </form>
+          </section>
+        </section>
+        <section class="tab-pane fade" id="nav-preparacion" role="tabpanel" aria-labelledby="nav-preparacion-tab" tabindex="0">
+          <!-- Sección 4: Preparacion -->
+          <section id="section4" class="mt-1">
+            <header class="p-1" style="background-color: #00b1ce; color:white; border-radius:5px;">
+              <h4>Sección 4: Preparación</h4>
+            </header>
+            <!-- Campos del formulario de Preparación -->
+            <form id="formPreparacion" class="container mt-3" enctype="multipart/form-data">
+              <hr>
+              <input type="hidden" name="idPlatillo" id="idPlatillo" value="<?php echo $platillo->getId(); ?>" required>
+              <section id="formularioPreparacionContainer">
+                <?php foreach ($listaPreparacion as $preparacion): ?>
+                  <section class="formulario-preparacion row">
+                    <input type="hidden" name="idPreparacion" class="idPreparacion" value="<?php echo $preparacion->getId(); ?>" required>
+                    <article class="col-md-4 p-1">
+                      <label for="paso">Número de paso</label>
+                      <input type="number" name="paso" class="form-control" min="1" required value="<?php echo $preparacion->getPaso(); ?>">
+                    </article>
+                    <article class="col-md-4 p-1">
+                      <label for="instruccion">Instrucción</label>
+                      <textarea class="form-control" name="instruccion" required><?php echo $preparacion->getInstruccion(); ?></textarea>
+                    </article>
+                    <article class="col-md-4 p-1">
+                      <?php if ($preparacion->getFoto() != null): ?>
+                        <img src="data:image/png;base64,<?php echo base64_encode($preparacion->getFoto()); ?>" width="50px" height="50px">
+                      <?php endif; ?>
+                      <label for="imagen">Subir foto, si deseas actualizarla </label>
+                      <input type="file" name="fotoPreparacion" id="fotoPreparacion" class="form-control mt-1" accept="image/*">
+                    </article>
+                  </section>
+                <?php endforeach; ?>
+              </section>
+            </form>
+          </section>
+        </section>
+        <section class="tab-pane fade" id="nav-nutriente" role="tabpanel" aria-labelledby="nav-nutriente-tab" tabindex="0">
+          <!-- Sección 5: Información Nutrimental -->
+          <section id="section5" class="mt-1">
+            <header class="p-1" style="background-color: #00b1ce; color:white; border-radius:5px;">
+              <h4>Sección 5: Información Nutrimental</h4>
+            </header>
+            <!-- Campos del Información Nutrimental -->
+            <form id="formNutriente" class="container mt-3">
+              <hr>
+              <input type="hidden" name="idPlatillo" id="idPlatillo" value="<?php echo $platillo->getId(); ?>" required>
+              <section id="formularioNutrimentalContainer">
+                <?php foreach ($listaNutriente as $nutriente): ?>
+                  <section class="formulario-nutrimental row" data-form-id="formNutriente">
+                    <input type="hidden" name="idNutriente" class="idNutriente" value="<?php echo $nutriente->getId(); ?>" required>
+                    <article class="col-md-4 p-1">
+                      <input type="text" class="form-control" name="nombreNutriente" required value="<?php echo $nutriente->getNombre(); ?>">
+                    </article>
+                    <article class="col-md-2 p-1">
+                      <input type="number" class="form-control" name="cantidadR" required value="<?php echo $nutriente->getCantidadR(); ?>">
+                    </article>
+                    <article class="col-md-2 p-1">
+                      <input type="number" class="form-control" name="cantidadP" required value="<?php echo $nutriente->getCantidadP(); ?>">
+                    </article>
+                    <article class="col-md-4 p-1">
+                      <input type="text" class="form-control" name="unidadMedida" required value="<?php echo $nutriente->getUnidadMedida(); ?>">
+                    </article>
+                  </section>
+                <?php endforeach; ?>
+              </section>
+            </form>
+          </section>  
+        </section>
+        <section class="tab-pane fade" id="nav-complemento" role="tabpanel" aria-labelledby="nav-complemento-tab" tabindex="0">
+          <!-- Sección 6: Informacion adicional -->
+          <section id="section6" class="mt-1">
+            <header class="p-1" style="background-color: #00b1ce; color:white; border-radius:5px;">
+              <h4>Sección 6: Información Adicional</h4>
+            </header>
+            <form id="formComplemento" class="container row">
+              <input type="hidden" name="idPlatillo" id="idPlatillo" value="<?php echo $platillo->getId(); ?>" required>
+              <input type="hidden" name="idComplemento" id="idComplemento" value="<?php echo $complemento->getId(); ?>" required>
+              <article class="col-md-6">
+                <label for="codigo" class="form-label text-dark"><i class="bi bi-geo-fill" style="color: #F77C44;"></i>&nbsp;Estado a la que pertenece el platillo</label>
+               <select class="form-select" id="estado" name="estado" required>
+                  <option value="" <?php echo ($complemento->getEstado() === '') ? 'selected="selected"' : ''; ?>>-- Seleccione --</option>
+                  <?php
+                  $estados = array(
+                    "Aguascalientes", "Baja California", "Baja California Sur", "Campeche", "Coahuila de Zaragoza",
+                    "Colima", "Chiapas", "Chihuahua", "Ciudad de México", "Durango", "Guanajuato", "Guerrero",
+                    "Hidalgo", "Jalisco", "México", "Michoacán de Ocampo", "Morelos", "Nayarit", "Nuevo León",
+                    "Oaxaca", "Puebla", "Querétaro", "Quintana Roo", "San Luis Potosí", "Sinaloa", "Sonora",
+                    "Tabasco", "Tamaulipas", "Tlaxcala", "Veracruz", "Yucatán", "Zacatecas"
+                  );
+                  foreach ($estados as $estado) {
+                    echo '<option value="' . $estado . '" ' . (($complemento->getEstado() === $estado) ? 'selected="selected"' : '') . '>' . $estado . '</option>';
+                  }
+                  ?>
+                </select>
+              </article>
+              <article class="col-md-6">
+                <label for="region" class="form-label">Región del platillo</label>
+                <input type="text" name="region" id="region" class="form-control" required value="<?php echo $complemento->getRegion(); ?>">
+              </article>
+              <article class="col-md-6">
+                <label for="municipio" class="form-label">Municipio del platillo</label>
+                <input type="text" name="municipio" id="municipio" class="form-control" required value="<?php echo $complemento->getMunicipio(); ?>">
+              </article>
+              <article class="col-md-6">
+                <label for="lengua" class="form-label">Lengua que hablan</label>
+                <input type="text" name="lengua" id="lengua" class="form-control" required value="<?php echo $complemento->getLengua(); ?>">
+              </article>
+              <article class="col-md-6">
+                <label for="cultura" class="form-label">Cultura que pertenecen</label>
+                <input type="text" name="cultura" id="cultura" class="form-control" required value="<?php echo $complemento->getCultura(); ?>">
+              </article>
+            </form>
+          </section>
+        </section>
+      </main>          
+    </section>
+  </section>
+</section>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    function actualizarIcono(selectedValue) {
+      var icono = document.getElementById('icono_estado');
+
+      switch (selectedValue) {
+        case '1':
+          icono.innerHTML = '<i class="bi bi-hourglass-split"></i>';
+          icono.style.backgroundColor = '#51CAE3';
+          icono.style.color = 'white';
+          break;
+        case '2':
+          icono.innerHTML = '<i class="bi bi-clipboard2-pulse-fill"></i>';
+          icono.style.backgroundColor = '#FFC300';
+          icono.style.color = 'white';
+          break;
+        case '3':
+          icono.innerHTML = '<i class="bi bi-pencil-fill"></i>';
+          icono.style.backgroundColor = '#FF5733';
+          icono.style.color = 'white';
+          break;
+        case '4':
+          icono.innerHTML = '<i class="bi bi-check2-circle"></i>';
+          icono.style.backgroundColor = '#2FE90A';
+          icono.style.color = 'white';
+          break;
+        default:
+          icono.innerHTML = '';
+          break;
+      }
+    }
+
+    var select = document.getElementById('estado_validacion');
+    select.addEventListener('change', function() {
+      var selectedValue = this.value;
+      actualizarIcono(selectedValue);
+    });
+
+    // Inicializar el icono
+    var selectedValue = select.value;
+    actualizarIcono(selectedValue);
+  });
+
+  document.addEventListener("DOMContentLoaded", function() {
+    function actualizarIcono(selectedValue) {
+      var icono = document.getElementById('icono_estado_ingredientes');
+
+      switch (selectedValue) {
+        case '1':
+          icono.innerHTML = '<i class="bi bi-hourglass-split"></i>';
+          icono.style.backgroundColor = '#51CAE3';
+          icono.style.color = 'white';
+          break;
+        case '2':
+          icono.innerHTML = '<i class="bi bi-clipboard2-pulse-fill"></i>';
+          icono.style.backgroundColor = '#FFC300';
+          icono.style.color = 'white';
+          break;
+        case '3':
+          icono.innerHTML = '<i class="bi bi-pencil-fill"></i>';
+          icono.style.backgroundColor = '#FF5733';
+          icono.style.color = 'white';
+          break;
+        case '4':
+          icono.innerHTML = '<i class="bi bi-check2-circle"></i>';
+          icono.style.backgroundColor = '#2FE90A';
+          icono.style.color = 'white';
+          break;
+        default:
+          icono.innerHTML = '';
+          break;
+      }
+    }
+
+    var select = document.getElementById('estado_validacion_ingredientes');
+    select.addEventListener('change', function() {
+      var selectedValue = this.value;
+      actualizarIcono(selectedValue);
+    });
+
+    // Inicializar el icono
+    var selectedValue = select.value;
+    actualizarIcono(selectedValue);
+  });
+
+  document.addEventListener("DOMContentLoaded", function() {
+    function actualizarIcono(selectedValue) {
+      var icono = document.getElementById('icono_estado_utencilio');
+
+      switch (selectedValue) {
+        case '1':
+          icono.innerHTML = '<i class="bi bi-hourglass-split"></i>';
+          icono.style.backgroundColor = '#51CAE3';
+          icono.style.color = 'white';
+          break;
+        case '2':
+          icono.innerHTML = '<i class="bi bi-clipboard2-pulse-fill"></i>';
+          icono.style.backgroundColor = '#FFC300';
+          icono.style.color = 'white';
+          break;
+        case '3':
+          icono.innerHTML = '<i class="bi bi-pencil-fill"></i>';
+          icono.style.backgroundColor = '#FF5733';
+          icono.style.color = 'white';
+          break;
+        case '4':
+          icono.innerHTML = '<i class="bi bi-check2-circle"></i>';
+          icono.style.backgroundColor = '#2FE90A';
+          icono.style.color = 'white';
+          break;
+        default:
+          icono.innerHTML = '';
+          break;
+      }
+    }
+
+    var select = document.getElementById('estado_validacion_utencilio');
+    select.addEventListener('change', function() {
+      var selectedValue = this.value;
+      actualizarIcono(selectedValue);
+    });
+
+    // Inicializar el icono
+    var selectedValue = select.value;
+    actualizarIcono(selectedValue);
+  });
+
+  document.addEventListener("DOMContentLoaded", function() {
+    function actualizarIcono(selectedValue) {
+      var icono = document.getElementById('icono_estado_preparacion');
+
+      switch (selectedValue) {
+        case '1':
+          icono.innerHTML = '<i class="bi bi-hourglass-split"></i>';
+          icono.style.backgroundColor = '#51CAE3';
+          icono.style.color = 'white';
+          break;
+        case '2':
+          icono.innerHTML = '<i class="bi bi-clipboard2-pulse-fill"></i>';
+          icono.style.backgroundColor = '#FFC300';
+          icono.style.color = 'white';
+          break;
+        case '3':
+          icono.innerHTML = '<i class="bi bi-pencil-fill"></i>';
+          icono.style.backgroundColor = '#FF5733';
+          icono.style.color = 'white';
+          break;
+        case '4':
+          icono.innerHTML = '<i class="bi bi-check2-circle"></i>';
+          icono.style.backgroundColor = '#2FE90A';
+          icono.style.color = 'white';
+          break;
+        default:
+          icono.innerHTML = '';
+          break;
+      }
+    }
+
+    var select = document.getElementById('estado_validacion_preparacion');
+    select.addEventListener('change', function() {
+      var selectedValue = this.value;
+      actualizarIcono(selectedValue);
+    });
+
+    // Inicializar el icono
+    var selectedValue = select.value;
+    actualizarIcono(selectedValue);
+  });
+
+  document.addEventListener("DOMContentLoaded", function() {
+    function actualizarIcono(selectedValue) {
+      var icono = document.getElementById('icono_estado_nutriente');
+
+      switch (selectedValue) {
+        case '1':
+          icono.innerHTML = '<i class="bi bi-hourglass-split"></i>';
+          icono.style.backgroundColor = '#51CAE3';
+          icono.style.color = 'white';
+          break;
+        case '2':
+          icono.innerHTML = '<i class="bi bi-clipboard2-pulse-fill"></i>';
+          icono.style.backgroundColor = '#FFC300';
+          icono.style.color = 'white';
+          break;
+        case '3':
+          icono.innerHTML = '<i class="bi bi-pencil-fill"></i>';
+          icono.style.backgroundColor = '#FF5733';
+          icono.style.color = 'white';
+          break;
+        case '4':
+          icono.innerHTML = '<i class="bi bi-check2-circle"></i>';
+          icono.style.backgroundColor = '#2FE90A';
+          icono.style.color = 'white';
+          break;
+        default:
+          icono.innerHTML = '';
+          break;
+      }
+    }
+
+    var select = document.getElementById('estado_validacion_nutriente');
+    select.addEventListener('change', function() {
+      var selectedValue = this.value;
+      actualizarIcono(selectedValue);
+    });
+
+    // Inicializar el icono
+    var selectedValue = select.value;
+    actualizarIcono(selectedValue);
+  });
+
+  document.addEventListener("DOMContentLoaded", function() {
+    function actualizarIcono(selectedValue) {
+      var icono = document.getElementById('icono_estado_complemento');
+
+      switch (selectedValue) {
+        case '1':
+          icono.innerHTML = '<i class="bi bi-hourglass-split"></i>';
+          icono.style.backgroundColor = '#51CAE3';
+          icono.style.color = 'white';
+          break;
+        case '2':
+          icono.innerHTML = '<i class="bi bi-clipboard2-pulse-fill"></i>';
+          icono.style.backgroundColor = '#FFC300';
+          icono.style.color = 'white';
+          break;
+        case '3':
+          icono.innerHTML = '<i class="bi bi-pencil-fill"></i>';
+          icono.style.backgroundColor = '#FF5733';
+          icono.style.color = 'white';
+          break;
+        case '4':
+          icono.innerHTML = '<i class="bi bi-check2-circle"></i>';
+          icono.style.backgroundColor = '#2FE90A';
+          icono.style.color = 'white';
+          break;
+        default:
+          icono.innerHTML = '';
+          break;
+      }
+    }
+
+    var select = document.getElementById('estado_validacion_complemento');
+    select.addEventListener('change', function() {
+      var selectedValue = this.value;
+      actualizarIcono(selectedValue);
+    });
+
+    // Inicializar el icono
+    var selectedValue = select.value;
+    actualizarIcono(selectedValue);
+  });
+</script> 

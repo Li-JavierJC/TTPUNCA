@@ -1,0 +1,10 @@
+body {
+	margin: 0px;
+	padding: 0px;
+}
+
+.contenedor{
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+}

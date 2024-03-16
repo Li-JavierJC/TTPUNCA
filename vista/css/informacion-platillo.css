@@ -1,16 +1,50 @@
-section#ir-arriba{
-	text-align: right;
-	padding:20px;
-	display:none;
-	font-size:20px; 
-	color:#fff;cursor:
-	pointer;position:
-	fixed;bottom:50px;
-	right:15px;
-  max-width: 47px;
-  max-height: 47px;
-  
+/*Estilos menú de enlaces del platillo*/
+.nav-hover .nav-item {
+  position: relative; /* Para que podamos posicionar la línea correctamente */
 }
+
+.nav-hover .nav-item .nav-link {
+  color: white;
+  text-decoration: none; /* Eliminamos el subrayado por defecto */
+  padding-bottom: 4px; /* Espacio para la línea */
+}
+
+.nav-hover .nav-item .nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #ffca00; /* Color de la línea */
+  transition: width 0.3s; /* Animación de la línea */
+}
+
+.nav-hover .nav-item:hover .nav-link::after {
+  width: 100%; /* Ancho completo al hacer hover */
+}
+
+
+#btn-regresar-arriba {
+  display: none; /* Ocultar el botón inicialmente */
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-size: 24px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+#btn-regresar-arriba i {
+  line-height: 50px; /* Centrar el icono verticalmente en el botón */
+}
+
 
 #form {
   width: 250px;

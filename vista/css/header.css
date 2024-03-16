@@ -1,14 +1,30 @@
 p#letra-btn{
 	font-family: 'Montserrat', sans-serif;
 	font-weight: bolder;
-	color: #FFC300;
+	color: #0D1E49;
 	font-size: 17px;
-	transition: color .5s;
+     position: relative;
 }
 
-p#letra-btn:hover {
-	color: #F06500;;
+
+p#letra-btn::before {
+    content: "";
+    position: absolute;
+    bottom: -3px; /* Ajusta esta propiedad para controlar la distancia del subrayado desde el texto */
+    left: 0;
+    width: 100%;
+    border-radius: 30px;
+    height: 3px; /* Ajusta esta propiedad para controlar el grosor del subrayado */
+    background: linear-gradient(90deg, #021C5F, #021C5F);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
 }
+
+p#letra-btn:hover::before {
+    transform: scaleX(1);
+}
+
 
 span{
     color: #ffffff;
@@ -45,6 +61,5 @@ span{
 
 .userr {
     font-size: 40px;
-     color: #00dbff;
-   
+    color: #00dbff;  
 }

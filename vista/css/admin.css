@@ -3,38 +3,15 @@
 }
 
 .barra {
-    background: #FFC300;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    margin: 0;
-    
-}
-
-
-
-span{
+    background:#FFC300;
     color: #ffffff;
-}
-
-.dropdown-menu {
-    margin: 17px;
-    background: #262a34;
-    color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.568);
-}
-
-.menuperfil {
-    color: white;
-}
-
-.menuperfil:focus {
-    background: #0f0f0f;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.568);
+    font-weight: bold;
+    margin: 0;
 }
 
 .cerrar:hover {
-    background-color: rgba(16, 20, 17, 0.877);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.568);
+    background-color:#581845;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.568);
     color: #ffffff;
 }
 
@@ -61,6 +38,7 @@ span{
 /*ESTILOS MENU*/
 
 .barra-lateral .menu a {
+     border-radius: 0%;
     background: #012738;
     display: block;
     padding: 20px;
@@ -71,6 +49,7 @@ span{
 
 .barra-lateral .menu a:hover {
     background-color: #04a5fca2;
+    color: #f3f0f0;
     text-decoration: none;
 }
 

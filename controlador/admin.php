@@ -1,6 +1,8 @@
 <?php
-      //header("Content-Type: text/html;charset=utf-8");
-    $pageTitle = "Administrador TTPUNCA";
+    //header("Content-Type: text/html;charset=utf-8");
+    setlocale(LC_TIME, 'es_ES.UTF-8');
+
+    $pageTitle = "Administrador PCT-OAXACA";
     if (!$_SESSION['loggedin']) {
         header('Location:ingresar');
     }
@@ -119,94 +121,18 @@
      //____________________________________________________________
     //::::::::::::::::::::::Platillos::::::::::::::::::::::::::::::
 
-    //---------------------Registro de platillos------------------
-    if(isset($_POST['registrarplatillo'])){
-        
-        $revisar= getimagesize($_FILES["imagen"]["tmp_name"]);
-        if ($revisar !== false) {
-
-           $image= $_FILES['imagen']['tmp_name'];
-           $imgContent= addslashes(file_get_contents($image));
-    
-           $platillo->setNombre($_POST['nombre']);
-           $platillo->setIngredientes($_POST['ingredientes']);
-           $platillo->setUtencilios($_POST['utencilios']);
-           $platillo->setTiempopreparacion($_POST['tiempopreparacion']);
-           $platillo->setCaducidad($_POST['caducidad']);
-           $platillo->setPorciones($_POST['porciones']);
-           $platillo->setEnergia($_POST['energia']);
-           $platillo->setCostopromedio($_POST['costopromedio']);
-           $platillo->setRendimiento($_POST['rendimiento']);
-           $platillo->setProteinas($_POST['proteinas']);
-           $platillo->setGrasas($_POST['grasas']);
-           $platillo->setHidratoscarbono($_POST['hidratoscarbono']);
-           $platillo->setPreparacion($_POST['preparacion']);
-           $platillo->setTipocomida($_POST['tipocomida']);
-           $platillo->setAutor($_POST['autor']);
-           $platillo->setImagen($imgContent);
-           $bd->registrarPlatillo($platillo);
-            header('location:admin');
-        
-        }
-        
-    }
-
-     //--------------Editar Platillo-----------------------------------
-    if(isset($_POST['editarPlato'])){
-
-        $tamano=$_FILES['imagen']['size'];
-       
-        if ($tamano > 0) {
-
-            $platillo->setId($_POST['idPlato']);
-            $image= $_FILES['imagen']['tmp_name'];
-            $imgContent= addslashes(file_get_contents($image));
-            $platillo->setNombre($_POST['nombre']);
-            $platillo->setIngredientes($_POST['ingredientes']);
-            $platillo->setUtencilios($_POST['utencilios']);
-            $platillo->setTiempopreparacion($_POST['tiempopreparacion']);
-            $platillo->setCaducidad($_POST['caducidad']);
-            $platillo->setPorciones($_POST['porciones']);
-            $platillo->setEnergia($_POST['energia']);
-            $platillo->setCostopromedio($_POST['costopromedio']);
-            $platillo->setRendimiento($_POST['rendimiento']);
-            $platillo->setProteinas($_POST['proteinas']);
-            $platillo->setGrasas($_POST['grasas']);
-            $platillo->setHidratoscarbono($_POST['hidratoscarbono']);
-            $platillo->setPreparacion($_POST['preparacion']);
-            $platillo->setTipocomida($_POST['tipocomida']);
-            $platillo->setAutor($_POST['autor']);
-            $platillo->setImagen($imgContent);
-            $bd->editarPlatillo($platillo);
-            header('location:admin');
-        }else{
-
-            $platillo->setId($_POST['idPlato']);
-            $platillo->setNombre($_POST['nombre']);
-            $platillo->setIngredientes($_POST['ingredientes']);
-            $platillo->setUtencilios($_POST['utencilios']);
-            $platillo->setTiempopreparacion($_POST['tiempopreparacion']);
-            $platillo->setCaducidad($_POST['caducidad']);
-            $platillo->setPorciones($_POST['porciones']);
-            $platillo->setEnergia($_POST['energia']);
-            $platillo->setCostopromedio($_POST['costopromedio']);
-            $platillo->setRendimiento($_POST['rendimiento']);
-            $platillo->setProteinas($_POST['proteinas']);
-            $platillo->setGrasas($_POST['grasas']);
-            $platillo->setHidratoscarbono($_POST['hidratoscarbono']);
-            $platillo->setPreparacion($_POST['preparacion']);
-            $platillo->setTipocomida($_POST['tipocomida']);
-            $platillo->setAutor($_POST['autor']);
-            //$platillo->setImagen($imgContent);
-            $bd->editarPlatilloI($platillo);
-            header('location:admin');
-
-        }        
-        
-    }
 
     //-----------------consulta de platillos--------------------
-     $listaPlatillos=$bd->consultarPlatillos();
+    $listaPlatillos=$bd->consultarPlatillos();
+
+    //-----------------consulta de platillos de alumnos--------------------
+    $listaPlatillosAlumnos=$bd->consultarPlatillosAlumnos();
+
+    //-----------------consulta de platillos de usuarios--------------------
+    $listaPlatillosUsuarios=$bd->consultarPlatillosUsuarios();
+
+    //-----------------consulta de platillos del administrador--------------------
+    $listaPlatillosAdministrador=$bd->consultarPlatillosAdministrador();
 
     //------- muentra el total de Platilos 
     $totalPlatillo=$bd->totalPlatillos();
@@ -217,118 +143,44 @@
         header('location:admin');
     }
 
+    // Función para manejar el envío de ID y nombre del platillo para editar
+    if (isset($_REQUEST['idPlatilloEditar'])) {
+        $idPlatilloEditar = $_REQUEST['idPlatilloEditar'];
+        $nombre = $_POST['nombre'];
+        
+        $_SESSION['idPlatilloEditar'] = $idPlatilloEditar;
+        $_SESSION['nombre'] = $nombre;
+        
+        header('location:editar-platilloadministrador');
+    }
+
+    // Función para manejar el envío de ID y nombre del platillo del alumno para validar
+    if (isset($_REQUEST['idPlatilloValidar'])) {
+        $idPlatilloValidar = $_REQUEST['idPlatilloValidar'];
+        $nombre = $_POST['nombre'];
+        
+        $_SESSION['idPlatilloValidar'] = $idPlatilloValidar;
+        $_SESSION['nombre'] = $nombre;
+        
+        header('location:validar-platilloa');
+    }
+
+    // Función para manejar el envío de ID y nombre del platillo del usuario para validar
+    if (isset($_REQUEST['idPlatilloValidarU'])) {
+        $idPlatilloValidarU = $_REQUEST['idPlatilloValidarU'];
+        $nombre = $_POST['nombre'];
+        
+        $_SESSION['idPlatilloValidarU'] = $idPlatilloValidarU;
+        $_SESSION['nombre'] = $nombre;
+        
+        header('location:validar-platillou');
+    }
   
 
     //-----------------consulta de comentarios--------------------
     $listaComentarios=$bd->consultarComentarios();
 
 
-
-    //-----------------consulta de un comentario--------------------
-    if (isset($_REQUEST['idComentario'])) 
-    {
-        $listaComentario=$bd->consultarComentarioId($_REQUEST['idComentario']);
-        if (empty($listaComentario)) 
-        {
-           ?>
-                <section>
-                    <script src="vista/js/sweetalert2.all.min.js"></script>
-                    <script src="vista/js/jquery-3.6.0.min.js"></script>
-                    <script>
-                        Swal.fire({
-                            icon: 'info',
-                            title: 'Aún no hay cometarios sobre el platillo',
-                            confirmButtonText: '<a class="nav-link" href="admin" style="cursor: pointer; color: white">Cerrar Ventana</a>'
-                        })
-                    </script>
-                </section>    
-            <?php
-        }
-        else
-        {
-            ?>
-                <section>
-                    <script src="vista/js/sweetalert2.all.min.js"></script>
-                    <script src="vista/js/jquery-3.6.0.min.js"></script>
-                    <script>
-                        Swal.fire({
-                            title:'<?php 
-                                foreach($listaComentario as $comentario){
-                                    $idPlatillo= $comentario->getIdPlatillo();
-                                    foreach($listaPlatillos as $platillo) {
-                                        if($idPlatillo==$platillo->getId()){
-                                            $nombrePatillo=$platillo->getNombre();
-                                        }
-                                    }
-                                } 
-                                printf('<article class="row p-2" style="background-color: #ffcdb9; color:white;">');
-                                    printf('<h5 class="col-md-10" style="font-weight:bold;">Comentarios del platillo: %s</h5>', $nombrePatillo);
-                                printf('</article>');
-                                foreach($listaComentario as $comentario){
-                                    printf('<section class="col-md-12 p-1" style="background-color: #99EEE2;" ></section>');
-                                    printf('<section class="row">');
-                                      printf('<article class="col-md-1">');
-                                            printf('<i class="bi bi-person-fill" style="color: #FEB00A;"></i>');
-                                        printf('</article>');
-                                        printf('<article class="row col-md-9">');
-                                            printf('<article class="col-md-5">');
-                                                 printf('<h6 class="card-title" style="color: #22636D;">%s</h6>', $comentario->getNombre());
-                                            printf('</article>');
-                                            printf('<article class="col-md-4">');
-                                                printf('<h6 class="card-title" style="color: #22636D;">%s</h6>', $comentario->getFecha());
-                                            printf('</article>');
-                                        printf('</article>');
-                                        printf('<article class="col-md-2 p-3">');
-                                            printf('<center><h6 class="card-title" style="color: #22636D;">Puntuación</h6></center>');
-                                            switch ($comentario->getCalificacion()) {
-                                                case 0:
-                                                    printf('<center><label style="color: #D6DBDF; font-size:28px;">★★★★★</label></center>');
-                                                    break;
-                                                case 1:
-                                                    printf('<center><label style="color: orange; font-size: 28px;">★</label><label style="color: #D6DBDF; font-size:28px;">★★★★</label></center>');
-                                                    break;
-                                                case 2:
-                                                    printf('<center><label style="color: orange; font-size: 28px;">★★</label><label style="color: #D6DBDF; font-size:28px;">★★★</label></center>');
-                                                    break;
-                                                case 3:
-                                                    printf('<center><label style="color: orange; font-size: 28px;">★★★</label><label style="color: #D6DBDF; font-size:28px;">★★</label></center>');
-                                                    break;
-                                                case 4:
-                                                    printf('<center><label style="color: orange; font-size: 28px;">★★★★</label><label style="color: #D6DBDF; font-size:28px;">★</label></center>');
-                                                    break;
-                                                case 5:
-                                                    printf('<center><label style="color: orange; font-size: 28px;">★★★★★</label></center>');
-                                                    break;
-                                            }
-                                        printf('</article>');
-                                    printf('</section>');
-                                    printf('<section class="row">');
-                                        printf('<article class="col-md-6">');
-                                            printf('<h6>Comentario:</h6><h6 class="card-title" style="color: #22636D;">%s</h6>', $comentario->getComentario());
-                                        printf('</article>');
-                                        printf('<article class="col-md-4">');
-                                            if(empty($comentario->getCocinado())){}
-                                            else{
-                                                printf('<center><h6 class="card-title" style="color: #22636D;">%s</h6></center>', $comentario->getCocinado());
-                                            }
-                                        printf('</article>');
-                                        printf('<article class="col-md-2">');
-                                             if(empty($comentario->getFoto())){}
-                                                else{
-                                                    printf('<center><h6>Foto de lo que cociné</h6>'.'<img class="card-img-top" src ="data:image/png;base64,'.base64_encode($comentario->getFoto()).'" width="60px" height="100px"/>'.'</center> ');
-                                                } 
-                                        printf('</article>');
-                                    printf('</section>');
-                                }
-                            ?>', 
-                            width: '1000px',
-                            confirmButtonText: '<a class="nav-link" href="admin" style="cursor: pointer; color: white">Cerrar Ventana</a>'
-                        })
-                    </script>
-                </section>
-            <?php
-        }
-    }
      
     //------- muesntra el total de visitantes-------- 
     $totalVisitante=$bd->totalVistantes();
@@ -337,24 +189,115 @@
     //------- muesntra el total de visitas
     $totalVisita=$bd->totalVistas();
 
-    //------- muentra el total de Alumnos 
-    $consultarEncuesta=$bd->consultarEncuesta();
+    //------- muentra los registros de la encuesta
+    $listaEncuesta=$bd->consultarEncuesta();
     
-    
-    //------- muentra el total de visitas por mes
-    $totalVisitaAgo=$bd->totalVisitasAgosto();
-    $totalVisitaSep=$bd->totalVisitasSeptiembre();
-    $totalVisitaOct=$bd->totalVisitasOctubre();
-    $totalVisitaNov=$bd->totalVisitasNoviembre();
-    $totalVisitaDic=$bd->totalVisitasDiciembre();
-    $totalVisitaEne=$bd->totalVisitasEnero();
-    $totalVisitaFeb=$bd->totalVisitasFebrero();
-    $totalVisitaMar=$bd->totalVisitasMarzo();
-    $totalVisitaAbr=$bd->totalVisitasAbril();
-    $totalVisitaMay=$bd->totalVisitasMayo();
-    $totalVisitaJun=$bd->totalVisitasJunio();
-    $totalVisitaJul=$bd->totalVisitasJulio();
+   // Consulta de datos de generos
+    $datosGeneros = $bd->contarGenerosEncuesta();
 
+    // Verificar si la consulta fue exitosa
+    if ($datosGeneros !== false) {
+        // Calcular el total de datos
+        $totalDatosGeneros = array_sum($datosGeneros);
+
+        // Calcular los porcentajes
+        $porcentajesGeneros = [];
+        foreach ($datosGeneros as $cantidad) {
+            $porcentaje = ($cantidad / $totalDatosGeneros) * 100;
+            $porcentajesGeneros[] = round($porcentaje, 2);
+        }
+
+        // Extraer los datos para prepararlos para Chart.js
+        $labelsG = array_keys($datosGeneros); // Los géneros (hombre, mujer, etc.)
+        $dataG = $porcentajesGeneros; // Utilizamos los porcentajes con símbolo de porcentaje en lugar de las cantidades absolutas
+    } else {
+        echo "Error en la consulta";
+    }
+
+    
+    // Consulta de datos de categorías de medios
+    $datosMedios = $bd->contarCategoriasMediosEncuesta();
+
+    // Verificar si la consulta fue exitosa
+    if ($datosMedios !== false) {
+        // Calcular el total de datos
+        $totalDatos = array_sum($datosMedios);
+
+        // Calcular los porcentajes
+        $porcentajesM = [];
+        foreach ($datosMedios as $cantidad) {
+            $porcentaje = ($cantidad / $totalDatos) * 100;
+            $porcentajesM[] = round($porcentaje, 2);
+        }
+
+        // Extraer los datos para prepararlos para Chart.js
+        $labelsM = array_keys($datosMedios); // Los nombres de las categorías de medios
+        $dataM = $porcentajesM; // Utilizamos los porcentajes en lugar de las cantidades absolutas
+    } else {
+        echo "Error en la consulta";
+    }
+
+    // Consulta de datos de estados
+    $datosEstados = $bd->contarEstadosEncuesta();
+
+    // Verificar si la consulta fue exitosa
+    if ($datosEstados !== false) {
+        // Calcular el total de datos
+        $totalDatosEstados = array_sum($datosEstados);
+
+        // Calcular los porcentajes
+        $porcentajesEstados = [];
+        foreach ($datosEstados as $cantidad) {
+            $porcentaje = ($cantidad / $totalDatosEstados) * 100;
+            $porcentajesEstados[] = round($porcentaje, 2);
+        }
+
+        // Extraer los datos para prepararlos para Chart.js
+        $labelsE = array_keys($datosEstados); // Los nombres de los estados
+        $dataE = $porcentajesEstados; // Utilizamos los porcentajes con símbolo de porcentaje en lugar de las cantidades absolutas
+    } else {
+        echo "Error en la consulta";
+    }
+
+    // Consulta de datos de calificaciones
+    $datosCalificaciones = $bd->contarCalificacionesEncuesta();
+
+    // Verificar si la consulta fue exitosa
+    if ($datosCalificaciones !== false) {
+        // Calcular el total de datos
+        $totalDatosCalificaciones = array_sum($datosCalificaciones);
+
+        // Calcular los porcentajes
+        $porcentajesCalificaciones = [];
+        foreach ($datosCalificaciones as $cantidad) {
+            $porcentaje = ($cantidad / $totalDatosCalificaciones) * 100;
+            $porcentajesCalificaciones[] = round($porcentaje, 2);
+        }
+
+        // Extraer los datos para prepararlos para Chart.js
+        $labelsC = array_keys($datosCalificaciones); // Las calificaciones
+        $dataC = $porcentajesCalificaciones; // Utilizamos los porcentajes con símbolo de porcentaje en lugar de las cantidades absolutas
+    } else {
+        echo "Error en la consulta";
+    }
+
+    // Definir los nombres de los meses en español
+    $meses = [1 => 'Enero', 2 => 'Febrero', 3 => 'Marzo', 4 => 'Abril', 5 => 'Mayo', 6 => 'Junio', 7 => 'Julio', 8 => 'Agosto', 9 => 'Septiembre', 10 => 'Octubre', 11 => 'Noviembre', 12 => 'Diciembre'];
+
+    $rangoFechas = $bd->obtenerRangoDeFechas();
+    $anoMinimo = $rangoFechas['ano_minimo'];
+    $anoMaximo = $rangoFechas['ano_maximo'];
+
+    $labels = [];
+    $data = [];
+
+    for ($ano = $anoMinimo; $ano <= $anoMaximo; $ano++) {
+        for ($mes = 1; $mes <= 12; $mes++) {
+            $nombreMes = $meses[$mes]; // Cambio aquí para obtener el nombre del mes en español
+            $labels[] = $nombreMes . ' ' . $ano;
+            $data[] = $bd->totalVisitasPorMes($ano, $mes);
+        }
+    }
 
     //-----------------Cerrar session del administrador------------------------
     if (isset($_REQUEST['salirAction'])) {
@@ -364,5 +307,141 @@
        header('location:ingresar');
     }
 
+    //-------Codigo para generar el archivo csv de usuarios registrados----------------
+    // Ruta completa donde se  guardara el archivo CSV
+    /*
+    $archivo_destinoU = "c:xampp/htdocs/pctoaxaca/csv/usuarios_registrados.csv";
+    
+    // Abre la salida en modo de escritura y guarda el archivo en la ruta especificada
+    $output = fopen($archivo_destinoU, 'w');
+    
+    // Verifica si se pudo abrir el archivo correctamente
+    if ($output !== false) {
+        // Escribe la cabecera del archivo CSV (los nombres de las columnas)
+        fputcsv($output, array('id', 'nombre', 'apellidos', 'sexo', 'escolaridad', 'ocupacion', 'domicilio','edad','usuario'));
+        
+        // Recorre los datos de la tabla HTML y escribe cada fila en el archivo CSV
+        foreach ($listaUsuarios as $usuario) {
+            $datosUsuario = array(
+                // Creación de un nuevo arreglo llamado $datosUsuario para almacenar los datos.
+                // Cada iteración del ciclo crea un nuevo arreglo $datosUsuario para la característica actual.
+                $usuario->getId(),
+                $usuario->getNombre(),
+                $usuario->getApellidos(),
+                $usuario->getSexo(),
+                $usuario->getEscolaridad(),
+                $usuario->getOcupacion(),
+                $usuario->getDomicilio(),
+                $usuario->getEdad(),
+                $usuario->getUsuario()
+            );
+            fputcsv($output, $datosUsuario);
+        }
+        
+        // Cierra el archivo después de escribir los datos
+        fclose($output);
+
+        // Lee y envía el contenido del archivo al navegador
+        //readfile($archivo_destino);
+         
+        // Finaliza el codigo
+        //exit();
+       
+    } else {
+        echo "No se pudo abrir el archivo para escritura.";
+    }
+
+    //-------Codigo para generar el archivo csv de usuarios registrados----------------
+    // Ruta completa donde se  guardara el archivo CSV
+    $archivo_destinoA = "c:xampp/htdocs/pctoaxaca/csv/alumnos_registrados.csv";
+    
+    // Abre la salida en modo de escritura y guarda el archivo en la ruta especificada
+    $output = fopen($archivo_destinoA, 'w');
+    
+    // Verifica si se pudo abrir el archivo correctamente
+    if ($output !== false) {
+        // Escribe la cabecera del archivo CSV (los nombres de las columnas)
+        fputcsv($output, array('id', 'nombre', 'apellidos', 'sexo', 'semestre', 'carrera','edad','usuario'));
+        
+        // Recorre los datos de la tabla HTML y escribe cada fila en el archivo CSV
+        foreach ($listaAlumnos as $alumno) {
+            $datosAlumno = array(
+                // Creación de un nuevo arreglo llamado $datosalumno para almacenar los datos.
+                // Cada iteración del ciclo crea un nuevo arreglo $datosalumno para la característica actual.
+                $alumno->getId(),
+                $alumno->getNombre(),
+                $alumno->getApellidos(),
+                $alumno->getSexo(),
+                $alumno->getSemestre(),
+                $alumno->getCarrera(),
+                $alumno->getEdad(),
+                $alumno->getUsuario()
+            );
+            fputcsv($output, $datosAlumno);
+        }
+        
+        // Cierra el archivo después de escribir los datos
+        fclose($output);
+
+        // Lee y envía el contenido del archivo al navegador
+        //readfile($archivo_destino);
+         
+        // Finaliza el codigo
+        //exit();
+       
+    } else {
+        echo "No se pudo abrir el archivo para escritura.";
+    }
+
+    //-------Codigo para generar el archivo csv de platillos alumnos----------------
+    // Ruta completa donde se  guardara el archivo CSV
+    $archivo_destinoPA = "c:xampp/htdocs/pctoaxaca/csv/platillosAlumnos.csv";
+    
+    // Abre la salida en modo de escritura y guarda el archivo en la ruta especificada
+    $output = fopen($archivo_destinoPA, 'w');
+    
+    // Verifica si se pudo abrir el archivo correctamente
+    if ($output !== false) {
+        // Escribe la cabecera del archivo CSV (los nombres de las columnas)
+        fputcsv($output, array('id', 'nombre', 'descripcion', 'tiempoPreparacion', 'tiempoCoccion', 'caducidad','porciones','costoPromedio','rendimiento','tiempoComida','autor'));
+        
+        // Recorre los datos de la tabla HTML y escribe cada fila en el archivo CSV
+        foreach ($listaPlatillosAlumnos as $platillo) {
+           
+            $datosPlatillosAlumno = array(
+                // Creación de un nuevo arreglo llamado $datosPlatillosAlumno para almacenar los datos.
+                // Cada iteración del ciclo crea un nuevo arreglo $datosPlatillosAlumno para la característica actual.
+                $platillo->getId(),
+                $platillo->getNombre(),
+                $platillo->getDescripcion(),
+                $platillo->getTiempoPreparacion(),
+                $platillo->getTiempoCoccion(),
+                $platillo->getCaducidad(),
+                $platillo->getPorciones(),
+                $platillo->getCostoPromedio(),
+                $platillo->getRendimiento(),
+                $platillo->getTiempoComida(),
+                $platillo->getAutor(),
+            );
+            fputcsv($output, $datosPlatillosAlumno);
+        }
+        
+        // Cierra el archivo después de escribir los datos
+        fclose($output);
+
+        // Lee y envía el contenido del archivo al navegador
+        //readfile($archivo_destino);
+         
+        // Finaliza el codigo
+        //exit();
+       
+    } else {
+        echo "No se pudo abrir el archivo para escritura.";
+    }
+
+    */
     
 ?>
+
+
+

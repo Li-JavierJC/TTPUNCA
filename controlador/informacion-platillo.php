@@ -1,11 +1,41 @@
 <?php
 
-    $pageTitle = "Información del Platillo";
+    $pageTitle = "Información del Platillo"; 
    
     $bd= new BD();
     $comentario= new Comentario();
+    $platillo= new Platillo();
+    $ingredientes = new Ingredientes();
 
-    
+    //Esta linea trae el id del platillo seleccionado por el usuario
+    $idPlatilloMostrar=$_SESSION['idPlatilloMostrar'];
+
+    //Se realiza la consulta para traer todos los datos del platillo
+    $platillo=$bd->mostrarPlatillo($idPlatilloMostrar);
+
+    //Se obtiene el id del platillo para realizar la consulta de los ingredientes que corresponde
+    $idPlatillo=$platillo->getId();
+    $_SESSION['id']=$idPlatillo;
+
+    //se realiza la consulta de la validacion de las secciones del platillo
+    $validacion=$bd->mostrarValidacion($idPlatillo); 
+
+    //se realiza la consulta de los ingredientes
+    $listaIngredintes=$bd->mostrarIngredintes($idPlatillo);
+
+    //se realiza la consulta de preparacion del platillo
+    $listaPreparacion=$bd->mostrarPreparacion($idPlatillo);
+
+    //se realiza la cosulta de utencilio
+    $listaUtencilio=$bd->mostrarUtencilio($idPlatillo);
+
+    //se realiza la cosulta de nutriente
+    $listaNutriente=$bd->mostrarNutriente($idPlatillo);
+
+    //se realiza la consulta de complemento
+    $complemento=$bd->mostrarComplemento($idPlatilloMostrar);
+
+
     //registro de cometarios a los platillos
     if(isset($_POST['registrarComentario'])){
         if (!empty($_POST["usuario"])) {

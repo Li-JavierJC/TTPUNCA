@@ -17,6 +17,8 @@
         private $autor;
         private $imagen;
         private $idAlumno;
+        private $idUsuario;
+        private $idAdministrador;
    
         /**Metodo constructor del platillo */
         public function __construct(){
@@ -33,6 +35,8 @@
             $autor="";
             $imagen="";
             $idAlumno=0;
+            $idUsuario=0;
+            $idAdministrador=0;
         }
         
         /**Descriptores de acceso del atributo id */
@@ -86,6 +90,14 @@
         /**Descriptores de acceso del atributo idAlumno */
         public function setIdAlumno($idAlumno){ $this->idAlumno=$idAlumno;}
         public function getIdAlumno(){ return $this->idAlumno;}
+
+        /**Descriptores de acceso del atributo idUsuario */
+        public function setIdUsuario($idUsuario){ $this->idUsuario=$idUsuario;}
+        public function getIdUsuario(){ return $this->idUsuario;}
+
+        /**Descriptores de acceso del atributo idAdministrador */
+        public function setIdAdministrador($idAdministrador){ $this->idAdministrador=$idAdministrador;}
+        public function getIdAdministrador(){ return $this->idAdministrador;}
 
     }
 ?>

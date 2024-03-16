@@ -1,4 +1,12 @@
 section#login{
-	background-image:url('../../vista/images/galeria/9.jpg');
-	
+	background-image:url('../../vista/images/fondo/01.jpg');
+	background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.contenedor{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }

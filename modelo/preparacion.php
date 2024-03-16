@@ -7,6 +7,7 @@
         /**Declaracion de los atributos de preparacion */
         private $id;
         private $paso;
+        private $instruccion;
         private $foto;
         private $idPlatillo;
 
@@ -15,6 +16,7 @@
         {
             $id=0;
             $paso=0;
+            $instruccion="";
             $foto="";
             $idPlatillo=0;
         }
@@ -23,9 +25,13 @@
         public function setId($id){ $this->id=$id;}
         public function getId(){return $this->id;}
 
-        /**Descriptoresd de acceso del atributo paso */
+        /**Descriptores de acceso del atributo paso */
         public function setPaso($paso){ $this->paso=$paso;}
         public function getPaso(){ return $this->paso;}
+
+        /**Descriptores de acceso del atributo instrucción */
+        public function setInstruccion($instruccion){ $this->instruccion=$instruccion;}
+        public function getInstruccion(){ return $this->instruccion;}
 
         /**Descriptores de acceso del atributo foto */
         public function setFoto($foto){ $this->foto=$foto;}

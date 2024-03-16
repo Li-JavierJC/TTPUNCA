@@ -1,17 +1,18 @@
 <!--================ Formulario del Registro =================-->
-<section class="login_box_area p_120">
+<main class="contenedor">
   <section class="container">
     <section class="row">
-      <article class="col-lg-6">
-        <span class="login_box_img">
-          <br>
-          <img class="img-fluid" src="vista/images/registro/registro.jpg" alt="">
-        </span>
-      </article>
-      <article class="col-lg-6" >
-        <article class="login_form_inner">
-          <span style="color: rgb(73, 214, 233);"><h3>Registrate Aquí</h3></span>
-          <form class="row g-3 needs-validation" action="registro" method="post" >
+      <section class="col-md-6 mt-5 contenedor-image">
+        <img id="image-flotante" class="img-fluid sombreado-image" src="vista/images/registro/2.png" alt="">
+      </section>
+      <section class="col-lg-6">
+        <section class=" my-5 contenedor-form" >
+          <header class="p-3">
+            <center>
+              <h4>Crear mi cuenta de visitante</h4>
+            </center>
+          </header>
+          <form class="row g-3 p-3 needs-validation" action="registro" method="post" >
             <article class="col-md-6">
               <label for="nombre" class="form-label"><i class="bi bi-person-fill"></i> &nbsp;Nombre</label>
               <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Marcos" required>     
@@ -47,7 +48,7 @@
             </article>
             <article class="col-md-6">
               <label for="edad" class="form-label"><i class="fa-solid fa-calendar-check"></i>&nbsp;Edad</label>
-              <input type="text" class="form-control" name="edad" id="edad" required>
+              <input type="number" class="form-control" name="edad" id="edad" required>
             </article>
             <article class="col-md-6">
               <label for="domicilio" class="form-label"><i class="bi bi-house-fill"></i>&nbsp;Domicilio</label>
@@ -63,15 +64,20 @@
               <input type="password" class="form-control" name="contrasena" id="contrasena"  required>
             </article> 
             <input type="hidden" name="nivelUsuario" value="3">
-            <article class="col-12">
+            <article class="my-4 col-12">
               <center>
-                <button  type="submit"    name="registrarse" value="registrarse" class="btn btn-primary">Registrar</button>
+                <button  type="submit"    name="registrarse" value="registrarse" class="btn btn-primary">Crear cuenta</button>
               </center>
             </article>
           </form>
-        </article>
-      </article>
+        </section>
+      </section>
     </section>
   </section>
-  <br>
-</section>
+</main>
+
+
+
+
+
+

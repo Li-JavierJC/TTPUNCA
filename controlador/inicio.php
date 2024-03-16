@@ -1,5 +1,5 @@
 <?php
-    $pageTitle = "Transferencia de Tecnología de Platillos";
+    $pageTitle = "Plataforma para la Conservación de Comida Tradicional de Oaxaca.";
    
     //Definicion de las Clases
     $bd = new BD();
@@ -7,20 +7,6 @@
     
     $ip= $_SERVER['REMOTE_ADDR'];
     $bd->visitasReales($ip);
-
-    //------- muentra el total de Platilos 
-    $totalPlatillo=$bd->totalPlatillos();
-
-    //------- muentra el total de visitantes-------- 
-    $totalVisitante=$bd->totalVistantes();
-
-      
-    //------- muentra el total de visitas
-    $totalVisita=$bd->totalVistas();
-
-    //-------mustra el total de cometarios
-    $totalComentario=$bd->totalComentarios();
-
 
     //registar encuesta encuesta
     if(isset($_POST['registrarse'])){

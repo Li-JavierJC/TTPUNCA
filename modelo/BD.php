@@ -9,11 +9,11 @@
             $this->conexion= new mysqli( "localhost","root","","ttpunca");
             $this->conexion->set_charset("utf8");
             if ($this->conexion->connect_errno){
-            	echo "error";
+                echo "error";
             }
             else
             {   
-            	//echo "conexion exitosa";
+                //echo "conexion exitosa";
             }       
         }
         
@@ -261,6 +261,62 @@
 
         }
 
+        //------------Eliminar cuenta de usuario con sus publicaciones 
+        function eliminarCuentaPublicaciones($idUsuario){
+            //eliminacion de la cuenta del usuario
+            $consulta = "DELETE FROM usuario WHERE id = '$idUsuario'";
+            $this->conexion->query($consulta);
+
+            //eliminacion de comentarios si es que los hizo el usuario
+            $consulta = "DELETE FROM comentario WHERE idUsuario = '$idUsuario'";
+            $this->conexion->query($consulta);
+
+            // Eliminar favoritos relacionados al platillo
+            $consulta = "DELETE FROM favoritos  WHERE idUsuario = '$idUsuario'";
+            $this->conexion->query($consulta);
+
+            $consulta= "SELECT *FROM  platillo where idUsuario='$idUsuario'";
+            $sql=$this->conexion->query($consulta);
+
+            //verificar si hay resultados
+            if (mysqli_num_rows($sql)>0) {
+                //itaramos las filas a traves de los resultados
+                while ($fila=mysqli_fetch_assoc($sql)) {
+                    //sacamos el id de los platillos que esten asociados con el usuario
+                    $idPlatillo= $fila['idPlatillo'];
+
+                    //elimamos los comentarios que realizo el usuario
+                    $consulta = "DELETE FROM comentario WHERE idPlatillo = '$idPlatillo'";
+                    $this->conexion->query($consulta);
+
+                    // Eliminar ingredientes relacionado al platillo
+                    $consulta = "DELETE FROM ingredientes WHERE idPlatillo = '$idPlatillo'";
+                    $this->conexion->query($consulta);
+
+                    // Eliminar preparación relacionada al platillo
+                    $consulta = "DELETE FROM preparacion WHERE idPlatillo = '$idPlatillo'";
+                    $this->conexion->query($consulta);
+
+                    // Eliminar utensilios relacionados al platillo
+                    $consulta = "DELETE FROM utencilio WHERE idPlatillo = '$idPlatillo'";
+                    $this->conexion->query($consulta);
+
+                    // Eliminar complementos relacionados al platillo
+                    $consulta = "DELETE FROM complemento WHERE idPlatillo = '$idPlatillo'";
+                    $this->conexion->query($consulta);
+
+                    // Eliminar validacion relacionados al platillo
+                    $consulta = "DELETE FROM validacion  WHERE idPlatillo = '$idPlatillo'";
+                    $this->conexion->query($consulta);
+
+                    // Eliminar el platillo principal
+                    $consulta = "DELETE FROM platillo WHERE id = '$idPlatillo'";
+                    $this->conexion->query($consulta);
+
+                }
+            }
+        }
+                
         //-------- Buscar que el platillo no esté añadido a favoritos
         public function verificarFavorios($idUsuario, $idPlatillo){
             /*Consulta a la base datos*/
@@ -574,160 +630,689 @@
         //--------------------------Registro del platillo-------------------------
         public function registrarPlatillo($platillo)
         {   
-    
             if ($platillo->getId() != -1) {    
                 
               
 
                 $datos= "'".$platillo->getNombre()."',";
-                $datos.= "'".nl2br($platillo->getIngredientes())."',";
-                $datos.= "'".nl2br($platillo->getUtencilios())."',";
-                $datos.= "'".$platillo->getTiempopreparacion()."',";
+                $datos.= "'".$platillo->getDescripcion()."',";
+                $datos.= "'".$platillo->getTiempoPreparacion()."',";
+                $datos.= "'".$platillo->getTiempoCoccion()."',";
                 $datos.= "'".$platillo->getCaducidad()."',";
                 $datos.= "'".$platillo->getPorciones()."',";
-                $datos.= "'".$platillo->getEnergia()."',";
-                $datos.= "'".$platillo->getCostopromedio()."',";
+                $datos.= "'".$platillo->getCostoPromedio()."',";
                 $datos.= "'".$platillo->getRendimiento()."',";
-                $datos.= "'".$platillo->getProteinas()."',";
-                $datos.= "'".$platillo->getGrasas()."',";
-                $datos.= "'".$platillo->getHidratoscarbono()."',";
-                $datos.= "'".nl2br($platillo->getPreparacion())."',";
-                $datos.= "'".$platillo->getTipocomida()."',";
+                $datos.= "'".$platillo->getTiempoComida()."',";
                 $datos.= "'".$platillo->getAutor()."',";
-                $datos.= "'".$platillo->getImagen()."'";
+                $datos.= "'".$platillo->getImagen()."',";
+                $datos.= "'".$platillo->getIdAlumno()."',";
+                $datos.= "'".$platillo->getIdUsuario()."',";
+                $datos.= "'".$platillo->getIdAdministrador()."'";
                 
-                $insertar = "INSERT INTO platillo (nombre, ingredientes, utencilios, tiempopreparacion, caducidad, porciones, energia, costopromedio, rendimiento, proteinas, grasas, hidratoscarbono, preparacion, tipocomida, autor,imagen) VALUES($datos)";
-                //echo $insertar;
-
+                
+                $insertar = "INSERT INTO platillo (nombre, descripcion, tiempoPreparacion, tiempoCoccion, caducidad, porciones, costoPromedio, rendimiento, tiempoComida, autor, imagen, idAlumno, idUsuario, idAdministrador) VALUES($datos)";
+                
                 $this->conexion->query($insertar);
 
+                // Obtener el ID generado
+                $idGenerado = $this->conexion->insert_id;
+
+                // Crear un arreglo con la respuesta
+                $response = array('id' => $idGenerado);
+
+                // Establecer el encabezado para la respuesta JSON
+                header('Content-Type: application/json');
+
+                // Convertir la respuesta a JSON y enviarla
+                echo json_encode($response);
             }
        
         }
 
+        //--------------------------Actualización de los datos del platillo con imagen-------------------------
+        public function actualizarDatosPlatilloI($platillo){
+
+            $datos="nombre='".$platillo->getNombre()."',";
+            $datos.="descripcion='".$platillo->getDescripcion()."',";
+            $datos.="tiempoPreparacion='".$platillo->getTiempoPreparacion()."',";
+            $datos.="tiempoCoccion='".$platillo->getTiempoCoccion()."',";
+            $datos.="caducidad='".$platillo->getCaducidad()."',";
+            $datos.="porciones='".$platillo->getPorciones()."',";
+            $datos.="costoPromedio='".$platillo->getCostoPromedio()."',";
+            $datos.="rendimiento='".$platillo->getRendimiento()."',";
+            $datos.="tiempoComida='".$platillo->getTiempoComida()."',";
+            $datos.="imagen='".$platillo->getImagen()."'";
+
+            $actualizar="UPDATE platillo SET $datos where id='".$platillo->getId()."'";
+            
+            echo $actualizar;
+
+            $this->conexion->query($actualizar);
+
+        }
+
+        //--------------------------Actualización de los datos del platillo sin imagen-------------------------
+        public function actualizarDatosPlatillo($platillo){
+
+            $datos="nombre='".$platillo->getNombre()."',";
+            $datos.="descripcion='".$platillo->getDescripcion()."',";
+            $datos.="tiempoPreparacion='".$platillo->getTiempoPreparacion()."',";
+            $datos.="tiempoCoccion='".$platillo->getTiempoCoccion()."',";
+            $datos.="caducidad='".$platillo->getCaducidad()."',";
+            $datos.="porciones='".$platillo->getPorciones()."',";
+            $datos.="costoPromedio='".$platillo->getCostoPromedio()."',";
+            $datos.="rendimiento='".$platillo->getRendimiento()."',";
+            $datos.="tiempoComida='".$platillo->getTiempoComida()."'";
+
+            $actualizar="UPDATE platillo SET $datos where id='".$platillo->getId()."'";
+
+            echo $actualizar;
+
+            $this->conexion->query($actualizar);
+
+        }
+
+        //------Registro de los ingredientes del platillo------------------------
+        public function registrarIngredientes($ingredientes){
+
+            if ($ingredientes->getId() != -1) {    
+
+                $datos= "'".$ingredientes->getNombre()."',";
+                $datos.= "'".$ingredientes->getCantidad()."',";
+                $datos.= "'".$ingredientes->getUnidadMedida()."',";
+                $datos.= "'".$ingredientes->getIdPlatillo()."'";
+    
+                $insertar = "INSERT INTO ingredientes (nombre, cantidad, unidadMedida, idPlatillo) VALUES($datos)";
+                
+                $this->conexion->query($insertar);
+
+            }
+        }
+
+        //------actualizar los ingredientes del platillo------------------------
+        public function actualizarIngredientes($ingredientes){
+
+            $datos="nombre='".$ingredientes->getNombre()."',";
+            $datos.="cantidad='".$ingredientes->getCantidad()."',";
+            $datos.="unidadMedida='".$ingredientes->getUnidadMedida()."'";
+            $actualizar = "UPDATE ingredientes SET $datos WHERE id='".$ingredientes->getId()."' AND idPlatillo='".$ingredientes->getIdPlatillo()."'";
+
+
+            $this->conexion->query($actualizar);
+        }
+
+        //---------------------- Eliminar Ingrediente del platillo-----------------------------
+        function eliminarIngrediente($ingredienteId) {
+            $consulta = "DELETE FROM ingredientes WHERE id = '$ingredienteId'";
+            $this->conexion->query($consulta);
+
+        }
+
+        //------Registro de los utencilio del platillo------------------------
+        public function registrarUtencilio($utencilio){
+
+            if ($utencilio->getId() != -1) {    
+
+                $datos= "'".$utencilio->getNombre()."',";
+                $datos.= "'".$utencilio->getCantidad()."',";
+                $datos.= "'".$utencilio->getIdPlatillo()."'";
+    
+                $insertar = "INSERT INTO utencilio (nombre, cantidad, idPlatillo) VALUES($datos)";
+                
+                $this->conexion->query($insertar);
+
+            }
+        }
+
+        //------actualizar los utencilios del platillo------------------------
+        public function actualizarUtencilio($utencilio){
+
+            $datos="nombre='".$utencilio->getNombre()."',";
+            $datos.="cantidad='".$utencilio->getCantidad()."'";
+            $actualizar = "UPDATE utencilio SET $datos WHERE id='".$utencilio->getId()."' AND idPlatillo='".$utencilio->getIdPlatillo()."'";
+
+            $this->conexion->query($actualizar);
+        }
+
+        //---------------------- Eliminar utencilio del platillo-----------------------------
+        function eliminarUtencilio($utencilioId) {
+            $consulta = "DELETE FROM utencilio WHERE id = '$utencilioId'";
+            $this->conexion->query($consulta);
+
+        }
+
+        //------Registro de los preparacion del platillo con imagen------------------------
+        public function registrarPreparacion($preparacion) {
+            
+            $datos = "'" . $preparacion->getPaso() . "', ";
+            $datos .= "'" . $preparacion->getInstruccion() . "', ";
+            $datos .= "'" . $preparacion->getFoto() . "', ";
+            $datos .= "'" . $preparacion->getIdPlatillo() . "'";
+
+            $insertar = "INSERT INTO preparacion (paso, instruccion, foto, idPlatillo) VALUES ($datos)";
+            echo "Consulta SQL con imagen: $insertar";
+
+            $this->conexion->query($insertar);
+        }
+
+        //------Registro de los preparacion del platillo sin imagen------------------------
+        public function registrarPreparacionI($preparacion) {
+            
+            $datos = "'" . $preparacion->getPaso() . "', ";
+            $datos .= "'" . $preparacion->getInstruccion() . "', ";
+            $datos .= "'" .' '. "', ";
+            $datos .= "'" . $preparacion->getIdPlatillo() . "'";
+
+            $insertar = "INSERT INTO preparacion (paso, instruccion, foto, idPlatillo) VALUES ($datos)";
+            
+            echo "Consulta SQL sin imagen: $insertar";
+
+        
+            $this->conexion->query($insertar);
+        }
+
+        public function actualizarPreparacionI($preparacion){
+
+            $datos="paso='".$preparacion->getPaso()."',";
+            $datos.="instruccion ='".$preparacion->getInstruccion()."',";
+            $datos.="foto='".$preparacion->getFoto()."'";
+            $actualizar = "UPDATE preparacion SET $datos WHERE id='".$preparacion->getId()."' AND idPlatillo='".$preparacion->getIdPlatillo()."'";
+
+            $this->conexion->query($actualizar);
+        }
+
+        public function actualizarPreparacion($preparacion){
+
+            $datos="paso='".$preparacion->getPaso()."',";
+            $datos.="instruccion ='".$preparacion->getInstruccion()."'";
+            $actualizar = "UPDATE preparacion SET $datos WHERE id='".$preparacion->getId()."' AND idPlatillo='".$preparacion->getIdPlatillo()."'";
+
+            $this->conexion->query($actualizar);
+        }
+
+        //------Registro de los ingredintes del nutriente------------------------
+        public function registrarNutriente($nutriente){
+            
+            $datos= "'".$nutriente->getNombre()."',";
+            $datos.= "'".$nutriente->getCantidadR()."',";
+            $datos.= "'".$nutriente->getCantidadP()."',";
+            $datos.= "'".$nutriente->getUnidadMedida()."',";
+            $datos.= "'".$nutriente->getIdPlatillo()."'";
+
+            $insertar = "INSERT INTO nutriente (nombre, cantidadR, cantidadP, unidadMedida, idPlatillo) VALUES($datos)";
+                
+            $this->conexion->query($insertar);
+        }
+
+        //------Actualizacion de nutrientes
+        public function actualizarNutriente($nutriente){
+
+            $datos="nombre='".$nutriente->getNombre()."',";
+            $datos.="cantidadR='".$nutriente->getCantidadR()."',";
+            $datos.="cantidadP='".$nutriente->getCantidadP()."',";
+            $datos.="unidadMedida='".$nutriente->getUnidadMedida()."'";
+            $actualizar = "UPDATE nutriente SET $datos WHERE id='".$nutriente->getId()."' AND idPlatillo='".$nutriente->getIdPlatillo()."'";
+
+            $this->conexion->query($actualizar);
+        }
+
+        //------Eliminar nutriente del platillo --------
+        public function eliminarNutriente($nutrienteId){
+            $consulta = "DELETE FROM nutriente WHERE id = '$nutrienteId'";
+            $this->conexion->query($consulta);
+        }
+
+        //------Registro de información del complemento------------------------
+        public function registrarComplemento($complemento){
+
+            $datos= "'".$complemento->getEstado()."',";
+            $datos.= "'".$complemento->getRegion()."',";
+            $datos.= "'".$complemento->getMunicipio()."',";
+            $datos.= "'".$complemento->getLengua()."',";
+            $datos.= "'".$complemento->getCultura()."',";
+            $datos.= "'".$complemento->getIdPlatillo()."'";
+    
+            $insertar = "INSERT INTO complemento (estado, region,municipio, lengua,     cultura, idPlatillo) VALUES($datos)";
+                
+            $this->conexion->query($insertar);    
+        }
+
+        //------- Actualizacion de datos Complemento --------
+        public function actualizarComplemento($complemento){
+
+            $datos="estado='".$complemento->getEstado()."',";
+            $datos.="region='".$complemento->getRegion()."',";
+            $datos.="municipio='".$complemento->getMunicipio()."',";
+            $datos.="lengua='".$complemento->getLengua()."',";
+            $datos.="cultura='".$complemento->getCultura()."'";
+
+            $actualizar = "UPDATE complemento SET $datos WHERE id='".$complemento->getId()."' AND idPlatillo='".$complemento->getIdPlatillo()."'";
+
+            $this->conexion->query($actualizar);
+        }
+
+        //------Registro de datos de validacion------------------------
+        public function registrarValidacion($validacion){
+
+            $datos= "'".$validacion->getIdPlatillo()."',";
+            $datos.= "'".$validacion->getSeccionDatos()."',";
+            $datos.= "'".$validacion->getSeccionIngredientes()."',";
+            $datos.= "'".$validacion->getSeccionUtencilio()."',";
+            $datos.= "'".$validacion->getSeccionPreparacion()."',";
+            $datos.= "'".$validacion->getSeccionNutriente()."',";
+            $datos.= "'".$validacion->getSeccionComplemento()."',";
+            $datos.= "'".' '."'";
+    
+            $insertar = "INSERT INTO validacion (idPlatillo, seccionDatos, seccionIngredientes, seccionUtencilio,     seccionPreparacion, seccionNutriente, seccionComplemento, nota) VALUES($datos)";
+
+            echo $insertar;
+                
+            $this->conexion->query($insertar);    
+        }
+        //-----Validar las secciones de la infomacion de cada platillo---
+        public function validarSeccionPlatillos($validacion){
+
+            $datos="seccionDatos='".$validacion->getSeccionDatos()."',";
+            $datos.="seccionIngredientes='".$validacion->getSeccionIngredientes()."',";
+            $datos.="seccionUtencilio='".$validacion->getSeccionUtencilio()."',";
+            $datos.="seccionPreparacion='".$validacion->getSeccionPreparacion()."',";
+            $datos.="seccionNutriente='".$validacion->getSeccionNutriente()."',";
+            $datos.="seccionComplemento='".$validacion->getSeccionComplemento()."',";
+            $datos.="nota='".$validacion->getNota()."'";
+
+            $actualizar = "UPDATE validacion SET $datos WHERE idPlatillo='".$validacion->getIdPlatillo()."'";
+
+            $this->conexion->query($actualizar);
+        }
+
+        //-----Validar las secciones de la infomacion de cada platillo---
+        public function validarSeccionPlatillosU($validacion){
+
+            $datos="seccionDatos='".$validacion->getSeccionDatos()."',";
+            $datos.="seccionIngredientes='".$validacion->getSeccionIngredientes()."',";
+            $datos.="seccionUtencilio='".$validacion->getSeccionUtencilio()."',";
+            $datos.="seccionPreparacion='".$validacion->getSeccionPreparacion()."',";
+            $datos.="seccionComplemento='".$validacion->getSeccionComplemento()."',";
+            $datos.="nota='".$validacion->getNota()."'";
+
+            $actualizar = "UPDATE validacion SET $datos WHERE idPlatillo='".$validacion->getIdPlatillo()."'";
+
+            $this->conexion->query($actualizar);
+        }
+
+        //------------------Consulta de platillos por cada alumno------------
+        public function consultarPlatillosAlumno($id){
+            
+            $listaPlatillos= array();
+            // Consulta SQL para obtener los platillos del alumno con el ID proporcionado
+            $consulta = "SELECT * FROM platillo WHERE idAlumno = " . $id;
+            $sql= $this->conexion->query($consulta);
+
+            if ($sql->num_rows > 0) {
+
+                while($row= $sql->fetch_assoc()){
+
+                    $platillo = new Platillo();
+
+                    $platillo->setId($row['id']);
+                    $platillo->setNombre($row['nombre']);
+                    $platillo->setDescripcion($row['descripcion']);
+                    $platillo->setTiempoPreparacion($row['tiempoPreparacion']);
+                    $platillo->setTiempoCoccion($row['tiempoCoccion']);
+                    $platillo->setCaducidad($row['caducidad']);
+                    $platillo->setPorciones($row['porciones']);
+                    $platillo->setCostoPromedio($row['costoPromedio']);
+                    $platillo->setRendimiento($row['rendimiento']);
+                    $platillo->setTiempoComida($row['tiempoComida']);
+                    $platillo->setAutor($row['autor']);
+                    $platillo->setImagen($row['imagen']);
+                    
+                    array_push($listaPlatillos, $platillo);
+
+                 }
+                // Retornar la lista de platillos
+                return $listaPlatillos;
+            } 
+        }
+
+        //------------------Consulta de platillos por cada Usuario------------
+        public function consultarPlatillosUsuario($id){
+            
+            $listaPlatillos= array();
+            // Consulta SQL para obtener los platillos del usuario con el ID proporcionado
+            $consulta = "SELECT * FROM platillo WHERE idUsuario = " . $id;
+            $sql= $this->conexion->query($consulta);
+
+            if ($sql->num_rows > 0) {
+
+                while($row= $sql->fetch_assoc()){
+
+                    $platillo = new Platillo();
+
+                    $platillo->setId($row['id']);
+                    $platillo->setNombre($row['nombre']);
+                    $platillo->setDescripcion($row['descripcion']);
+                    $platillo->setTiempoPreparacion($row['tiempoPreparacion']);
+                    $platillo->setTiempoCoccion($row['tiempoCoccion']);
+                    $platillo->setCaducidad($row['caducidad']);
+                    $platillo->setPorciones($row['porciones']);
+                    $platillo->setCostoPromedio($row['costoPromedio']);
+                    $platillo->setRendimiento($row['rendimiento']);
+                    $platillo->setTiempoComida($row['tiempoComida']);
+                    $platillo->setAutor($row['autor']);
+                    $platillo->setImagen($row['imagen']);
+                    
+                    array_push($listaPlatillos, $platillo);
+
+                 }
+                // Retornar la lista de platillos
+                return $listaPlatillos;
+            } 
+        }
+
+        public function listarPlatillosValidados(){
+            $listaValidados = array(); // Cambio aquí
+
+            $columnas = ['seccionDatos', 'seccionIngredientes', 'seccionUtencilio', 'seccionPreparacion', 'seccionNutriente', 'seccionComplemento'];
+            $condiciones = implode(' = 4 OR ', $columnas) . ' = 4';
+            
+            // Construye la consulta final
+            $consulta = "SELECT DISTINCT idPlatillo FROM validacion WHERE $condiciones";
+            $sql = $this->conexion->query($consulta);
+
+            if ($sql === false) {
+                echo "Error en la consulta";
+            }
+
+            while ($row = $sql->fetch_assoc()) {
+                $validacion = new Validacion();
+                $validacion->setIdPlatillo($row['idPlatillo']);
+                array_push($listaValidados, $validacion);
+            }
+
+            return $listaValidados;
+        }
+
+
         //---------------------------Consulta del platillo------------------------
         public function consultarPlatillos(){
-            $listaPlatillos= array();
-            $consulta = "SELECT * FROM platillo";
+
+            $listaPlatillos = array();
+            $listaValidados = $this->listarPlatillosValidados();
+
+            foreach($listaValidados as $validacion){
+                $id = $validacion->getIdPlatillo();
+                $consulta = "SELECT * FROM platillo WHERE id = " . $id;
+                $sql = $this->conexion->query($consulta);
+
+                if ($sql === false) {
+                    echo "Error en la consulta";
+                }
+
+                while($row = $sql->fetch_assoc()){
+                    $platillo = new Platillo();
+
+                    $platillo->setId($row['id']);
+                    $platillo->setNombre($row['nombre']);
+                    $platillo->setDescripcion($row['descripcion']);
+                    $platillo->setTiempoPreparacion($row['tiempoPreparacion']);
+                    $platillo->setTiempoCoccion($row['tiempoCoccion']);
+                    $platillo->setCaducidad($row['caducidad']);
+                    $platillo->setPorciones($row['porciones']);
+                    $platillo->setCostoPromedio($row['costoPromedio']);
+                    $platillo->setRendimiento($row['rendimiento']);
+                    $platillo->setTiempoComida($row['tiempoComida']);
+                    $platillo->setAutor($row['autor']);
+                    $platillo->setImagen($row['imagen']);
+                    $platillo->setIdAlumno($row['idAlumno']);
+                    $platillo->setIdUsuario($row['idUsuario']);
+                    $platillo->setIdAdministrador($row['idAdministrador']);
+
+                    array_push($listaPlatillos, $platillo);
+                }
+            }
+
+            return $listaPlatillos;
+
+        }
+
+        //------------Consulta del platillo de todos los alumnos------------------------
+        public function consultarPlatillosAlumnos(){
+            $listaPlatillosAlumnos= array();
+            $consulta = "SELECT * FROM platillo WHERE idAlumno <> 0";
             $sql= $this->conexion->query($consulta);
 
             if ($sql=== false) {
                 echo "Error en la consulta";
             }
-             while($row= $sql->fetch_assoc()){
+            while($row= $sql->fetch_assoc()){
 
                 $platillo = new Platillo();
 
                 $platillo->setId($row['id']);
                 $platillo->setNombre($row['nombre']);
-                $platillo->setIngredientes($row['ingredientes']);
-                $platillo->setUtencilios($row['utencilios']);
-                $platillo->setTiempopreparacion($row['tiempopreparacion']);
+                $platillo->setDescripcion($row['descripcion']);
+                $platillo->setTiempoPreparacion($row['tiempoPreparacion']);
+                $platillo->setTiempoCoccion($row['tiempoCoccion']);
                 $platillo->setCaducidad($row['caducidad']);
                 $platillo->setPorciones($row['porciones']);
-                $platillo->setEnergia($row['energia']);
-                $platillo->setCostopromedio($row['costopromedio']);
+                $platillo->setCostoPromedio($row['costoPromedio']);
                 $platillo->setRendimiento($row['rendimiento']);
-                $platillo->setProteinas($row['proteinas']);
-                $platillo->setGrasas($row['grasas']);
-                $platillo->setHidratoscarbono($row['hidratoscarbono']);
-                $platillo->setPreparacion($row['preparacion']);
-                $platillo->setTipocomida($row['tipocomida']);
+                $platillo->setTiempoComida($row['tiempoComida']);
                 $platillo->setAutor($row['autor']);
                 $platillo->setImagen($row['imagen']);
+                $platillo->setIdAlumno($row['idAlumno']);
+                $platillo->setIdUsuario($row['idUsuario']);
+                $platillo->setIdAdministrador($row['idAdministrador']);
 
 
-                array_push($listaPlatillos, $platillo);
+                array_push($listaPlatillosAlumnos, $platillo);
 
              }
-             return $listaPlatillos;
+             return $listaPlatillosAlumnos;
         }
 
-        //---------------------Editar Platillo-----------------------------
-        public function editarPlatillo($platillo){   
+        //------------Consulta del platillo de todos los usuarios------------------------
+        public function consultarPlatillosUsuarios(){
+            $listaPlatillosUsuarios= array();
+            $consulta = "SELECT * FROM platillo WHERE idUsuario <> 0";
+            $sql= $this->conexion->query($consulta);
 
-            $datos= "id='".$platillo->getId()."',";
-            $datos.= "nombre='".$platillo->getNombre()."',";
-            $datos.= "ingredientes='".nl2br($platillo->getIngredientes())."',";
-            $datos.= "utencilios='".nl2br($platillo->getUtencilios())."',";
-            $datos.= "tiempopreparacion='".$platillo->getTiempopreparacion()."',";
-            $datos.= "caducidad='".$platillo->getCaducidad()."',";
-            $datos.= "porciones='".$platillo->getPorciones()."',";
-            $datos.= "energia='".$platillo->getEnergia()."',";
-            $datos.= "costopromedio='".$platillo->getCostopromedio()."',";
-            $datos.= "rendimiento='".$platillo->getRendimiento()."',";
-            $datos.= "proteinas='".$platillo->getProteinas()."',";
-            $datos.= "grasas='".$platillo->getGrasas()."',";
-            $datos.= "hidratoscarbono='".$platillo->getHidratoscarbono()."',";
-            $datos.= "preparacion='".nl2br($platillo->getPreparacion())."',";
-            $datos.= "tipocomida='".$platillo->getTipocomida()."',";
-            $datos.= "autor='".$platillo->getAutor()."',";
-            $datos.= "imagen='".$platillo->getImagen()."'";
+            if ($sql=== false) {
+                echo "Error en la consulta";
+            }
+            while($row= $sql->fetch_assoc()){
 
-          
-            $actualizar= "UPDATE platillo SET $datos where id='".$platillo->getId()."'";
+                $platillo = new Platillo();
 
-            //echo $actualizar;
+                $platillo->setId($row['id']);
+                $platillo->setNombre($row['nombre']);
+                $platillo->setDescripcion($row['descripcion']);
+                $platillo->setTiempoPreparacion($row['tiempoPreparacion']);
+                $platillo->setTiempoCoccion($row['tiempoCoccion']);
+                $platillo->setCaducidad($row['caducidad']);
+                $platillo->setPorciones($row['porciones']);
+                $platillo->setCostoPromedio($row['costoPromedio']);
+                $platillo->setRendimiento($row['rendimiento']);
+                $platillo->setTiempoComida($row['tiempoComida']);
+                $platillo->setAutor($row['autor']);
+                $platillo->setImagen($row['imagen']);
+                $platillo->setIdAlumno($row['idAlumno']);
+                $platillo->setIdUsuario($row['idUsuario']);
+                $platillo->setIdAdministrador($row['idAdministrador']);
 
-            $this->conexion->query($actualizar);
+
+                array_push($listaPlatillosUsuarios, $platillo);
+
+             }
+             return $listaPlatillosUsuarios;
+        }
+
+        //------------Consulta del platillo de todos los usuarios------------------------
+        public function consultarPlatillosAdministrador(){
+            $listaPlatillosAdministrador= array();
+            $consulta = "SELECT * FROM platillo WHERE idAdministrador <> 0";
+            $sql= $this->conexion->query($consulta);
+
+            if ($sql=== false) {
+                echo "Error en la consulta";
+            }
+            while($row= $sql->fetch_assoc()){
+
+                $platillo = new Platillo();
+
+                $platillo->setId($row['id']);
+                $platillo->setNombre($row['nombre']);
+                $platillo->setDescripcion($row['descripcion']);
+                $platillo->setTiempoPreparacion($row['tiempoPreparacion']);
+                $platillo->setTiempoCoccion($row['tiempoCoccion']);
+                $platillo->setCaducidad($row['caducidad']);
+                $platillo->setPorciones($row['porciones']);
+                $platillo->setCostoPromedio($row['costoPromedio']);
+                $platillo->setRendimiento($row['rendimiento']);
+                $platillo->setTiempoComida($row['tiempoComida']);
+                $platillo->setAutor($row['autor']);
+                $platillo->setImagen($row['imagen']);
+                $platillo->setIdAlumno($row['idAlumno']);
+                $platillo->setIdUsuario($row['idUsuario']);
+                $platillo->setIdAdministrador($row['idAdministrador']);
+
+
+                array_push($listaPlatillosAdministrador, $platillo);
+
+             }
+             return $listaPlatillosAdministrador;
+        }
+
        
+        //----------Buscar platillos pujblicados por alumnos
+        public function buscarPlatillosAlumnos($terminoBusqueda){
+            $listaPlatillosAlumnos = array();
+            $consulta = "SELECT * FROM platillo WHERE idAlumno <> 0 AND (id LIKE '%$terminoBusqueda%' OR nombre LIKE '%$terminoBusqueda%')";
+            $sql = $this->conexion->query($consulta);
+
+            if ($sql === false) {
+                echo "Error en la consulta";
+            }
+
+            while($row = $sql->fetch_assoc()){
+                $platillo = new Platillo();
+
+                $platillo->setId($row['id']);
+                $platillo->setNombre($row['nombre']);
+                $platillo->setDescripcion($row['descripcion']);
+                $platillo->setTiempoPreparacion($row['tiempoPreparacion']);
+                $platillo->setTiempoCoccion($row['tiempoCoccion']);
+                $platillo->setCaducidad($row['caducidad']);
+                $platillo->setPorciones($row['porciones']);
+                $platillo->setCostoPromedio($row['costoPromedio']);
+                $platillo->setRendimiento($row['rendimiento']);
+                $platillo->setTiempoComida($row['tiempoComida']);
+                $platillo->setAutor($row['autor']);
+                $platillo->setImagen($row['imagen']);
+                $platillo->setIdAlumno($row['idAlumno']);
+                $platillo->setIdUsuario($row['idUsuario']);
+                $platillo->setIdAdministrador($row['idAdministrador']);
+
+                array_push($listaPlatillosAlumnos, $platillo);
+            }
+
+            return $listaPlatillosAlumnos;
         }
 
-        //---------------------Editar Platillo-----------------------------
-        public function editarPlatilloI($platillo){   
+        //----------Buscar platillos pujblicados por usuario
+        public function buscarPlatillosUsuarios($terminoBusqueda){
+            $listaPlatillosUsuariosB = array();
+            $consulta = "SELECT * FROM platillo WHERE idUsuario <> 0 AND (id LIKE '%$terminoBusqueda%' OR nombre LIKE '%$terminoBusqueda%')";
+            $sql = $this->conexion->query($consulta);
 
-            $datos= "id='".$platillo->getId()."',";
-            $datos.= "nombre='".$platillo->getNombre()."',";
-            $datos.= "ingredientes='".nl2br($platillo->getIngredientes())."',";
-            $datos.= "utencilios='".nl2br($platillo->getUtencilios())."',";
-            $datos.= "tiempopreparacion='".$platillo->getTiempopreparacion()."',";
-            $datos.= "caducidad='".$platillo->getCaducidad()."',";
-            $datos.= "porciones='".$platillo->getPorciones()."',";
-            $datos.= "energia='".$platillo->getEnergia()."',";
-            $datos.= "costopromedio='".$platillo->getCostopromedio()."',";
-            $datos.= "rendimiento='".$platillo->getRendimiento()."',";
-            $datos.= "proteinas='".$platillo->getProteinas()."',";
-            $datos.= "grasas='".$platillo->getGrasas()."',";
-            $datos.= "hidratoscarbono='".$platillo->getHidratoscarbono()."',";
-            $datos.= "preparacion='".nl2br($platillo->getPreparacion())."',";
-            $datos.= "tipocomida='".$platillo->getTipocomida()."',";
-            $datos.= "autor='".$platillo->getAutor()."'";
-            //$datos.= "imagen='".$platillo->getImagen()."'";
+            if ($sql === false) {
+                echo "Error en la consulta";
+            }
 
-          
-            $actualizar= "UPDATE platillo SET $datos where id='".$platillo->getId()."'";
+            while($row = $sql->fetch_assoc()){
+                $platillo = new Platillo();
 
-            //echo $actualizar;
+                $platillo->setId($row['id']);
+                $platillo->setNombre($row['nombre']);
+                $platillo->setDescripcion($row['descripcion']);
+                $platillo->setTiempoPreparacion($row['tiempoPreparacion']);
+                $platillo->setTiempoCoccion($row['tiempoCoccion']);
+                $platillo->setCaducidad($row['caducidad']);
+                $platillo->setPorciones($row['porciones']);
+                $platillo->setCostoPromedio($row['costoPromedio']);
+                $platillo->setRendimiento($row['rendimiento']);
+                $platillo->setTiempoComida($row['tiempoComida']);
+                $platillo->setAutor($row['autor']);
+                $platillo->setImagen($row['imagen']);
+                $platillo->setIdAlumno($row['idAlumno']);
+                $platillo->setIdUsuario($row['idUsuario']);
+                $platillo->setIdAdministrador($row['idAdministrador']);
 
-            $this->conexion->query($actualizar);
-       
+                array_push($listaPlatillosUsuariosB, $platillo);
+            }
+
+            return $listaPlatillosUsuariosB;
         }
-        //---------------------- Buscar Platillos-----------------------------
+
+        //----------Buscar platillos pujblicados por el administrador
+        public function buscarPlatillosAdministrador($terminoBusqueda){
+            $listaPlatillosAdministrador = array();
+            $consulta = "SELECT * FROM platillo WHERE idAdministrador <> 0 AND (id LIKE '%$terminoBusqueda%' OR nombre LIKE '%$terminoBusqueda%')";
+            $sql = $this->conexion->query($consulta);
+
+            if ($sql === false) {
+                echo "Error en la consulta";
+            }
+
+            while($row = $sql->fetch_assoc()){
+                $platillo = new Platillo();
+
+                $platillo->setId($row['id']);
+                $platillo->setNombre($row['nombre']);
+                $platillo->setDescripcion($row['descripcion']);
+                $platillo->setTiempoPreparacion($row['tiempoPreparacion']);
+                $platillo->setTiempoCoccion($row['tiempoCoccion']);
+                $platillo->setCaducidad($row['caducidad']);
+                $platillo->setPorciones($row['porciones']);
+                $platillo->setCostoPromedio($row['costoPromedio']);
+                $platillo->setRendimiento($row['rendimiento']);
+                $platillo->setTiempoComida($row['tiempoComida']);
+                $platillo->setAutor($row['autor']);
+                $platillo->setImagen($row['imagen']);
+                $platillo->setIdAlumno($row['idAlumno']);
+                $platillo->setIdUsuario($row['idUsuario']);
+                $platillo->setIdAdministrador($row['idAdministrador']);
+
+                array_push($listaPlatillosAdministrador, $platillo);
+            }
+
+            return $listaPlatillosAdministrador;
+        }
+        //---------------------- Buscar entre todos lo platillos-----------------------------
         function buscarPlatillos($buscarPlatillos) {
             $listaPlatillos = array();
-            $consulta = "SELECT * FROM platillo WHERE id like '%$buscarPlatillos%' OR nombre like '%$buscarPlatillos%' or ingredientes like '{$buscarPlatillos}%' ";
+            $consulta = "SELECT * FROM platillo WHERE id like '%$buscarPlatillos%' OR nombre like '%$buscarPlatillos%'";
             $resultado = $this->conexion->query($consulta);
    
             while ($row = $resultado ->fetch_assoc()) {
                $platillo = new Platillo();
-
+    
                 $platillo->setId($row['id']);
                 $platillo->setNombre($row['nombre']);
-                $platillo->setIngredientes($row['ingredientes']);
-                $platillo->setUtencilios($row['utencilios']);
-                $platillo->setTiempopreparacion($row['tiempopreparacion']);
+                $platillo->setDescripcion($row['descripcion']);
+                $platillo->setTiempoPreparacion($row['tiempoPreparacion']);
+                $platillo->setTiempoCoccion($row['tiempoCoccion']);
                 $platillo->setCaducidad($row['caducidad']);
                 $platillo->setPorciones($row['porciones']);
-                $platillo->setEnergia($row['energia']);
-                $platillo->setCostopromedio($row['costopromedio']);
+                $platillo->setCostoPromedio($row['costoPromedio']);
                 $platillo->setRendimiento($row['rendimiento']);
-                $platillo->setProteinas($row['proteinas']);
-                $platillo->setGrasas($row['grasas']);
-                $platillo->setHidratoscarbono($row['hidratoscarbono']);
-                $platillo->setPreparacion($row['preparacion']);
-                $platillo->setTipocomida($row['tipocomida']);
+                $platillo->setTiempoComida($row['tiempoComida']);
                 $platillo->setAutor($row['autor']);
                 $platillo->setImagen($row['imagen']);
+                $platillo->setIdAlumno($row['idAlumno']);
+                $platillo->setIdUsuario($row['idUsuario']);
+                $platillo->setIdAdministrador($row['idAdministrador']);
 
 
                 array_push($listaPlatillos, $platillo);
@@ -747,17 +1332,49 @@
 
         //--------------------Eliminar Platillo-------------------------
         function eliminarPlatillo($idPlatillo) {
+         
 
-            $consulta = "DELETE FROM comentario WHERE idPlatillo = '$idPlatillo'";
-            $this->conexion->query($consulta);
+                // Eliminar comentarios relacionados al platillo
+                $consulta = "DELETE FROM comentario WHERE idPlatillo = '$idPlatillo'";
+                $this->conexion->query($consulta);
 
-            $consulta = "DELETE FROM platillo WHERE id = '$idPlatillo'";
-            $this->conexion->query($consulta);
+                // Eliminar ingredientes relacionado al platillo
+                $consulta = "DELETE FROM ingredientes WHERE idPlatillo = '$idPlatillo'";
+                $this->conexion->query($consulta);
+
+                // Eliminar preparación relacionada al platillo
+                $consulta = "DELETE FROM preparacion WHERE idPlatillo = '$idPlatillo'";
+                $this->conexion->query($consulta);
+
+                // Eliminar utensilios relacionados al platillo
+                $consulta = "DELETE FROM utencilio WHERE idPlatillo = '$idPlatillo'";
+                $this->conexion->query($consulta);
+
+                // Eliminar nutrientes relacionados al platillo
+                $consulta = "DELETE FROM nutrientes WHERE idPlatillo = '$idPlatillo'";
+                $this->conexion->query($consulta);
+
+                // Eliminar complementos relacionados al platillo
+                $consulta = "DELETE FROM complemento WHERE idPlatillo = '$idPlatillo'";
+                $this->conexion->query($consulta);
+
+                // Eliminar favoritos relacionados al platillo
+                $consulta = "DELETE FROM favoritos  WHERE idPlatillo = '$idPlatillo'";
+                $this->conexion->query($consulta);
+
+                // Eliminar validacion relacionados al platillo
+                $consulta = "DELETE FROM validacion  WHERE idPlatillo = '$idPlatillo'";
+                $this->conexion->query($consulta);
+
+                // Eliminar el platillo principal
+                $consulta = "DELETE FROM platillo WHERE id = '$idPlatillo'";
+                $this->conexion->query($consulta);
 
         }
 
-        //----------------Mostrar platillo de comidas----------------
-        function mostrarComida($idPlatilloMostrar){
+
+        //----------------Mostrar platillo ----------------
+        function mostrarPlatillo($idPlatilloMostrar){
             //creacion del objeto platillo
             $platillo = new Platillo();
 
@@ -771,25 +1388,178 @@
                 //se agregan las propiedas del objeto
                 $platillo->setId($row['id']);
                 $platillo->setNombre($row['nombre']);
-                $platillo->setIngredientes($row['ingredientes']);
-                $platillo->setUtencilios($row['utencilios']);
-                $platillo->setTiempopreparacion($row['tiempopreparacion']);
+                $platillo->setDescripcion($row['descripcion']);
+                $platillo->setTiempoPreparacion($row['tiempoPreparacion']);
+                $platillo->setTiempoCoccion($row['tiempoCoccion']);
                 $platillo->setCaducidad($row['caducidad']);
                 $platillo->setPorciones($row['porciones']);
-                $platillo->setEnergia($row['energia']);
-                $platillo->setCostopromedio($row['costopromedio']);
+                $platillo->setCostoPromedio($row['costoPromedio']);
                 $platillo->setRendimiento($row['rendimiento']);
-                $platillo->setProteinas($row['proteinas']);
-                $platillo->setGrasas($row['grasas']);
-                $platillo->setHidratoscarbono($row['hidratoscarbono']);
-                $platillo->setPreparacion($row['preparacion']);
-                $platillo->setTipocomida($row['tipocomida']);
+                $platillo->setTiempoComida($row['tiempoComida']);
                 $platillo->setAutor($row['autor']);
                 $platillo->setImagen($row['imagen']);
+                $platillo->setIdAlumno($row['idAlumno']);
             }         
                
             return $platillo;
         }
+
+        //----------------Mostrar ingredientes del platillo ----------------
+        function mostrarIngredintes($idPlatillo){
+            $listaIngredintes= array();
+            /*Se realiza la consulta*/
+            $consulta = "SELECT *FROM  ingredientes where idPlatillo='$idPlatillo'";
+            $sql= $this->conexion->query($consulta);
+
+            if ($sql=== false) {
+                echo "Error en la consulta";
+            }
+            while($row= $sql->fetch_assoc()){
+
+                $ingredientes = new Ingredientes();
+
+                $ingredientes->setId($row['id']);
+                $ingredientes->setNombre($row['nombre']);
+                $ingredientes->setCantidad($row['cantidad']);
+                $ingredientes->setUnidadMedida($row['unidadMedida']);
+                $ingredientes->setIdPlatillo($row['idPlatillo']);
+                             
+                array_push($listaIngredintes, $ingredientes);
+
+             }
+             return $listaIngredintes;
+        }
+
+        //----------------Mostrar preparacion del platillo ----------------
+        function mostrarPreparacion($idPlatillo){
+            $listaPreparacion= array();
+            /*Se realiza la consulta*/
+            $consulta = "SELECT *FROM  preparacion where idPlatillo='$idPlatillo'";
+            $sql= $this->conexion->query($consulta);
+
+            if ($sql=== false) {
+                echo "Error en la consulta";
+            }
+            while($row= $sql->fetch_assoc()){
+
+                $preparacion = new Preparacion();
+
+                $preparacion->setId($row['id']);
+                $preparacion->setPaso($row['paso']);
+                $preparacion->setInstruccion($row['instruccion']);
+                $preparacion->setFoto($row['foto']);
+                              
+                array_push($listaPreparacion, $preparacion);
+
+             }
+             return $listaPreparacion;
+        }
+
+        //----------------Mostrar utencilios  para el platillo ----------------
+        function mostrarUtencilio($idPlatillo){
+            $listaUtencilio= array();
+            /*Se realiza la consulta*/
+            $consulta = "SELECT *FROM  utencilio where idPlatillo='$idPlatillo'";
+            $sql= $this->conexion->query($consulta);
+
+            if ($sql=== false) {
+                echo "Error en la consulta";
+            }
+            while($row= $sql->fetch_assoc()){
+
+                $utencilio = new Utencilio();
+
+                $utencilio->setId($row['id']);
+                $utencilio->setNombre($row['nombre']);
+                $utencilio->setCantidad($row['cantidad']);
+                              
+                array_push($listaUtencilio, $utencilio);
+
+             }
+             return $listaUtencilio;
+        }
+
+        //----------------Mostrar los nutrientes del platillo ----------------
+        function mostrarNutriente($idPlatillo){
+            $listaNutriente= array();
+            /*Se realiza la consulta*/
+            $consulta = "SELECT *FROM  nutriente where idPlatillo='$idPlatillo'";
+            $sql= $this->conexion->query($consulta);
+
+            if ($sql=== false) {
+                echo "Error en la consulta";
+            }
+            while($row= $sql->fetch_assoc()){
+
+                $nutriente = new Nutriente();
+
+                $nutriente->setId($row['id']);
+                $nutriente->setNombre($row['nombre']);
+                $nutriente->setCantidadR($row['cantidadR']);
+                $nutriente->setCantidadP($row['cantidadP']);
+                $nutriente->setUnidadMedida($row['unidadMedida']);
+
+                array_push($listaNutriente, $nutriente);
+
+             }
+             return $listaNutriente;
+        }
+        //----------------Mostrar informacion adicional ----------------
+        function mostrarComplemento($idPlatillo){
+           
+            /*Se realiza la consulta*/
+            $consulta = "SELECT *FROM  complemento where idPlatillo='$idPlatillo'";
+            
+            //se ejecuta la consulta a la base de datos 
+            $sql= $this->conexion->query($consulta);
+
+            while ($row = $sql->fetch_assoc()) {
+
+                //creacion del objeto platillo
+                $complemento = new Complemento();
+
+                //se agregan las propiedas del objeto
+                $complemento->setId($row['id']);
+                $complemento->setEstado($row['estado']);
+                $complemento->setRegion($row['region']);
+                $complemento->setMunicipio($row['municipio']);
+                $complemento->setLengua($row['lengua']);
+                $complemento->setCultura($row['cultura']);
+                $complemento->setIdPlatillo($row['idPlatillo']);
+            }         
+               
+            return $complemento;
+        }
+
+
+
+        //----------------Mostrar informacion de validacion ----------------
+        function mostrarValidacion($idPlatillo){
+            //creacion del objeto platillo
+            $validacion = new Validacion();
+
+            /*Se realiza la consulta*/
+            $consulta = "SELECT *FROM  validacion where idPlatillo='$idPlatillo'";
+            
+            //se ejecuta la consulta a la base de datos 
+            $sql= $this->conexion->query($consulta);
+
+            while ($row = $sql->fetch_assoc()) {
+                //se agregan las propiedas del objeto
+                $validacion->setId($row['id']);
+                $validacion->setIdPlatillo($row['idPlatillo']);
+                $validacion->setSeccionDatos($row['seccionDatos']);
+                $validacion->setSeccionIngredientes($row['seccionIngredientes']);
+                $validacion->setSeccionUtencilio($row['seccionUtencilio']);
+                $validacion->setSeccionPreparacion($row['seccionPreparacion']);
+                $validacion->setSeccionNutriente($row['seccionNutriente']);
+                $validacion->setSeccionComplemento($row['seccionComplemento']);
+                $validacion->setNota($row['nota']);
+            }         
+               
+            return $validacion;
+        }
+
          //__________________________________________________________
         //:::::::::::::::::::: Encuesta ::::::::::::::::::::::::::
         public function registrarEncuesta($encuesta){
@@ -845,6 +1615,78 @@
 
              }
              return $listaEncuesta;
+        }
+
+        //Funcion para graficar cantidad de hombres y mujeres.
+        public function contarGenerosEncuesta(){
+            $consulta = "SELECT sexo, COUNT(*) as cantidad FROM encuesta GROUP BY sexo";
+            $resultados = $this->conexion->query($consulta);
+
+            if ($resultados === false) {
+                echo "Error en la consulta";
+                return false;
+            }
+
+            $datosGeneros = array();
+            while($row = $resultados->fetch_assoc()){
+                $datosGeneros[$row['sexo']] = $row['cantidad'];
+            }
+
+            return $datosGeneros;
+        }
+
+        //---Funcion para graficar medios de comunicacion 
+        public function contarCategoriasMediosEncuesta(){
+            $consulta = "SELECT medio, COUNT(*) as cantidad FROM encuesta GROUP BY medio";
+            $resultados = $this->conexion->query($consulta);
+
+            if ($resultados === false) {
+                echo "Error en la consulta";
+                return false;
+            }
+
+            $datosMedios = array();
+            while($row = $resultados->fetch_assoc()){
+                $datosMedios[$row['medio']] = $row['cantidad'];
+            }
+
+            return $datosMedios;
+        }
+
+        // Función para contar y agrupar los datos de la columna "estado"
+        public function contarEstadosEncuesta(){
+            $consulta = "SELECT estado, COUNT(*) as cantidad FROM encuesta GROUP BY estado";
+            $resultados = $this->conexion->query($consulta);
+
+            if ($resultados === false) {
+                echo "Error en la consulta";
+                return false;
+            }
+
+            $datosEstados = array();
+            while($row = $resultados->fetch_assoc()){
+                $datosEstados[$row['estado']] = $row['cantidad'];
+            }
+
+            return $datosEstados;
+        }
+
+        // Función para contar y agrupar los datos de la columna "calificacion"
+        public function contarCalificacionesEncuesta(){
+            $consulta = "SELECT calificacion, COUNT(*) as cantidad FROM encuesta GROUP BY calificacion";
+            $resultados = $this->conexion->query($consulta);
+
+            if ($resultados === false) {
+                echo "Error en la consulta";
+                return false;
+            }
+
+            $datosCalificaciones = array();
+            while($row = $resultados->fetch_assoc()){
+                $datosCalificaciones[$row['calificacion']] = $row['cantidad'];
+            }
+
+            return $datosCalificaciones;
         }
 
 
@@ -994,54 +1836,23 @@
             }
         }
 
-        //---------------------- Total de visitas mes por Mez 2022-2023----------------------------
-        function totalVisitasAgosto(){
-            $consulta = "SELECT * FROM visitas where (fecha) BETWEEN '2022-08-01' AND '2022-08-31'";
-            if ($resultado=mysqli_query($this->conexion,$consulta)) {$totalVisitaAgo=mysqli_num_rows($resultado);return  $totalVisitaAgo;}
+        //-------- Total de visitas mes por Mes y año------------------
+        function obtenerRangoDeFechas() {
+            $consulta = "SELECT MIN(YEAR(fecha)) as ano_minimo, MAX(YEAR(fecha)) as ano_maximo FROM visitas";
+            if ($resultado = mysqli_query($this->conexion, $consulta)) {
+                $row = mysqli_fetch_assoc($resultado);
+                return $row;
+            }
         }
-        function totalVisitasSeptiembre(){
-            $consulta = "SELECT * FROM visitas where (fecha) BETWEEN '2022-09-01' AND '2022-09-31'";
-            if ($resultado=mysqli_query($this->conexion,$consulta)) { $totalVisitaSep=mysqli_num_rows($resultado); return  $totalVisitaSep;}
-        }
-        function totalVisitasOctubre(){
-            $consulta = "SELECT * FROM visitas where (fecha) BETWEEN '2022-10-01' AND '2022-10-31'";
-            if ($resultado=mysqli_query($this->conexion,$consulta)) { $totalVisitaOct=mysqli_num_rows($resultado); return  $totalVisitaOct;}
-        }
-        function totalVisitasNoviembre(){
-            $consulta = "SELECT * FROM visitas where (fecha) BETWEEN '2022-11-01' AND '2022-11-31'";
-            if ($resultado=mysqli_query($this->conexion,$consulta)) { $totalVisitaNov=mysqli_num_rows($resultado); return  $totalVisitaNov;}
-        }
-        function totalVisitasDiciembre(){
-            $consulta = "SELECT * FROM visitas where (fecha) BETWEEN '2022-12-01' AND '2022-12-31'";
-            if ($resultado=mysqli_query($this->conexion,$consulta)) { $totalVisitaDic=mysqli_num_rows($resultado); return  $totalVisitaDic;}
-        }
-        function totalVisitasEnero(){
-            $consulta = "SELECT * FROM visitas where (fecha) BETWEEN '2022-01-01' AND '2022-01-31'";
-            if ($resultado=mysqli_query($this->conexion,$consulta)) { $totalVisitaEne=mysqli_num_rows($resultado); return  $totalVisitaEne;}
-        }
-        function totalVisitasFebrero(){
-            $consulta = "SELECT * FROM visitas where (fecha) BETWEEN '2022-02-01' AND '2022-02-31'";
-            if ($resultado=mysqli_query($this->conexion,$consulta)) { $totalVisitaFeb=mysqli_num_rows($resultado); return  $totalVisitaFeb;}
-        }
-        function totalVisitasMarzo(){
-            $consulta = "SELECT * FROM visitas where (fecha) BETWEEN '2022-03-01' AND '2022-03-31'";
-            if ($resultado=mysqli_query($this->conexion,$consulta)) { $totalVisitaMar=mysqli_num_rows($resultado); return  $totalVisitaMar;}
-        }
-        function totalVisitasAbril(){
-            $consulta = "SELECT * FROM visitas where (fecha) BETWEEN '2022-04-01' AND '2022-04-31'";
-            if ($resultado=mysqli_query($this->conexion,$consulta)) { $totalVisitaAbr=mysqli_num_rows($resultado); return  $totalVisitaAbr;}
-        }
-        function totalVisitasMayo(){
-            $consulta = "SELECT * FROM visitas where (fecha) BETWEEN '2022-05-01' AND '2022-05-31'";
-            if ($resultado=mysqli_query($this->conexion,$consulta)) { $totalVisitaMay=mysqli_num_rows($resultado); return  $totalVisitaMay;}
-        }
-        function totalVisitasJunio(){
-            $consulta = "SELECT * FROM visitas where (fecha) BETWEEN '2022-06-01' AND '2022-06-31'";
-            if ($resultado=mysqli_query($this->conexion,$consulta)) { $totalVisitaJun=mysqli_num_rows($resultado); return  $totalVisitaJun;}
-        }
-        function totalVisitasJulio(){
-            $consulta = "SELECT * FROM visitas where (fecha) BETWEEN '2022-07-01' AND '2022-07-31'";
-            if ($resultado=mysqli_query($this->conexion,$consulta)) { $totalVisitaJul=mysqli_num_rows($resultado); return  $totalVisitaJul;}
+
+        function totalVisitasPorMes($ano, $mes) {
+            $primerDia = $ano . '-' . $mes . '-01';
+            $ultimoDia = $ano . '-' . $mes . '-31'; // Esto asume un mes con 31 días, ajusta según tus necesidades
+
+            $consulta = "SELECT * FROM visitas WHERE fecha BETWEEN '$primerDia' AND '$ultimoDia'";
+            if ($resultado = mysqli_query($this->conexion, $consulta)) {
+                return mysqli_num_rows($resultado);
+            }
         }
        
         //__________________________________________________________

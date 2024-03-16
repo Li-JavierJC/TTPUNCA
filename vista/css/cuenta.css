@@ -1,40 +1,17 @@
 #encabezado {
 	display: none;
 }
-footer#footer-color{
-    background: red;
-}
+
 .barra {
     background:#FA7070;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    margin: 0;
-    
-}
-
-span{
     color: #ffffff;
-}
-
-.dropdown-menu {
-    margin: 17px;
-    background: #3AB0FF;
-    color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.568);
-}
-
-.menuperfil {
-    color: white;
-}
-
-.menuperfil:focus {
-    background: #0f0f0f;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.568);
+    font-weight: bold;
+    margin: 0;
 }
 
 .cerrar:hover {
-    background-color: rgba(16, 20, 17, 0.877);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.568);
+    background-color:#581845;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.568);
     color: #ffffff;
 }
 
@@ -61,6 +38,7 @@ span{
 /*ESTILOS MENU*/
 
 .barra-lateral .menu a {
+    border-radius: 0%;
     background: #15133C;
     display: block;
     padding: 20px;
@@ -71,6 +49,7 @@ span{
 
 .barra-lateral .menu a:hover {
     background-color: #04a5fca2;
+    color: #f3f0f0;
     text-decoration: none;
 }
 
@@ -167,73 +146,44 @@ span{
     }
 }
 
-/*Estilos para el formulario de registro de platillo*/
-section#parte2{
-    display: none;
+
+.float-clear{
+    clear:both;
+}
+.float-left{
+    float:left; 
+    margin-left:10px
 }
 
-section#parte3{
-    display: none;
+.product-item input[type="text"] {
+    padding: 5px;border:#ccc 1px solid;border-radius:4px;margin: 0px 10px;
+}
+.product-item input[type="checkbox"] {
+    margin: 10px;
 }
 
-section#parte4{
-    display: none;
+#header section{
+    padding: 20px 15px 15px;margin: 0px 0px;
 }
 
-/*Datos que no se muestran del platillo*/
-
-td#ingredientes-m{
-    display: none;
+.col-heading{
+    width:380px;
+    font-size:16px;
+    font-weight:bold;
 }
 
-td#utencilios-m{
-    display: none;
+.col-heading2{
+    width:240px;
+    font-size:16px;
+    font-weight:bold;
 }
 
-td#tiempopreparacion-m{
-    display: none;
+#header{ 
+    background:#333; 
+    height:60px; 
+    color:#FFF
 }
 
-td#caducidad-m{
-    display: none;
+.btn-action{
+    padding:10px 0;
 }
-
-td#porciones-m{
-    display: none;
-}
-
-td#energia-m{
-    display: none;
-}
-
-td#costopromedio-m{
-    display: none;
-}
-td#rendimiento-m{
-    display: none;
-}
-
-td#proteinas-m{
-    display: none;
-}
-
-td#grasas-m{
-    display: none;
-}
-td#hidratoscarbono-m{
-    display: none;
-}
-
-td#preparacion-m{
-    display: none;
-}
-
-.float-clear{clear:both;}
-.float-left{float:left; margin-left:10px}
-.product-item input[type="text"] {padding: 5px;border:#ccc 1px solid;border-radius:4px;margin: 0px 10px;}
-.product-item input[type="checkbox"] {margin: 10px;}
-#header section{padding: 20px 15px 15px;margin: 0px 0px;}
-.col-heading{width:380px;font-size:16px;font-weight:bold;}
-.col-heading2{width:240px;font-size:16px;font-weight:bold;}
-#header{ background:#333; height:60px; color:#FFF}
-.btn-action{padding:10px 0;}

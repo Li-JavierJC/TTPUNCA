@@ -103,3 +103,95 @@ label:hover ~ label {
 input[type="radio"]:checked ~ label {
   color: orange;
 }
+
+/*Estilos para la imagen que flota al inicio*/
+.contenedor-image {
+  position: relative;
+  width: 550px;
+  height: 550px;
+}
+
+#image-flotante {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation-name: animacionFlotante;
+  animation-duration: 4s; 
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes animacionFlotante {
+  0% {
+    transform: translate(-50%, -50%);
+  }
+  50% {
+    transform: translate(-50%, -55%); 
+  }
+  100% {
+    transform: translate(-50%, -50%);
+  }
+}
+
+/*Estilos para el contador de platillos*/
+#contador-platillos {
+  font-size: 48px;
+  animation: contar-p 2s ease-in-out forwards;
+}
+
+@keyframes contar-p {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/*Estilos para el contador de visitantes*/
+#contador-visitante {
+  font-size: 48px;
+  animation: contar-v 2s ease-in-out forwards;
+}
+
+@keyframes contar-v {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/*Estilos para el contador de visitas*/
+#contador-visitas {
+  font-size: 48px;
+  animation: contar-vv 2s ease-in-out forwards;
+}
+
+@keyframes contar-vv {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/*Estilos para el contador de comentarios*/
+#contador-comentarios {
+  font-size: 48px;
+  animation: contar-c 2s ease-in-out forwards;
+}
+
+@keyframes contar-c {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+
