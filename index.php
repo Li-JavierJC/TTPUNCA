@@ -92,7 +92,7 @@
   		<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
 		
 
-		<!-- Google tag (gtag.js)  Parte de codigo de Google Analitics 
+		<!-- Google tag (gtag.js)  Parte de codigo de Google Analitics -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=G-1QJZNLZWMM"></script>
 		<script>
 		  window.dataLayer = window.dataLayer || [];
@@ -101,7 +101,7 @@
 
 		  gtag('config', 'G-1QJZNLZWMM');
 		</script>
-		-->
+		
 	</head>
 	<body>
 		<?php
